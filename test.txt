@@ -22,7 +22,7 @@ und dann beides mergen
 git merge mein-branch
 git push -u origin main
 
-und dann kann man den branch löschen
+und dann kann man den benutzten branch löschen
 
 git branch -d mein-branch
 
