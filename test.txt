@@ -1,0 +1,29 @@
+Also um richtig mit branch zu arbeiten muss man sich zuerst einen branch machen
+
+git checkout -b mein-branch
+
+danach kann man ganz wie gewohn seinen änderungen machen
+
+so wie man es kennt 
+git add .
+git commit -m "Ich habe etwas gemacht"
+git push
+
+danch kann man wieder auf den original branch gehen
+
+git checkout main
+
+auf den neusten stand bringen
+
+git pull 
+
+und dann beides mergen
+
+git merge mein-branch
+git push -u origin main
+
+und dann kann man den branch delten
+
+git branch -d mein-branch
+
+Hallo
