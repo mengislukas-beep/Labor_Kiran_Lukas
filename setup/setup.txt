@@ -1,0 +1,48 @@
+im bild sieht man welcher http... man einfügen soll
+
+
+
+dann folgende steps
+
+im terminal mit 
+cd ich/gehe/in/mein/ordner 
+
+git clone deine URL
+
+es sollte ein neuer ordner erstellen eventuell muss du dich im terminal irgendwie einloggen
+
+cd "in den ordner"
+
+git pull
+
+git status
+git add .
+git commit -m "Beschreibung der Änderungen"
+git push
+
+
+danach immer 
+git add .
+git commit -m "hallo"
+git push
+
+oder so wie ich es im test.txt probiert habe zu erklären
+
+Ich hoffe das funktioniert bitte bitte ;)
+
+
+(¬‿¬)                   ヾ(=^･ω･^=)ﾉ                ¯\_(ಥ‿ಥ)_/¯
+
+
+
+
+
+                        ꧁⎝ 𓆩༺✧༻𓆪 ⎠꧂
+
+
+
+
+
+
+lustige Gesichter hihi
+https://emojidb.org/kaomojis-emojis
