@@ -105,4 +105,53 @@ from the average of the obtained wavelengths we calculate the Rydberg-Frequency 
 
 The $k#sub[0]$-value measured in the experiment is $k#sub[0] = 950$. This measurment does not correspond to the actual $k#sub[0]$-vlaue but to the 587.5 nm wavelength light. This wavelength is yellow and was therefore misinterpreted as the 0-th order. In order to correct for this mistake, we used for the first fit-function $lambda#sub[c] (k) = b k + a$ instead of $lambda#sub[c] (k) = b (k - k#sub[0])$. The latter function is used in the manual.
 
+The measurements of the Balmer-Series have given:
+
+#grid(
+    columns: 5,
+    rows: 2,
+    column-gutter: 10pt,
+    row-gutter: 3pt,
+    stroke: gray,
+
+    [literature value [nm]],
+    [656],
+    [486],
+    [434],
+    [410],
+
+    [experimental value [nm]],
+    [650],
+    [504],
+    [483],
+    [477],
+)
+
+Also the experimental values from the Rydberg-Frequency, ionisation energy and the limit of the Balmer-Series deviate from the literature values.
+
+#grid(
+    columns: 4,
+    rows: 3,
+    column-gutter: 10pt,
+    row-gutter: 3pt,
+    stroke: gray,
+
+    [],
+    [Rydberg-Frequency [Hz]],
+    [ionisation energy [eV]],
+    [limit of Series [nm]],
+
+    [literature value],
+    [3.29 e 15],
+    [13.6],
+    [365],
+
+    [experimental value],
+    [3.07 e 15],
+    [12.7],
+    [391],
+)
+
+The errors from the Rydberg-Frequency, ionisation energy and limit of the Balmer-Series directly propagate from the errors in measurement of the H-Lines. The values obtained from the H-Lines come from the fit-function and the measured k-values for each H-Line. Both of them must have their own errors, which contribute. We assume that the main errors comes from the fit-function.
+
 = Conclusion
