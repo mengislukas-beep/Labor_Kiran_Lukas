@@ -152,6 +152,6 @@ Also the experimental values from the Rydberg-Frequency, ionisation energy and t
     [$391 plus.minus 2$],
 )
 
-The errors from the Rydberg-Frequency, ionisation energy and limit of the Balmer-Series directly propagate from the errors in measurement of the H-Lines. The values obtained from the H-Lines come from the fit-function and the measured k-values for each H-Line. Both of them must have their own errors, which contribute. We assume that the main errors comes from the fit-function.
+The errors from the Rydberg-Frequency, ionisation energy and limit of the Balmer-Series directly propagate from the errors in measurement of the H-Lines. The values obtained from the H-Lines come from the fit-function and the measured k-values for each H-Line. Both of them have their own errors, which contribute. The errors trace back to the originally set deviations of $Delta k = plus.minus 1$ and $Delta p = plus.minus 1$ where $Delta k$ is the error of the k-value and $Delta p$ the error in pixel position.
 
 = Conclusion
