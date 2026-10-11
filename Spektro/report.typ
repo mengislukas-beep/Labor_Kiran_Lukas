@@ -1,0 +1,108 @@
+#set heading(numbering: "1.1)")
+
+report spektroscopy 1
+
+
+= Introduction
+
+= Experiment
+
+= Results
+$k#sub[0]$ denotes the k-value which corresponds to the 0-th order. The measured value is $k#sub[0] = 950$. This value is wrong. More details are in the discussion section.
+
+the first measurement is to fit the wavelength of the middle pixel position in dependance of dial position (k-value). The results are the following:
+#grid(
+    columns: 8,
+    rows: 2,
+    column-gutter: 10pt,
+    row-gutter: 3pt,
+    stroke: gray,
+
+    [wavelength [nm]],
+    [388.8],
+    [447.1],
+    [471.3],
+    [492.1],
+    [504.7],
+    [667.8],
+    [706.5],
+
+    [k-value],
+    [1310],
+    [1131],
+    [1101],
+    [1072],
+    [1070],
+    [849],
+    [800],
+)
+
+The first column contains the wavelength in nm of the measured light-strips. The value is the literature value. The second column contains the measurements. The measurement is the k-value. This is light from the He-Lamp.
+
+the second measurement is for a fixed k-value and measures data to fit the wavelength in dependance of pixel position
+the results are the following:
+
+#grid(
+    columns: 4,
+    rows: 2,
+    column-gutter: 10pt,
+    row-gutter: 3pt,
+    stroke: gray,
+
+    [wavelength [nm]],
+    [492.1],
+    [501.5],
+    [504.7],
+
+    [pixel position],
+    [475],
+    [802],
+    [920],
+)
+
+The first column is again the known wavelengths of the measured light-strips in nm. the second column is the pixel position on the image. the image is 1440px wide, therefore the pixel position $p$ has $0 <= p < 1440$
+
+the third data-set is from the Hydrogen-Lamp to measure the wavelengths of the Balmer-Series.
+
+#grid(
+    columns: 5,
+    rows: 2,
+    column-gutter: 10pt,
+    row-gutter: 3pt,
+    stroke: gray,
+
+    [n],
+    [3],
+    [4],
+    [5],
+    [6],
+
+    [k-value],
+    [860],
+    [1080],
+    [1112],
+    [1120],
+)
+the first column is the Balmer-Series. The are the corresponding measurements of the k-values.
+
+
+= Data Analysis
+
+The fit function used is of the form $lambda (p, k) = b k + a + (p - p#sub[cent]) / d$
+we used this function beacause our k0-value was wrong. Therefore we now use three fit-parameter instead of two like in the manualll.
+with the first data-set we obtained values for a and b. we used scipy.curve_fit for the regression. For the first data-set we used the fit $lambda#sub[c] (k) = b k + a$ since $p = p#sub[cent]$. This gives the values $a = 1220, b = -0.663$ *insert plot*
+
+for the second data-set the fit function is $lambda (p, k#sub[fix]) = b k#sub[fix] + a + (p - p#sub[cent]) / d$. this is the final fit function but with a fixed $k = k#sub[fix]$ and $a, b$ from above. this gives $d = 42.6$. *insert plot*
+
+from the fit we calculate the lattice constant $g$ as $g = 1 / d = 5.87 e -05$.
+
+with the complete fit function we obtained the following wavelengths of the Balmer-Series through the fit function: $lambda#sub[3] = 650 "nm", lambda#sub[4] = 504 "nm", lambda#sub[5] = 483 "nm", lambda#sub[6] = 477 "nm"$.
+
+from the average of the obtained wavelengths we calculate the Rydberg-Frequency as $R#sub[H] = 3.07 e 15$ therefore the limit of the Balmer-Series is $lambda#sub[min] = 391 "nm"$. From the Rydberg-Frequency we continue to calculate the ionisation energy as $E#sub[ion] = (h R#sub[H]) / e = 12.7 "eV"$ where $h$ is Plancks constant and $e$ is the proton charge.
+
+
+= Discussion
+
+The $k#sub[0]$-value measured in the experiment is $k#sub[0] = 950$. This measurment does not correspond to the actual $k#sub[0]$-vlaue but to the 587.5 nm wavelength light. This wavelength is yellow and was therefore misinterpreted as the 0-th order. In order to correct for this mistake, we used for the first fit-function $lambda#sub[c] (k) = b k + a$ instead of $lambda#sub[c] (k) = b (k - k#sub[0])$. The latter function is used in the manual.
+
+= Conclusion
