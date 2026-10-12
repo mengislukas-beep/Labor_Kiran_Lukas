@@ -97,7 +97,7 @@ the first column is the Balmer-Series. The are the corresponding measurements of
 
 The fit function used is of the form $lambda (p, k) = b k + a + (p - p_("cent")) / d$
 we used this function beacause our $k_0$-value was wrong. Therefore we now use three fit-parameter instead of two like in the manualll.
-with the first data-set we obtained values for a and b. we used scipy.curve_fit for the regression. For the first data-set we used the fit $lambda_c_ (k) = b k + a$ since $p = p_("cent")$. This gives the values $a = 1220 plus.minus 2, b = -0.663 plus.minus 0.002$ *insert plot*
+with the first data-set we obtained values for a and b. we used scipy.curve_fit for the regression. For the first data-set we used the fit $lambda_c (k) = b k + a$ since $p = p_("cent")$. This gives the values $a = 1220 plus.minus 2, b = -0.663 plus.minus 0.002$ *insert plot*
 
 for the second data-set the fit function is $lambda (p, k_("fix")) = b k_("fix") + a + (p - p_("cent")_) / d$. this is the final fit function but with a fixed $k = k#sub[fix]$ and $a, b$ from above. this gives $d = 42.6 plus.minus 0.1$. *insert plot*
 
