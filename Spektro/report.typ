@@ -27,12 +27,29 @@
 
 = Introduction
 
+Spectroscopy is used to spatialy split light in its different wavelengths. Here this information is used to determine the wavelengths of the Balmer-Series. With the formula 
+$
+    nu = R_H (1 / m^2 + 1 / n^2)
+$
+we caluclate the Rydberg-Frequency $R_H$ where $nu$ is the frequency of light and the electrone jumps from the $n$-th layer to the $m$-th layer.
+
+All of these values are well known and the experiment is a learning excercice to get familier with spectroscopy.
+
 = Experiment
 
+The experiment consists of first calibrating the spectrometer. Then to measure the H-Lines and calculate the Rydberg-Frequency $R_H$, the lattice-constant $g$, the limit of the Balmer-Series $lambda_min$ and the ionisation energy $E_("ion")$ for a photon at the Rydberg-Frequency.
+
+The equipment used is a spectrometer, He-Lamp, Hydrogen-Lamp / H-Lamp and a Laptop with ThorImageCam. The spectrometer has a dial with a measurment scale of arbitrary unit. This value will be refered to as k-value $k$. It turns the mirror in the spectrometer which allows to see a different wavelength range on the sensor and screen.
+
+For calibration, the first step is to find the 0-th order. The corresponding k-value is $k_0$. From there the He-Fuse is connected to the spectrometer. The He-Lines all have known wavelengths. When a He-Line is found, its k-value is noted down aswell as its wavelength in Order to create a fit later. After this step a k-value is fixed. For this fixed k-value we measured the pixel position of the visible He-Lines. This is used to complete the fit-function as a function of k-value and pixel position.
+
+Then the H-Lamp is connected. Then the k-values and pixel-position of the H-Lines are measured. Then the fit-function can be applied to the k-values and pixel positition to find their wavelengths. From there the remaining values can be caluclated.
+
 = Results
+
 $k_0$ denotes the k-value which corresponds to the 0-th order. The measured value is $k_0 = 950$. This value is wrong. More details are in the discussion section.
 
-the first measurement is to fit the wavelength of the middle pixel position in dependance of dial position (k-value). The results are the following:
+the first measurement is to fit the wavelength of the middle pixel position ($p_c = 720$) in dependance of dial position (k-value). The results are the following:
 
 #table(
   columns: 8,
@@ -107,8 +124,9 @@ the first column is the Balmer-Series. They are the corresponding measurements o
 = Data Analysis
 
 The fit function used is of the form $lambda (p, k) = b k + a + (p - p_("cent")) / d$
-we used this function because our $k_0$-value was wrong. Therefore we now use three fit-parameter instead of two like in the manual.
-with the first data-set we obtained values for a and b. we used scipy.curve_fit for the regression. For the first data-set we used the fit $lambda_c_ (k) = b k + a$ since $p = p_("cent")$. This gives the values $a = 1220 plus.minus 2, b = -0.663 plus.minus 0.002$.\
+we used this function beacause our $k_0$-value was wrong. Therefore we now use three fit-parameter instead of two like in the manualll.
+with the first data-set we obtained values for $a$ and $b$. we used scipy.curve_fit for the regression. For the first data-set we used the fit $lambda_c (k) = b k + a$ since $p = p_("cent")$. This gives the values $a = 1220 plus.minus 2, b = -0.663 plus.minus 0.002$. Here we used the the covariance matrix produced by curve_fit to determine the standart deviation for $a$ and $b$. In the error propagation we used the help of AI-tools for bugfixing in the Python-Program. 
+
 #figure(
     image("Bilder/plot01.png"),
     caption: [
@@ -118,7 +136,7 @@ with the first data-set we obtained values for a and b. we used scipy.curve_fit 
 
 
 
-for the second data-set the fit function is $lambda (p, k_("fix")) = b k_("fix") + a + (p - p_("cent") d$. this is the final fit function but with a fixed $k = k_("fix")$ and $a, b$ from above. this gives $d = 42.6 plus.minus 0.1$. 
+For the second data-set the fit function is $lambda (p, k_("fix")) = b k_("fix") + a + (p - p_("cent")) / d$. this is the final fit function but with a fixed $k = k#sub[fix]$ and $a, b$ from above. this gives $d = 42.6 plus.minus 0.1$. Again we used the help of AI-tools to help debug our Python-Program.
 
 
 #grid(
@@ -141,16 +159,19 @@ for the second data-set the fit function is $lambda (p, k_("fix")) = b k_("fix")
     ]
   ),
 )
-from the fit we calculate the lattice constant $g$ as $g = 1 / d = (5.87 plus.minus 0.02) dot 10^(-5)$.
 
-with the complete fit function we obtained the following wavelengths of the Balmer-Series through the fit function: $lambda_3 = 650 plus.minus 2 "nm", lambda_4 = 504 plus.minus 2 "nm", lambda_5 = 483 plus.minus 2 "nm", lambda_6 = 477 plus.minus 2 "nm"$.
+From the fit we calculate the lattice constant $g$ as $g = 1 / d = (5.87 plus.minus 0.02) dot 10^(-5)$.
 
-from the average of the obtained wavelengths we calculate the Rydberg-Frequency as $R_H  = (3.07 plus.minus 0.01) e 15$ therefore the limit of the Balmer-Series is $lambda_("min") = 391 plus.minus 2 "nm"$. From the Rydberg-Frequency we continue to calculate the ionisation energy as $E_("ion") = (h R_H) / e = 12.7 plus.minus 0.1 "eV"$ where $h$ is Plancks constant and $e$ is the proton charge.
+With the complete fit function we obtained the following wavelengths of the Balmer-Series through the fit function: $lambda_3 = 650 plus.minus 2 "nm", lambda_4 = 504 plus.minus 2 "nm", lambda_5 = 483 plus.minus 2 "nm", lambda_6_ = 477 plus.minus 2 "nm"$.
+
+From the average of the obtained wavelengths we calculate the Rydberg-Frequency as $R#sub[H]  = (3.07 plus.minus 0.01) e 15$ therefore the limit of the Balmer-Series is $lambda#sub[min] = 391 plus.minus 2 "nm"$. From the Rydberg-Frequency we continue to calculate the ionisation energy as $E#sub[ion] = (h R#sub[H]) / e = 12.7 plus.minus 0.1 "eV"$ where $h$ is Plancks constant and $e$ is the proton charge.
+
+To determine the standart deviations for the obtainded values. We used Gaussian-Error-Propagation. We used AI-tools to help depug our Python-Program.
 
 
 = Discussion
 
-The $k_0$-value measured in the experiment is $k_0 = 950$. This measurment does not correspond to the actual $k_0$-vlaue but to the 587.5 nm wavelength light. This wavelength is yellow and was therefore misinterpreted as the 0-th order. In order to correct for this mistake, we used for the first fit-function $lambda_c (k) = b k + a$ instead of $lambda_c (k) = b (k - k_0)$. The latter function is used in the manual.
+The $k_0$-value measured in the experiment is $k_0 = 950$. This measurment does not correspond to the actual $k_0$-vlaue but to the 587.5 nm wavelength light. This wavelength is yellow and was therefore misinterpreted as the 0-th order. In order to correct for this mistake, we used for the first fit-function $lambda#sub[c] (k) = b k + a$ instead of $lambda#sub[c] (k) = b (k - k_0)$. The latter function is used in the manual.
 
 The measurements of the Balmer-Series have given:
 
@@ -201,11 +222,19 @@ Also the experimental values from the Rydberg-Frequency, ionisation energy and t
 
 
 
-The errors from the Rydberg-Frequency, ionisation energy and limit of the Balmer-Series directly propagate from the errors in measurement of the H-Lines. The values obtained from the H-Lines come from the fit-function and the measured k-values for each H-Line. Both of them have their own errors, which contribute. The errors trace back to the originally set deviations of $Delta k = plus.minus 1$ and $Delta p = plus.minus 1$ where $Delta k$ is the error of the k-value and $Delta p$ the error in pixel position.\
+The expected error traces back to the originally set values of $Delta k = plus.minus 1$ and $Delta p = plus.minus 1$ where $Delta k$ is the error of the k-value and $Delta p$ the error in pixel position. However they do not account for the actual error. We therefore assume that there is some systematic error. As a main source we see errors in the measurements. This could have happened at different stages. Firstly in the calibration step with the He-Lamp. A possible mistake is a misidentification of a He-Line with another He-Line and therefore a wrong data-point of the fit-function. Another possible mistake is a wrong k-value. It is possible that some readings deviate by 100 beacause we found that the disply of the k-value was difficult to read for k-values near to a full hundreth. Also it is possible that there was a copying mistake whilst writing the values down. This all would lead to errors that propagate into the fit-function. Since our data is visibly not linear we belive that one such mistake happend.
 
+The error in the fit-function is also visible in figure 2. The first fit gives a fixed point for $p = p_c = 720$ and the free parameter varies the slope. However all data-points are below the fixed-point, likely beacause the first fit is already wrong by some offset at this position. This could lead to a wrong fit-value, since the second fit tries to compensate for the offset produced by the first fit.
 
+Further mistakes could be wrong k-value or pixel position readings for the H-Lines, which could also contribute to the error.
 
 = Conclusion
+
+In this experiment we calibrated a spectrometer and measured the H-Lines of a H-Lamp. These results were used to calculate Rydberg-Frequency $R_H$, the lattice-constant $g$, the limit of the Balmer-Series $lambda_min$ and the ionisation energy $E_("ion")$ for a photon at the Rydberg-Frequency.
+
+The experimental values of $R_H$, $lambda_min$ and $E_("ion")$, lie within 10% of the literature values. The error is not covered by the standart deviation of the obtained values. Since the data fit data differs from the linear fit model, we concluded that there is systematic error in the data. We see misidentification of He-Lines in the calibration step and wrong read k-values as the main cause.
+
+
 So könnte man sourcen zitieren\
 @demtroeder2018
 @griffiths2018
