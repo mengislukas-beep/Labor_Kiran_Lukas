@@ -438,7 +438,7 @@ print(sig_E_photon)
 #pagebreak()
 
 
-= Sources
+
 
 
 #bibliography("sources.bib")
