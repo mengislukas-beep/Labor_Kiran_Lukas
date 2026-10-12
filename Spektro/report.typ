@@ -132,7 +132,7 @@ with the first data-set we obtained values for $a$ and $b$. we used scipy.curve_
     caption: [
         The Graphs shows the differents spactrallines of helium marked as points meseraude in the in the center pixel. On the x-axis we have the k-(dial position) and the y-axis is the wavelength in nanometers. The orange line is the least sqaures approximation of the points.
     ]
-)<1.1>
+)<eq_1>
 
 
 
@@ -154,7 +154,7 @@ For the second data-set the fit function is $lambda (p, k_("fix")) = b k_("fix")
   figure(
     image("Bilder/plot02.png"),
     caption: [ 
-      Graph of the pixel presentation of the visibel spectralines in the picture beside. The blue dots represents the spectrallines of the picture. The red dot is the fit of the center pixel fixed at k=1066. The red striped line represents the fit from @1.1.
+      Graph of the pixel presentation of the visibel spectralines in the picture beside. The blue dots represents the spectrallines of the picture. The red dot is the fit of the center pixel fixed at k=1066. The red striped line represents the fit from @eq_1
       
     ]
   ),
@@ -163,18 +163,18 @@ For the second data-set the fit function is $lambda (p, k_("fix")) = b k_("fix")
 From the fit we calculate the lattice constant $g$ as $g = 1 / d = (-16.6 plus.minus 0.9) dot 10^(-5)$. Where
 $
 d = lambda_c / (2 cos(beta) sin(alpha))
-$ @manuel\
+$ @manuel_skript\
 
 and
 $
  beta = 15°, quadd alpha = (k - k_0)5.8 times  10^(-5)
-$ @manuel
+$ @manuel_skript
 
 and $k_0$ is the $k_0$-value for $lambda(p_("cent"), k_0) = 0$. Since $lambda(p, k) = b k + a + (p - p_("cent")) / d$ thus $k_0 = - a / b = 1840 plus.minus 5$.
 
 With the complete fit function we obtained the following wavelengths of the Balmer-Series through the fit function: $lambda_3 = 650 plus.minus 2 "nm", lambda_4 = 504 plus.minus 2 "nm", lambda_5 = 483 plus.minus 2 "nm", lambda_6_ = 477 plus.minus 2 "nm"$.
 
-From the average of the obtained wavelengths we calculate the Rydberg-Frequency as $R#sub[H]  = (3.07 plus.minus 0.01) e 15$ therefore the limit of the Balmer-Series is $lambda#sub[min] = 391 plus.minus 2 "nm"$. From the Rydberg-Frequency we continue to calculate the ionisation energy as $E#sub[ion] = (h R#sub[H]) / e = 12.7 plus.minus 0.1 "eV"$ where $h$ is Plancks constant and $e$ is the proton charge.
+From the average of the obtained wavelengths we calculate the Rydberg-Frequency as $R_H  = (3.07 plus.minus 0.01) e 15$ therefore the limit of the Balmer-Series is $lambda#sub[min] = 391 plus.minus 2 "nm"$. From the Rydberg-Frequency we continue to calculate the ionisation energy as $E#sub[ion] = (h R#sub[H]) / e = 12.7 plus.minus 0.1 "eV"$ where $h$ is Plancks constant and $e$ is the proton charge.
 
 To determine the standart deviations for the obtainded values. We used Gaussian-Error-Propagation. We used AI-tools to help depug our Python-Program.
 
@@ -246,8 +246,7 @@ The experimental values of $R_H$, $lambda_min$ and $E_("ion")$, lie within 10% o
 
 
 So könnte man sourcen zitieren\
-@demtroeder2018
-@griffiths2018
+
 Ich mache eine Footnote #footnote[1 2 3]
 
 
