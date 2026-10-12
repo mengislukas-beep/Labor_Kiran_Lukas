@@ -21,7 +21,9 @@
 
 #v(0.5em)
 
-#align(center)[#lorem(80)]
+#align(center)[
+  The goal of this experiment is to analyse the spectroscopy lines of hydrogene and helium and compare it with the literature values. To achive this we used a spectrometer and compared the differents angles of the grating of the spectrallines. At the end by taking the average over all result we got $3.07 plus.minus 0.01$e15, which is deviates with approxiamtely 10% of the literature value. One hypothesis is that the due to the bad resolution the mesearments are not totally correct. We conclude therefore that some deviates of the lesser visible spectrallines have to be taken in account.
+]
 
 = Introduction
 
