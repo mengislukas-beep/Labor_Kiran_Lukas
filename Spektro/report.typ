@@ -1,8 +1,14 @@
 
 #import "../style.typ": *
 
-report spektroscopy 1
+#set document(title: [Report spektroscopy I])
 
+#show title: set text(size: 17pt)
+#show title: set align(center)
+#title[
+ Report spektroscopy I
+]
+#pagebreak()
 
 = Introduction
 
@@ -132,10 +138,12 @@ Also the experimental values from the Rydberg-Frequency, ionisation energy and t
 
 #grid(
     columns: 4,
-    rows: 3,
+    rows: 12pt,
     column-gutter: 10pt,
-    row-gutter: 3pt,
+    row-gutter: 5pt,
     stroke: gray,
+    align: center,
+    
 
     [],
     [Rydberg-Frequency [Hz]],
