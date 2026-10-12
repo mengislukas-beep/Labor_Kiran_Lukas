@@ -144,7 +144,7 @@ For the second data-set the fit function is $lambda (p, k_("fix")) = b k_("fix")
   gutter: 10pt,
 
   figure(
-    image("Bilder/plot01.png", width: 100%),
+    image("Bilder/03_bright.png", width: 100%),
     caption: [
       Screenshot of spectral range at k = 1066. We can see three different spectrallines. The verdical line marks the center pixel.
     ],
