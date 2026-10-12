@@ -112,21 +112,35 @@ with the first data-set we obtained values for a and b. we used scipy.curve_fit 
 #figure(
     image("Bilder/plot01.png"),
     caption: [
-        #lorem(30)
+        The Graphs shows the differents spactrallines of helium marked as points meseraude in the in the center pixel. On the x-axis we have the k-(dial position) and the y-axis is the wavelength in nanometers. The orange line is the least sqaures approximation of the points.
     ]
-)
+)<1.1>
 
 
 
 for the second data-set the fit function is $lambda (p, k_("fix")) = b k_("fix") + a + (p - p_("cent") d$. this is the final fit function but with a fixed $k = k_("fix")$ and $a, b$ from above. this gives $d = 42.6 plus.minus 0.1$. 
 
-#figure(
-  image("Bilder/plot02.png"),
-  caption: [
-    #lorem(30),
-  ]
-)
 
+#grid(
+  columns: (1fr, 1fr),
+  gutter: 10pt,
+
+  figure(
+    image("Bilder/plot01.png", width: 100%),
+    caption: [
+      Screenshot of spectral range at k = 1066. We can see three different spectrallines. The verdical line marks the center pixel.
+    ],
+    
+  ),
+
+  figure(
+    image("Bilder/plot02.png"),
+    caption: [ 
+      Graph of the pixel presentation of the visibel spectralines in the picture beside. The blue dots represents the spectrallines of the picture. The red dot is the fit of the center pixel fixed at k=1066. The red striped line represents the fit from @1.1.
+      
+    ]
+  ),
+)
 from the fit we calculate the lattice constant $g$ as $g = 1 / d = (5.87 plus.minus 0.02) dot 10^(-5)$.
 
 with the complete fit function we obtained the following wavelengths of the Balmer-Series through the fit function: $lambda_3 = 650 plus.minus 2 "nm", lambda_4 = 504 plus.minus 2 "nm", lambda_5 = 483 plus.minus 2 "nm", lambda_6 = 477 plus.minus 2 "nm"$.
