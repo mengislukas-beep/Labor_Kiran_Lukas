@@ -1,4 +1,5 @@
-#set heading(numbering: "1.1)")
+
+#import "../style.typ": *
 
 report spektroscopy 1
 
@@ -8,14 +9,14 @@ report spektroscopy 1
 = Experiment
 
 = Results
-$k#sub[0]$ denotes the k-value which corresponds to the 0-th order. The measured value is $k#sub[0] = 950$. This value is wrong. More details are in the discussion section.
+$k_0$ denotes the k-value which corresponds to the 0-th order. The measured value is $k_0 = 950$. This value is wrong. More details are in the discussion section.
 
 the first measurement is to fit the wavelength of the middle pixel position in dependance of dial position (k-value). The results are the following:
 #grid(
     columns: 8,
     rows: 2,
     column-gutter: 10pt,
-    row-gutter: 3pt,
+    row-gutter: 5pt,
     stroke: gray,
 
     [wavelength [nm]],
@@ -88,22 +89,22 @@ the first column is the Balmer-Series. The are the corresponding measurements of
 
 = Data Analysis
 
-The fit function used is of the form $lambda (p, k) = b k + a + (p - p#sub[cent]) / d$
-we used this function beacause our k0-value was wrong. Therefore we now use three fit-parameter instead of two like in the manualll.
-with the first data-set we obtained values for a and b. we used scipy.curve_fit for the regression. For the first data-set we used the fit $lambda#sub[c] (k) = b k + a$ since $p = p#sub[cent]$. This gives the values $a = 1220 plus.minus 2, b = -0.663 plus.minus 0.002$ *insert plot*
+The fit function used is of the form $lambda (p, k) = b k + a + (p - p_("cent")) / d$
+we used this function beacause our $k_0$-value was wrong. Therefore we now use three fit-parameter instead of two like in the manualll.
+with the first data-set we obtained values for a and b. we used scipy.curve_fit for the regression. For the first data-set we used the fit $lambda_c_ (k) = b k + a$ since $p = p_("cent")$. This gives the values $a = 1220 plus.minus 2, b = -0.663 plus.minus 0.002$ *insert plot*
 
-for the second data-set the fit function is $lambda (p, k#sub[fix]) = b k#sub[fix] + a + (p - p#sub[cent]) / d$. this is the final fit function but with a fixed $k = k#sub[fix]$ and $a, b$ from above. this gives $d = 42.6 plus.minus 0.1$. *insert plot*
+for the second data-set the fit function is $lambda (p, k_("fix")) = b k_("fix") + a + (p - p_("cent")_) / d$. this is the final fit function but with a fixed $k = k#sub[fix]$ and $a, b$ from above. this gives $d = 42.6 plus.minus 0.1$. *insert plot*
 
-from the fit we calculate the lattice constant $g$ as $g = 1 / d = (5.87 plus.minus 0.02) e -05$.
+from the fit we calculate the lattice constant $g$ as $g = 1 / d = (5.87 plus.minus 0.02) dot 10^(-5)$.
 
-with the complete fit function we obtained the following wavelengths of the Balmer-Series through the fit function: $lambda#sub[3] = 650 plus.minus 2 "nm", lambda#sub[4] = 504 plus.minus 2 "nm", lambda#sub[5] = 483 plus.minus 2 "nm", lambda#sub[6] = 477 plus.minus 2 "nm"$.
+with the complete fit function we obtained the following wavelengths of the Balmer-Series through the fit function: $lambda_3 = 650 plus.minus 2 "nm", lambda_4 = 504 plus.minus 2 "nm", lambda_5 = 483 plus.minus 2 "nm", lambda_6_ = 477 plus.minus 2 "nm"$.
 
-from the average of the obtained wavelengths we calculate the Rydberg-Frequency as $R#sub[H] = (3.07 plus.minus 0.01) e 15$ therefore the limit of the Balmer-Series is $lambda#sub[min] = 391 plus.minus 2 "nm"$. From the Rydberg-Frequency we continue to calculate the ionisation energy as $E#sub[ion] = (h R#sub[H]) / e = 12.7 plus.minus 0.1 "eV"$ where $h$ is Plancks constant and $e$ is the proton charge.
+from the average of the obtained wavelengths we calculate the Rydberg-Frequency as $R#sub[H]  = (3.07 plus.minus 0.01) e 15$ therefore the limit of the Balmer-Series is $lambda#sub[min] = 391 plus.minus 2 "nm"$. From the Rydberg-Frequency we continue to calculate the ionisation energy as $E#sub[ion] = (h R#sub[H]) / e = 12.7 plus.minus 0.1 "eV"$ where $h$ is Plancks constant and $e$ is the proton charge.
 
 
 = Discussion
 
-The $k#sub[0]$-value measured in the experiment is $k#sub[0] = 950$. This measurment does not correspond to the actual $k#sub[0]$-vlaue but to the 587.5 nm wavelength light. This wavelength is yellow and was therefore misinterpreted as the 0-th order. In order to correct for this mistake, we used for the first fit-function $lambda#sub[c] (k) = b k + a$ instead of $lambda#sub[c] (k) = b (k - k#sub[0])$. The latter function is used in the manual.
+The $k_0$-value measured in the experiment is $k_0 = 950$. This measurment does not correspond to the actual $k_0$-vlaue but to the 587.5 nm wavelength light. This wavelength is yellow and was therefore misinterpreted as the 0-th order. In order to correct for this mistake, we used for the first fit-function $lambda#sub[c] (k) = b k + a$ instead of $lambda#sub[c] (k) = b (k - k_0)$. The latter function is used in the manual.
 
 The measurements of the Balmer-Series have given:
 
