@@ -160,7 +160,17 @@ For the second data-set the fit function is $lambda (p, k_("fix")) = b k_("fix")
   ),
 )
 
-From the fit we calculate the lattice constant $g$ as $g = 1 / d = (5.87 plus.minus 0.02) dot 10^(-5)$.
+From the fit we calculate the lattice constant $g$ as $g = 1 / d = (-16.6 plus.minus 0.9) dot 10^(-5)$. Where
+$
+d = lambda_c / (2 cos(beta) sin(alpha))
+$ @manuel\
+
+and
+$
+ beta = 15°, quadd alpha = (k - k_0)5.8 times  10^(-5)
+$ @manuel
+
+and $k_0$ is the $k_0$-value for $lambda(p_("cent"), k_0) = 0$. Since $lambda(p, k) = b k + a + (p - p_("cent")) / d$ thus $k_0 = - a / b = 1840 plus.minus 5$.
 
 With the complete fit function we obtained the following wavelengths of the Balmer-Series through the fit function: $lambda_3 = 650 plus.minus 2 "nm", lambda_4 = 504 plus.minus 2 "nm", lambda_5 = 483 plus.minus 2 "nm", lambda_6_ = 477 plus.minus 2 "nm"$.
 
