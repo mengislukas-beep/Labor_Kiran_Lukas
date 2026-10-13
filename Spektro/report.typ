@@ -1,11 +1,11 @@
 
 #import "../style.typ": *
 
-#show: setup    
+#show: setup
 
 #set document(title: "Report Spectroscopy I")
 
-#set text(size: 11pt)
+
 
 #align(center)[
   #text(size: 17pt, weight: "bold")[
@@ -29,7 +29,7 @@
 
 Spectroscopy is used to spatialy split light in its different wavelengths. Here this information is used to determine the wavelengths of the Balmer-Series. With the formula 
 $
-    nu = R_H (1 / m^2 + 1 / n^2)
+    c / lambda = nu =  R_H (1 / m^2 + 1 / n^2)
 $<1.1>
 we caluclate the Rydberg-Frequency $R_H$. Here $nu$ is the frequency of light and the electrone jumps from the $n$-th layer to the $m$-th layer.
 
@@ -40,6 +40,10 @@ All of these values are well known and the experiment is a learning excercice to
 The experiment consists of first calibrating the spectrometer. Then to measure the  hydrogene lines and calculate the Rydberg-Frequency $R_H$, the lattice-constant $g$, the limit of the Balmer-Series $lambda_min$ and the ionisation energy $E_("ion")$ for a photon at the Rydberg-Frequency.
 
 The equipment used is a spectrometer, helium lamp, hydrogenq lamp, a CDD sensor and a Laptop with the software "ThorImageCam". The spectrometer has a dial with a measurment scale of an arbitrary unit. This value will be refered to as k-value $k$. It turns the mirror in the spectrometer which allows to see a different wavelength range on the sensor and screen. On the screen the picture is vied as 1-dimensional, since this spectrometer splits light in one dimension. The position on the screen will be referd to as pixel position $p$, where $0 "px" <= p < 1440 "px"$. The unit of $p$ is pixel $"px"$.
+
+For calibration, the first step is to find the 0-th order. The corresponding k-value is $k_0$. From there the helium fuse is connected to the spectrometer. The helium lines all have known wavelengths @manuel_skript[p. 149]. When a helium line is found, its k-value is noted down aswell as its wavelength in order to match a fit function later. After this step a k-value is fixed. For this fixed k-value we measured the pixel position of the visible helium lines. This is used to complete the fit function as a function of k-value and pixel position.
+
+Then we conneced the helium lamp. After that we measered the k-values and pixel-position of the helium lines. In the next step the fit function can be applied to the k-values and pixel positition to find their wavelengths. From there the remaining values can be caluclated.
 #figure(
   image("Bilder/expermiment.png", width: 80%, height: 25%),
 
@@ -47,19 +51,18 @@ The equipment used is a spectrometer, helium lamp, hydrogenq lamp, a CDD sensor 
      "(Color online) Schematic sketch of the Czerny–Turner spectrometer
     design. The spectrometer features an entrance slit, an off-center parabolic mirror that collimates the light, a ruled reflective grating that disperses the light,
     and a second off-center parabolic mirror that focuses the light on the CCD
-    camera, which is then used to record the measured spectrum. In brackets, the
-    position of every element relative to the entrance slit is indicated in millimeters. The wavelength of lines visible in the spectrum is determined by the
+    camera, which is then used to record the measured spectrum. The wavelength of lines visible in the spectrum is determined by the
     angle a of the grating that can be controlled by rotating a dial (not shown)."\
-    Source: @manuel_skript[p. 147]
+    Source: @manuel_skript[p. 146]
   ],
 
   
   
 )
 
-For calibration, the first step is to find the 0-th order. The corresponding k-value is $k_0$. From there the helium fuse is connected to the spectrometer. The helium lines all have known wavelengths @manuel_skript[p. 149]. When a helium line is found, its k-value is noted down aswell as its wavelength in order to match a fit function later. After this step a k-value is fixed. For this fixed k-value we measured the pixel position of the visible helium lines. This is used to complete the fit function as a function of k-value and pixel position.
 
-Then we conneced the helium lamp. After that we measered the k-values and pixel-position of the helium lines. In the next step the fit function can be applied to the k-values and pixel positition to find their wavelengths. From there the remaining values can be caluclated.
+
+
 
 = Results
 
@@ -187,7 +190,7 @@ We used this function beacause our $k_0$-value was wrong. Therefore we now use t
 With the first data set we obtained values for $a$ and $b$. we used scipy.curve_fit for the regression. For the first data set we used the fit function $lambda_c (k) = b k + a$ since $p = p_("cent")$. This gives the values $a = (1220 plus.minus 2) "nm"$ and $b = (-0.663 plus.minus 0.002) "nm"$<above>. Here we used the covariance matrix produced by curve_fit to determine the standart deviation for $a$ and $b$. We used AI tools to assits debugging the Python program. All calculations are made in the Python program at @python.
 
 #figure(
-    image("Bilder/plot01.png", width: 79%),
+    image("Bilder/plot01.png", width: 70%),
     caption: [
         The Graphs shows the differents spactrallines of helium marked as points meseraude in the in the center pixel. On the x-axis we have the k-(dial position) and the y-axis is the wavelength in nanometers. The orange line is the least sqaures approximation of the points.
     ]
@@ -203,12 +206,12 @@ This is the final fit function but with a fixed $k = k#sub[fix]$ and $a, b$ from
 
 
 #grid(
-  columns: (1fr, 1fr),
+  columns: (1fr, 1.2fr),
   gutter: 10pt,
 
   [
     #figure(
-      image("Bilder/03_bright.png", width: 100%),
+      image("Bilder/03_bright.png", width: 90%),
       caption: [
         Screenshot of the spectral range at k = 1066.
         Three spectral lines are visible.
@@ -255,34 +258,34 @@ $
 
 With the complete fit function @4.1 we obtained the following wavelengths of the Balmer-Series through the fit function: 
 $
-  lambda_3 = 650 plus.minus 2 "nm"\
-  lambda_4 = 504 plus.minus 2 "nm"\
-  lambda_5 = 483 plus.minus 2 "nm"\
+  lambda_3 = 650 plus.minus 2 "nm", quad
+  lambda_4 = 504 plus.minus 2 "nm", quad
+  lambda_5 = 483 plus.minus 2 "nm", quad
   lambda_6 = 477 plus.minus 2 "nm"
 $
 
-From the average of the obtained wavelengths we calculate the Rydberg-Frequency#footnote[$R_H = R_oo dot c$]  *irgendwo nohc schreiebn was die Formle ist* as 
+With @1.1  and the average of the wavelenths we can calculate the Rydberg-Frequency#footnote[$R_H = R_oo dot c$].
 $
-  R_H  = (3.07 plus.minus 0.01) e 15
+  R_H  = (3.07 plus.minus 0.01) e 15 "Hz"
 $ 
-Therefore the limit of the Balmer-Series is 
+Therefore with @1.1 when  $n->oo$
 $
-  lambda#sub[min] = 391 plus.minus 2 "nm"
+  lambda#sub[min] = (391 plus.minus 2) "nm"
 $
 From the Rydberg-Frequency we continue to calculate the ionisation energy as 
 $
-  E#sub[ion] = (h R#sub[H]) / e = 12.7 plus.minus 0.1 "eV"
+  E#sub[ion] = (h R#sub[H]) / e = (12.7 plus.minus 0.1) "eV"
 $
-where $h$ is Plancks constant#footnote[$h = 6.63 times 10^(-34) J dot s$] and $e$ is the proton charge.
+where $h$ is Plancks constant #footnote[$h = 6.63 times 10^(-34) J dot s$] and $e$ is the proton charge#footnote[$e = 1.602 times 10^(-19) C$].
 
-To determine the standart deviations for the obtainded values. We used Gaussian-Error-Propagation. We used AI-tools to help depug our Python-Program.
+To determine the standart deviations for the obtainded values. We used Gaussian-Error-Propagation. To debug our srcipt we used AI-tools to help.
 
-*alles ist ein bisschen woher/wieso die Formel*
+
 = Discussion
 
 The $k_0$-value measured in the experiment is $k_0 = 950$. This measurment does not correspond to the actual $k_0$-vlaue but to the 587.5 nm wavelength light. This wavelength is yellow and was therefore misinterpreted as the 0-th order. In order to correct for this mistake, we used for the first fit function $lambda#sub[c] (k) = b k + a$ instead of $lambda#sub[c] (k) = b (k - k_0)$. The latter function is used in the manual @manuel_skript.
 
-The measurements of the Balmer-Series have given:
+The measurements of the hydrogene spectral lines have given:
 
 #figure(
   table(
@@ -312,7 +315,7 @@ The measurements of the Balmer-Series have given:
   ],
 ) <tab:hydrogen>
 
-Also the experimental values from the Rydberg-Frequency, ionisation energy and the limit of the Balmer-Series deviate from the literature values.
+Also the experimental values from the Rydberg-Frequency, ionisation energy and the limit of the Balmer-Series $lambda_("min")$ when $n-> oo$ deviate from the literature values #footnote[https://de.wikipedia.org/wiki/Rydberg-Konstante#Rydberg-Frequenz_und_Rydberg-Energie, $lambda_("min") = (4c)/(R_H) = 365 "nm"$].
 
 #figure(
   table(
@@ -346,25 +349,23 @@ Also the experimental values from the Rydberg-Frequency, ionisation energy and t
     series limit with the literature values.
   ],
 ) <tab:rydberg>
-mehr konnte ich nicht mehr anschauen
 
 
-The expected error traces back to the originally set values of $Delta k = plus.minus 1$ and $Delta p = plus.minus 1$ where $Delta k$ is the error of the k-value and $Delta p$ the error in pixel position. However they do not account for the actual error. We therefore assume that there is some systematic error. As a main source we see errors in the measurements. This could have happened at different stages. Firstly in the calibration step with the helium lamp. A possible mistake is a misidentification of a He-Line with another He-Line and therefore a wrong data-point of the fit function. Another possible mistake is a wrong k-value. It is possible that some readings deviate by 100 beacause we found that the disply of the k-value was difficult to read for k-values near to a full hundreth. Also it is possible that there was a copying mistake whilst writing the values down. This all would lead to errors that propagate into the fit function. Since our data is visibly not linear we belive that one such mistake happend.
 
-The error in the fit function is also visible in figure 2. The first fit gives a fixed point for $p = p_c = 720$ and the free parameter varies the slope. However all data-points are below the fixed-point, likely beacause the first fit is already wrong by some offset at this position. This could lead to a wrong fit value, since the second fit tries to compensate for the offset produced by the first fit.
+The expected error traces back to the originally set values of $Delta k = plus.minus 1$ and $Delta p = plus.minus 1$ where $Delta k$ is the error of the k-value and $Delta p$ the error in pixel position. However they do not account for the actual error. We therefore assume that there is some systematic error. As a main source we see errors in the measurements. This could have happened at different stages. Firstly in the calibration step with the helium lamp. A possible mistake is a misidentification of a helium line with another helium line and therefore a wrong data-point of the fit function. Another possible mistake is a wrong k-value. It is possible that some readings deviate by 100 beacause we found that the disply of the k-value was difficult to read for k-values near to a full hundreth. Also it is possible that there was a copying mistake whilst writing the values down. This all would lead to errors that propagate into the fit function. Since our data is visibly not linear we belive that one such mistake happend.
 
-Further mistakes could be wrong k-value or pixel position readings for the helium lines, which could also contribute to the error.
+The error in the fit function is also visible in @fig:plot. The first fit when $p=p_"cent" $ in @4.1 gives a fixed point for $p = p_"cent" = 720 "px"$ and the free parameter varies the slope. However all data points are below the fixed point, likely beacause the first fit is already wrong by some offset at this position. This could lead to a wrong fit value, since the second fit (@4.1 with $k = k_"fix" = 1066$) tries to compensate for the offset produced by the first fit.
+
+Further mistakes could be wrong k-value or pixel position readings for the helium lines, which could also contribute to the error. Also the hydrogen lines with $n = 5$ and $n = 6$ were faint and could have easely been misread.
 
 = Conclusion
 
-In this experiment we calibrated a spectrometer and measured the helium lines of a helium lamp. These results were used to calculate Rydberg-Frequency $R_H$, the lattice-constant $g$, the limit of the Balmer-Series $lambda_min$ and the ionisation energy $E_("ion")$ for a photon at the Rydberg-Frequency.
+In this experiment we calibrated a spectrometer and measured the hydrogene lines of an hydrogene lamp. These results were used to calculate the Rydberg-Frequency $R_H$, the lattice-constant $g$, the limit of the Balmer-Series $lambda_min$ and the ionisation energy $E_("ion")$ for a photon at the Rydberg-Frequency.
 
-The experimental values of $R_H$, $lambda_min$ and $E_("ion")$, lie within 10% of the literature values. The error is not covered by the standart deviation of the obtained values. Since the data fit data differs from the linear fit model, we concluded that there is systematic error in the data. We see misidentification of He-Lines in the calibration step and wrong read k-values as the main cause.
+The experimental values of $R_H$, $lambda_min$ and $E_("ion")$, lie within 10% of the literature values. The error is not covered by the standart deviation of the obtained values. Since the fit data differs from the linear fit model, we concluded that there is systematic error in the data. We see misidentification of helium lines in the calibration step and w
 
 
-So könnte man sourcen zitieren\
 
-Ich mache eine Footnote #footnote[1 2 3]
 
 
 

@@ -25,7 +25,7 @@
 
   set text(
     font: "Libertinus Serif",
-    size: 9pt,
+    size: 10pt,
     fill: rgb("#222222"),
   )
 
