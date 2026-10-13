@@ -8,15 +8,22 @@
 
 
 #align(center)[
-  #text(size: 17pt, weight: "bold")[
-    Report Spectroscopy I
+  #text(size: 15pt, weight: "bold")[
+    Introduction in Spectroscopy and measurement of the Balmer series.
+  ]
+
+  #v(0.8em)
+
+  #text(size: 11pt)[
+    Kiran Suda, Lukas Mengis \
+    13 October 2026
   ]
 ]
 
 #v(2em)
 
 #align(center)[
-  *Abstract*
+  #text(weight: "bold")[Abstract]
 ]
 
 #v(0.5em)
@@ -39,7 +46,7 @@ All of these values are well known and the experiment is a learning excercice to
 
 The experiment consists of first calibrating the spectrometer. Then to measure the  hydrogene lines and calculate the Rydberg-Frequency $R_H$, the lattice-constant $g$, the limit of the Balmer-Series $lambda_min$ and the ionisation energy $E_("ion")$ for a photon at the Rydberg-Frequency.
 
-The equipment used is a spectrometer, helium lamp, hydrogenq lamp, a CDD sensor and a Laptop with the software "ThorImageCam". The spectrometer has a dial with a measurment scale of an arbitrary unit. This value will be refered to as k-value $k$. It turns the mirror in the spectrometer which allows to see a different wavelength range on the sensor and screen. On the screen the picture is vied as 1-dimensional, since this spectrometer splits light in one dimension. The position on the screen will be referd to as pixel position $p$, where $0 "px" <= p < 1440 "px"$. The unit of $p$ is pixel $"px"$.
+The equipment used is a spectrometer, helium lamp, hydrogenq lamp, a CDD sensor and a Laptop with the software "ThorImageCam". The spectrometer has a dial with a measurment scale of no unit. This value will be refered to as k-value $k$. It turns the mirror in the spectrometer which allows to see a different wavelength range on the sensor and screen. On the screen the picture is vied as 1-dimensional, since this spectrometer splits light in one dimension. The position on the screen will be referd to as pixel position $p$, where $0 "px" <= p < 1440 "px"$. The unit of $p$ is pixel $"px"$.
 
 For calibration, the first step is to find the 0-th order. The corresponding k-value is $k_0$. From there the helium fuse is connected to the spectrometer. The helium lines all have known wavelengths @manuel_skript[p. 149]. When a helium line is found, its k-value is noted down aswell as its wavelength in order to match a fit function later. After this step a k-value is fixed. For this fixed k-value we measured the pixel position of the visible helium lines. This is used to complete the fit function as a function of k-value and pixel position.
 
@@ -145,7 +152,7 @@ the results are the following:
 
 
 
-The first column is again the known wavelengths of the measured light-stripes in nm of the helium lamp. the second column is the pixel position on the image. The image is 1440 px wide, therefore the pixel position $p$ has $0 "px" <= p < 1440 "px"$
+The first column is again the known wavelengths of the measured light-stripes in nm of the helium lamp. The second column is the pixel position on the image. The image is 1440 px wide, therefore the pixel position $p$ has $0 "px" <= p < 1440 "px"$. We used the Jupyter Notbook from the Moodle to determine the pixel positions.
 
 The third data-set is from the hydrogen lamp to measure the wavelengths of the Balmer-Series.
 #figure(
@@ -376,6 +383,7 @@ The experimental values of $R_H$, $lambda_min$ and $E_("ion")$, lie within 10% o
 == python skript <python>
 ```python
 
+# %%
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -392,7 +400,7 @@ def lamda_cent_fit (k, bb, aa):
     return bb * k + aa
 
 # %%
-std_k = 50
+std_k = 1
 std_k_cent = np.ones(7) * std_k # uncertenties of k values
 
 from scipy.optimize import curve_fit
@@ -429,7 +437,7 @@ plt.errorbar(k_cent, lamda_cent, std_lamda_from_k, linestyle = '', color='r')
 
 # %%
 k_fix = 1066                              # +-1 measured value
-p_pos = np.array([475, 802, 920])         # pixel position from image
+p_pos = np.array([475, 802, 920])         # pixel position from image +-1
 lamda_k = np.array([492.1, 501.5, 504.7]) # values from manual (wavelength)
 
 # %%
@@ -438,7 +446,7 @@ def lamda_fit (p, dd):
     return b * k_fix + a + (p - p_cent) / dd
 
 # %%
-std_p = 20
+std_p = 1
 
 from scipy.optimize import curve_fit
 # first fit to determine y-error from x-error
@@ -479,26 +487,39 @@ def lamda (p, k):
 lamda_at_center = 667.8                 # wavelength of middle pixel
 beta = 15 * 2 * np.pi / 360             # 15° in radians
 k_pos = 850                             # +-1 dial position
-alpha = (k_pos - 500) * 5.8 / 10**5     # calculates the angle alpha based on manual
+k0_fit = (-1) * a / b                   # k0 from the fit
+alpha = (k_pos - k0_fit) * 5.8 / 10**5  # calculates the angle alpha based on manual
 print(alpha / (2 * np.pi) * 360)        # prints alpha in degrees
+print(k0_fit)
+print(lamda(p_cent, k0_fit))
 
 # %%
 # lattice constant:
 d = lamda_at_center / (2 * np.cos(beta) * np.sin(alpha))
 print(1 / d)
+print(10**5 / d)
 
 # %%
 # error prop:
-del_alpha = 5.8 / 10**5
-std_alpha = np.sqrt((del_alpha * std_k)**2)
+del_k0_fit_a = (-1) / b
+del_k0_fit_b = a / b**2
+std_k0_fit = np.sqrt((del_k0_fit_a * std_a)**2 + (del_k0_fit_b * std_b)**2)
+
+
+del_alpha_k_pos = 5.8 / 10**5
+del_alpha_k0_fit = (-1) * 5.8 / 10**5
+std_alpha = np.sqrt((del_alpha_k_pos * std_k)**2 + (del_alpha_k0_fit * std_k0_fit)**2)
 
 del_g = 2 * np.cos(beta) * np.cos(alpha) / lamda_at_center
 std_g = np.sqrt((del_g * std_alpha)**2)
 
 print(std_g)
+print("====")
+print(std_k0_fit)
+print(std_alpha * 180 / np.pi)
 
 # %%
-measurements = np.array([860, 1080, 1112, 1120])   # +-1 k values
+measurements = np.array([860, 1080, 1112, 1120])    # +-1 k values
 balmer_lamda = lamda(p_cent, measurements)          #literature 656.279, 486.135, 434.0472, 410.1734
 print(balmer_lamda)
 c = 299792458
@@ -536,6 +557,7 @@ print('=============')
 del_ryd_lamda = (-1) * c / (balmer_lamda_m)**2 * 1 / ((1 / 4) - (1 / nn**2))
 std_ryd = np.sqrt((del_ryd_lamda * std_lamda / 10**9)**2)
 print(std_ryd)
+print(np.mean(std_ryd) / 10**15)
 
 # %%
 # limit of series: f = Rh / 4 | lamda = 4 * c / Rh
@@ -560,6 +582,7 @@ print('=======')
 del_E_photon = h / e
 sig_E_photon = np.sqrt((del_E_photon * np.mean(std_ryd))**2)
 print(sig_E_photon)
+
 ```
 
 #pagebreak()
