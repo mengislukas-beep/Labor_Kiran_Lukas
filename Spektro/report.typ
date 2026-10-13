@@ -22,7 +22,7 @@
 #v(0.5em)
 
 #align(center)[
-  The goal of this experiment is to analyse the spectroscopy lines of hydrogene and helium and compare it with the literature values. To achive this we used a spectrometer and compared the differents angles of the grating of the spectral lines. At the end by taking the average over all result we got $(3.07 plus.minus 0.01)$e15 Hz for the Ryderberg frequency, which is deviates with approxiamtely 7% #footnote[Realtive deviation=$abs(3.07-3.29)/3.29- dot 100 % approx 6.69% $] of the literature value #footnote[$R_H = 3.29 times 10^15 H z$ @manuel_skript]. One hypothesis is that the due to the bad resolution the mesearments are not totally correct. We conclude therefore that significant deviates of the lesser visible spectral lines have to be taken in account.
+  The goal of this experiment is to analyse the spectroscopy lines of hydrogene and helium and compare it with the literature values. To achive this we used a spectrometer and compared the differents angles of the grating of the spectral lines. At the end by taking the average over all result we got $(3.07 plus.minus 0.01)$e15 Hz for the Ryderberg frequency, which is deviates with approxiamtely 7% #footnote[Realtive deviation=$abs(3.07-3.29)/3.29 dot 100 % approx 6.69% $] of the literature value #footnote[$R_H = 3.29 times 10^15 H z$ @manuel_skript]. One hypothesis is that the due to the bad resolution the mesearments are not totally correct. We conclude therefore that significant deviates of the lesser visible spectral lines have to be taken in account.
 ]
 
 = Introduction
@@ -31,7 +31,7 @@ Spectroscopy is used to spatialy split light in its different wavelengths. Here 
 $
     nu = R_H (1 / m^2 + 1 / n^2)
 $<1.1>
-we caluclate the Rydberg-Frequency $R_H$ where $nu$ is the frequency of light and the electrone jumps from the $n$-th layer to the $m$-th layer.
+we caluclate the Rydberg-Frequency $R_H$. Here $nu$ is the frequency of light and the electrone jumps from the $n$-th layer to the $m$-th layer.
 
 All of these values are well known and the experiment is a learning excercice to get familier with spectroscopy.
 
@@ -39,17 +39,17 @@ All of these values are well known and the experiment is a learning excercice to
 
 The experiment consists of first calibrating the spectrometer. Then to measure the  hydrogene lines and calculate the Rydberg-Frequency $R_H$, the lattice-constant $g$, the limit of the Balmer-Series $lambda_min$ and the ionisation energy $E_("ion")$ for a photon at the Rydberg-Frequency.
 
-The equipment used is a spectrometer, helium lamp, hydrogenq lamp, a CDD sensor and a Laptop with the software "ThorImageCam". The spectrometer has a dial with a measurment scale of an arbitrary unit. This value will be refered to as k-value $k$. It turns the mirror in the spectrometer which allows to see a different wavelength range on the sensor and screen.
+The equipment used is a spectrometer, helium lamp, hydrogenq lamp, a CDD sensor and a Laptop with the software "ThorImageCam". The spectrometer has a dial with a measurment scale of an arbitrary unit. This value will be refered to as k-value $k$. It turns the mirror in the spectrometer which allows to see a different wavelength range on the sensor and screen. On the screen the picture is vied as 1-dimensional, since this spectrometer splits light in one dimension. The position on the screen will be referd to as pixel position $p$, where $0 "px" <= p < 1440 "px"$. The unit of $p$ is pixel $"px"$.
 #figure(
   image("Bilder/expermiment.png", width: 80%, height: 25%),
 
   caption: [
-     (Color online) Schematic sketch of the Czerny–Turner spectrometer
+     "(Color online) Schematic sketch of the Czerny–Turner spectrometer
     design. The spectrometer features an entrance slit, an off-center parabolic mirror that collimates the light, a ruled reflective grating that disperses the light,
     and a second off-center parabolic mirror that focuses the light on the CCD
     camera, which is then used to record the measured spectrum. In brackets, the
     position of every element relative to the entrance slit is indicated in millimeters. The wavelength of lines visible in the spectrum is determined by the
-    angle a of the grating that can be controlled by rotating a dial (not shown).\
+    angle a of the grating that can be controlled by rotating a dial (not shown)."\
     Source: @manuel_skript[p. 147]
   ],
 
@@ -57,7 +57,7 @@ The equipment used is a spectrometer, helium lamp, hydrogenq lamp, a CDD sensor 
   
 )
 
-For calibration, the first step is to find the 0-th order. The corresponding k-value is $k_0$. From there the helium fuse is connected to the spectrometer. The helium lines all have known wavelengths @manuel_skript[p. 149]. When a helium line is found, its k-value is noted down aswell as its wavelength in order to match a fit later. After this step a k-value is fixed. For this fixed k-value we measured the pixel position of the visible helium lines. This is used to complete the fit function as a function of k-value and pixel position.
+For calibration, the first step is to find the 0-th order. The corresponding k-value is $k_0$. From there the helium fuse is connected to the spectrometer. The helium lines all have known wavelengths @manuel_skript[p. 149]. When a helium line is found, its k-value is noted down aswell as its wavelength in order to match a fit function later. After this step a k-value is fixed. For this fixed k-value we measured the pixel position of the visible helium lines. This is used to complete the fit function as a function of k-value and pixel position.
 
 Then we conneced the helium lamp. After that we measered the k-values and pixel-position of the helium lines. In the next step the fit function can be applied to the k-values and pixel positition to find their wavelengths. From there the remaining values can be caluclated.
 
@@ -65,7 +65,7 @@ Then we conneced the helium lamp. After that we measered the k-values and pixel-
 
 $k_0$ denotes the k-value which corresponds to the 0-th order. The measured value is $k_0 = 950$. This value is wrong. More details are in the discussion section.
 
-The first measurement is to fit the wavelength of the middle pixel position ($p_c = 720$) in dependance of dial position (k-value). The results are the following:
+The first measurement is to fit the wavelength of the center pixel position ($p_c = 720 "px"$) in dependance of dial position (k-value). The results are the following:
 
 #figure(
   table(
@@ -105,9 +105,9 @@ The first measurement is to fit the wavelength of the middle pixel position ($p_
 ) <tab:helium>
 
 
-The first column contains the wavelength in nm of the measured light-strips. The value is the literature value @manuel_skript[p. 149]. The second column contains the measurements. The measurement is the k-value. This is light from the helium lamp.
+The first column contains the wavelength in nm of the measured light-strips at $p_c = 720 "px"$. The values are the literature values of the helium lamp @manuel_skript[p. 149]. The second column contains the measurements. The measurement is the k-value. This is light from the helium lamp.
 
-the second measurement is for a fixed k-value and measures data to fit the wavelength in dependance of pixel position (@fig:pixel)
+The second measurement is for a fixed k-value and measures data to fit the wavelength in dependance of pixel position (@fig:pixel)
 the results are the following:
 #figure(
   table(
@@ -126,7 +126,7 @@ the results are the following:
 
     // Pixel positions
     table.cell(fill: rgb("#E8EDF3"))[
-      *Pixel position*
+      *Pixel position [px]*
     ],
     [$475 plus.minus 1$],
     [$802 plus.minus 1$],
@@ -142,7 +142,7 @@ the results are the following:
 
 
 
-The first column is again the known wavelengths of the measured light-stripes in nm. the second column is the pixel position on the image. The image is 1440px wide, therefore the pixel position $p$ has $0 <= p < 1440$
+The first column is again the known wavelengths of the measured light-stripes in nm of the helium lamp. the second column is the pixel position on the image. The image is 1440 px wide, therefore the pixel position $p$ has $0 "px" <= p < 1440 "px"$
 
 The third data-set is from the hydrogen lamp to measure the wavelengths of the Balmer-Series.
 #figure(
@@ -182,9 +182,9 @@ The first column is the Balmer-Series @1.1. They are the corresponding measureme
 The fit function used is of the form 
 $
   lambda (p, k) = b k + a + (p - p_("cent")) / d
-$
-We used this function beacause our $k_0$-value was wrong. Therefore we now use three fit-parameter instead of two like in the manualll.
-With the first data-set we obtained values for $a$ and $b$. we used scipy.curve_fit for the regression. For the first data-set we used the fit $lambda_c (k) = b k + a$ since $p = p_("cent")$. This gives the values $a = 1220 plus.minus 2, b = -0.663 plus.minus 0.002$<above>. Here we used the the covariance matrix produced by curve_fit to determine the standart deviation for $a$ and $b$. AI tools we used to assits debugging bugfixing the python program. 
+$ <4.1>
+We used this function beacause our $k_0$-value was wrong. Therefore we now use three fit parameter ($b, a, d$) instead of two like in the manual @manuel_skript[eq. 5].
+With the first data set we obtained values for $a$ and $b$. we used scipy.curve_fit for the regression. For the first data set we used the fit function $lambda_c (k) = b k + a$ since $p = p_("cent")$. This gives the values $a = (1220 plus.minus 2) "nm"$ and $b = (-0.663 plus.minus 0.002) "nm"$<above>. Here we used the covariance matrix produced by curve_fit to determine the standart deviation for $a$ and $b$. We used AI tools to assits debugging the Python program. All calculations are made in the Python program at @python.
 
 #figure(
     image("Bilder/plot01.png", width: 79%),
@@ -195,11 +195,11 @@ With the first data-set we obtained values for $a$ and $b$. we used scipy.curve_
 
 
 
-For the second data-set the fit function is 
+For the second data set the fit function is 
 $
   lambda (p, k_("fix")) = b k_("fix") + a + (p - p_("cent")) / d.
 $<4.2>
-This is the final fit function but with a fixed $k = k#sub[fix]$ and $a, b$ from @above. This gives $d = 42.6 plus.minus 0.1$. Again we used the help of AI-tools to help debug our Python-Program.
+This is the final fit function but with a fixed $k = k#sub[fix]$ and $a, b$ from @above. This gives $d = (42.6 plus.minus 0.1) "px" "nm"^(-1)$. Again we used the help of AI-tools to help debug our Python-Program in @python.
 
 
 #grid(
@@ -212,7 +212,6 @@ This is the final fit function but with a fixed $k = k#sub[fix]$ and $a, b$ from
       caption: [
         Screenshot of the spectral range at k = 1066.
         Three spectral lines are visible.
-        The vertical line marks the center pixel.
       ],
     ) <fig:pixel>
   ],
@@ -233,28 +232,28 @@ This is the final fit function but with a fixed $k = k#sub[fix]$ and $a, b$ from
   ],
 )
 
-From the fit we calculate the lattice constant $g$ as $g = 1 / d = (-16.6 plus.minus 0.9) dot 10^(-5)$. Where @manuel_skript
+From the fit we calculate the lattice constant $g$ as $g = 1 / d = (-16.6 plus.minus 0.9) dot 10^(-5) "nm"^(-1)$. Where
 $
-  d = lambda_c / (2 cos(beta) sin(alpha))
+  d = (lambda_c)/ (2 cos(beta) sin(alpha))quadd #text[@manuel_skript]
 $
 \
 
-and
+with $lambda_c = 667.8 "nm"$ and
 $
- beta = 15°, quadd alpha = (k - k_0)5.8 times  10^(-5)
+ beta = 15°, quadd alpha = (k - k_0)5.8 times  10^(-5) = (-3.29 plus.minus 0.02)° quadd #text[@manuel_skript]
 $ 
 
-$k_0$ is the $k_0$-value for *verstehe den Satz ncihts ganz* $lambda(p_("cent"), k_0) = 0$.\
+$k_0$ is the $k$-value such that when $p = p_"cent" = 720 "px"$ we have $lambda(p_"cent", k_0) = 0$.\
 Since 
 $
-  lambda(p_("cent"), k) = b k + a 
+  (p - p_"cent")/d =0 => lambda(p_("cent"), k_0) = b k_0 + a = 0 
 $ 
 thus 
 $
   k_0 = - a / b = 1840 plus.minus 5
-$.
+$
 
-With the complete fit function we obtained the following wavelengths of the Balmer-Series through the fit function: 
+With the complete fit function @4.1 we obtained the following wavelengths of the Balmer-Series through the fit function: 
 $
   lambda_3 = 650 plus.minus 2 "nm"\
   lambda_4 = 504 plus.minus 2 "nm"\
@@ -352,7 +351,7 @@ mehr konnte ich nicht mehr anschauen
 
 The expected error traces back to the originally set values of $Delta k = plus.minus 1$ and $Delta p = plus.minus 1$ where $Delta k$ is the error of the k-value and $Delta p$ the error in pixel position. However they do not account for the actual error. We therefore assume that there is some systematic error. As a main source we see errors in the measurements. This could have happened at different stages. Firstly in the calibration step with the helium lamp. A possible mistake is a misidentification of a He-Line with another He-Line and therefore a wrong data-point of the fit function. Another possible mistake is a wrong k-value. It is possible that some readings deviate by 100 beacause we found that the disply of the k-value was difficult to read for k-values near to a full hundreth. Also it is possible that there was a copying mistake whilst writing the values down. This all would lead to errors that propagate into the fit function. Since our data is visibly not linear we belive that one such mistake happend.
 
-The error in the fit function is also visible in figure 2. The first fit gives a fixed point for $p = p_c = 720$ and the free parameter varies the slope. However all data-points are below the fixed-point, likely beacause the first fit is already wrong by some offset at this position. This could lead to a wrong fit-value, since the second fit tries to compensate for the offset produced by the first fit.
+The error in the fit function is also visible in figure 2. The first fit gives a fixed point for $p = p_c = 720$ and the free parameter varies the slope. However all data-points are below the fixed-point, likely beacause the first fit is already wrong by some offset at this position. This could lead to a wrong fit value, since the second fit tries to compensate for the offset produced by the first fit.
 
 Further mistakes could be wrong k-value or pixel position readings for the helium lines, which could also contribute to the error.
 
@@ -373,7 +372,7 @@ Ich mache eine Footnote #footnote[1 2 3]
 #pagebreak()
 
 = Appendix
-
+== python skript <python>
 ```python
 
 import numpy as np
