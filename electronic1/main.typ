@@ -123,5 +123,26 @@ Math-Funktion damit kann man das darstellen eventuell USB-Stick mitnehmen
 + Rippelspannung $
                    U_("ripple") = I_("last")/(f dot C) 
                  $
-+ veränderung der Frequenz dann anschauen $dots$
++ veränderung der Frequenz dann anschauen vordere Formel kann es wahrscheinlich erklären
+== Diodenverhlaten bei höheren Frequnzen
+skizzieren $dots$
+es hat verschiedene Sperrspannungen 
+== Single-Shot-Betrieb
+
+Single Funktion. Triggermenu Rise auswählen. 100 $mu s slash "Div"$
+\
+entrpellen Fig.30
+
+== Tiefpassfilter
+
+=== Für interessierte !?!?!
++ rechtecksignal ist wie in einer der ersten aufgaben kann man so machen
++ Hochpassfilter einfach CR
+
+#image("Bilder/Ringe.png")
+
+== Falls noch genugeit vorhanden ist: XY-Betrieb
+
+Utility $->$ Display dadurch wird eines auf die y achse gemacht und macht kann damit Lissajous_Figuren oder Kennlinien und Hysteresen von Bauteilen dargestellt werden.\
+*Diodenkennlinie*
 
