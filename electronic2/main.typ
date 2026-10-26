@@ -1,148 +1,91 @@
 #import "../style.typ": *
 
 #show: setup
-= Einführung
-$dots$
-= Experimente 
-
-== realisation Ideal
-Erwartetet Werte
-$
-  U = R I
-$
-$
-  U_("out") = U_0 dot R_2/(R_2+R_1) approx 
-$
-
-=== Innenwiderstand
-
-$
-  R_("tot") = R_1 + (R_2 R_i)/(R_2 + R_i)
-$
-$
-  R_i = (R_1 R_2 U_("out"))/(R_2 (U_0 -U_("out"))-R_1 U_("out"))
-$
-
-=== Folgerung
-
-Bei hoch ohmigen Widerständen ok sonst ein Problem falls $R_i approx R_1,R_2$
-
-
-== Fig 8 / Kompensationschaltung
-Für $U_("pot")$ zwischen $R_1, R_2$ und $R_("pot")$ eintzen. $U_("diff")$ zwischen $R_1,R_2$ und *vor* $R("pot")$
+= Peak-Value/ effective values<hier>
+$I_0slash U_0$ are the peak values and the $U_("eff")= U_0 slash sqrt(2)$ same for $I_0$ and $I_("eff")$. Effective values allow direct comparison of alternating current and direct current
+= Was eilt was voraus?
+Mit *Kondensator*
 \
-Ohne Innenwidestand
-$
-  U_("diff") = U_0 (R_2/(R_1 + R_2) -x)
-$
-x ist die Zahl wie der potentions meter die sachen aufteilt. Die range ist egal solange man es Ideal betrachtet.
-$
-  U_("pot") = x dot U_0
-$
-Beide Spannungen müssen sich genau aufheben das $U_("diff")$ zu 0 geht.
-
-Das ist  eine *Kompensationsschaltung* oder *Brückenschaltung*
-
-== 
-Ohne Innenwiderstand
-$
-  U_(2,3) = U_0(R_2 R_3)/(R_2+R_3)/(R_1 + (R_2 R_3)/(R_2+R_3)) = U_0 (R_2 R_3)/(R_1 (R_2 + R_3) + R_2 R_3)
-$
-===
-+ $
-  I_("real") = U_0/(R_1 + R_i + (R_2R_3)/(R_2+R_3))
-  $
-  $
-    => R_i = U_0/I_("real") -R_1 - (R_2R_3)/(R_2+R_3)
-  $
-+ da es in serie geschten ist so wie der andere Widerstand (wahrscheinlich)
-+ Der Therm $U_0/(I_("real"))$ ist Schuld
-
-Der Innenwiderstand des Amperemeters ist im µA-Bereich höher als im mA-Bereich, weil für die Messung kleiner Ströme ein größerer Messwiderstand benötigt wird. Nach dem Ohmschen Gesetz $(R=U/I)$ ergibt sich bei gleicher Messspannung und kleinerem Strom ein größerer Widerstand. Im mA-Bereich wird dagegen ein kleinerer Messwiderstand verwendet.
-
-=== Folgerungen
-Bei ähnlichen Widerständen kann der Widerstand des Messinstrumentes nciht vernachlässigt werden.
-== Widerstansmessung mit dem Ohmmeter
-Übliche Handmultimeter decken für die Widerstandsmessung einen Bereich von 0 Ω bis 40 MΩ ab. Dabei
-ist zu beachten ist, dass bei Widerstandswerten unter
-1 Ω der Widerstand der Messleitungen ins Gewicht
-fallen kann.
+Der Strom eilt der Spannung um $90°$ voraus. (Strom ist nach links verschoben)
 \
-Wieder es soll nicht in der selben Grössenordnung sein.
-== Vierpunktmessung
+*Spule*\
+Die Spannuang eilt dem Stromum $90°$ voraus. (Spannung ist nach links verschoben)
+= Komplexe Wechselstromrechnung
 
-+ kleine bis sehr kleine Widerstände m$ Omega$ (Metalle)
-=== Aufgabe
-Literaturwert
-$
-  rho_("Cu") = 0.017 Omega "mm"^2 slash "m"
-$
+#table(
+  columns: 3,
+  align: center,
+  stroke: .4pt,
 
-l ist das Element das man untersuchen möchte.
+  table.header(
+    [Bauteil],
+    [$Y$],
+    [$Z$]
+  ),
 
-$
-  R = rho dot l/A
-$
+  [$R$], [$(1)/(R)$], [$R$],
+  [$L$], [$(1)/(j omega L)$], [$j omega L$],
+  [$C$], [$j omega C$], [$(1)/(j omega C)$],
+)
 
-$
-  R_("gemessen") = rho l/A + R_i
-$
-den R_i berechnene und dann zu $rho$ schliessen
+Parallelschaltung: $
+Y
+=
+sum Y_i$
 
-= Grundlagen zum digitalen Speicheroszilloskop (DSO)
-= Übungen (DSO)
-== Messung des Probe-Comp-Signals
-== Mehrkanalmessungen an Dioden_Schaltungen
-=== Aufgabe
-ch1 sollte man einvollständige sinuswelle sehen bei ch2 nur 
-$
-  "ch1"(x) = A sin(x)
-$
-$
-  "ch2"(x) = cases(A sin(x) quad & x>0, 0 & x <=0)
-$
-Durchlassspanung 
-$
-  U_D = U_("CH1")- U_("CH2")
-$
-== Differenzmessung
-$
-  U_D = U_("CH1")- U_("CH2")
-$
-Math-Funktion damit kann man das darstellen eventuell USB-Stick mitnehmen
+Reihenschaltung: $
+Z
+=
+sum Z_i$
 
-=== Aufgabe
-+ eifach anschauen $T/2$?
-+ math dings machen udn dann irgendwie saven
-+ Condensator
-+ math dings machen anschauen und sagen "Wow ist das aber cool" *$<-$ ser wichitg*
-+ wenn die blaue kurve steigt leitet die diode sonst sperrt sie und es kommt die Spannung aus dem Kondensazot
-=== Fragen
-+ der Kondensator macht lustige Sachen. Der Kondensator speichert ie Spannung, die Diode leitet erst nach einer gewissen Spannung dadurch gibt der Kondensator wie spannung ab aber zugleich kommt auch weniger Spannung (wegen der abfallenden sinuskruve)
-+ stark steigend diode leitet nachher kommt der Kondensator
-+ Rippelspannung $
-                   U_("ripple") = I_("last")/(f dot C) 
-                 $
-+ veränderung der Frequenz dann anschauen vordere Formel kann es wahrscheinlich erklären
-== Diodenverhlaten bei höheren Frequnzen
-skizzieren $dots$
-es hat verschiedene Sperrspannungen 
-== Single-Shot-Betrieb
+= Hochpas / Tiefpass
++ R C & L R Hochpass  (C L)
++ C R & R L Tiefpass (L C)
 
-Single Funktion. Triggermenu Rise auswählen. 100 $mu s slash "Div"$
+= Grenzfrequenz
+$
+  U_("out")/U_("in") = 1/sqrt(2) approx 0.707
+$
+-3 dB
 \
-entrpellen Fig.30
+Das ist die Grenze bei der das Signal deutlich abschwächt.
+\
+Häuffig auch 
+$
+  tau = R C 1/(omega_(g r)) = 1/(2 pi f_(g r))
+$
+= Bandbreite
+Serieschaltung. Man legt die untere $omega_u $ und obere $omega_o$ Grenzfrequenz so fest das $1 slash sqrt(2)$- fache des Maximalwertees abgefallen ist. Sozusagen ist es die breite bei der der Strom mind das $1 slash sqrt(2)$ fache Wert von $I_("max")$ hat. Die mitte des $omega$ is immer die Resonazfrequenz.
+$
+  Delta omega = omega_o - omega_u = R/L slash 1/(C L)
+$
+= Gütefaktor 
+Das Verhältnis zwischen Resonanzfrequenz und Bandbreite
+$
+  Q = omega_0 /(Delta omega) = cases("serei" => &1/R sqrt(L/C),"Parallel" => & R sqrt(C/L))
+$
+= Aufgaben
 
-== Tiefpassfilter
++ @hier 
++ a $
+    => U_("out")/U_("in") = 1/(omega C i ( R + 1/(omega C i))) = 1/(i omega R + 1) < 1 => "Tiefpassfilter"
+  $
+  b $
+      U_("out")/U_("in") = (i omega L) /(R + i omega L) = 1/(R/(i omega L) + 1) = 1/(1 - (R i )/(omega L)) => "Hochpassfilter"
+    $
++ Freiwillig
+= Frequenzabhängige Spannungsteiler und Filter
+$
+  C = 100 "n F"\
+  R = 1 k Omega\
+  U_("in") = 1 V\
+  f in [10 "kHz", 100 "kHz"]
+$
+$
+  phi = ?\
+  U_("out") =?
+$
+Die funktion als $log(omega)$ Zeichnen
 
-=== Für interessierte !?!?!
-+ rechtecksignal ist wie in einer der ersten aufgaben kann man so machen
-+ Hochpassfilter einfach CR
-
-#image("Bilder/Ringe.png")
-
-== Falls noch genugeit vorhanden ist: XY-Betrieb
-
-Utility $->$ Display dadurch wird eines auf die y achse gemacht und macht kann damit Lissajous_Figuren oder Kennlinien und Hysteresen von Bauteilen dargestellt werden.\
-*Diodenkennlinie*
-
+= Roll-off
+miest als Dezibel pro Dekade (dB / Dek) oder Dezibel pr Oktave (dB / Okt) angegeben ist die "Steilheit" der Kurve (RLC $approx$ 40 db / Dekade)
