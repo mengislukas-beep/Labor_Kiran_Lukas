@@ -39,7 +39,7 @@
     it,
   )
 
-  set heading(numbering: "1.a.i")
+  set heading(numbering: "1.1.1")
   
   show heading.where(level: 1): it => {
     counter(math.equation).update(0)
