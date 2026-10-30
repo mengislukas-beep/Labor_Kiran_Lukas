@@ -71,7 +71,7 @@ $
     => U_("out")/U_("in") = 1/(omega C i ( R + 1/(omega C i))) = 1/(i omega R + 1) < 1 => "Tiefpassfilter"
   $
   b $
-      U_("out")/U_("in") = (i omega L) /(R + i omega L) = 1/(R/(i omega L) + 1) = 1/(1 - (R i )/(omega L)) => "Hochpassfilter"
+      U_("out")/U_("in") = (i omega L) /(R + i omega L) = 1/(R/(i omega L) + 1) = 1/(1 - (R i )/(omega L)) >1=> "Hochpassfilter"
     $
 + Freiwillig
 = Frequenzabhängige Spannungsteiler und Filter
@@ -85,6 +85,8 @@ $
   phi = ?\
   U_("out") =?
 $
+
+
 Die funktion als $log(omega)$ Zeichnen
 
 = Roll-off
