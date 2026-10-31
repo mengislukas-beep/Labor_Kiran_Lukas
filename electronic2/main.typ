@@ -2,7 +2,7 @@
 
 #show: setup
 = Peak-Value/ effective values<hier>
-$I_0slash U_0$ are the peak values and the $U_("eff")= U_0 slash sqrt(2)$ same for $I_0$ and $I_("eff")$. Effective values allow direct comparison of alternating current and direct current
+$I_0slash U_0$ are the peak values and the $U_("eff")= U_0 slash sqrt(2)$ same for $I_0$ and $I_("eff")$. Effective values allow direct comparison of alternating current and direct current.
 = Was eilt was voraus?
 Mit *Kondensator*
 \
