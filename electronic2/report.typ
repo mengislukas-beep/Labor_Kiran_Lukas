@@ -149,7 +149,47 @@ Some other phase shifts are in @tab:uiup.
 
 
 #image("images/rlc.png", width: 65%)
+#figure(
+  align(center)[
+    #diagram(
+      cell-size: 25mm,
 
+      // Horizontale Leitungen
+      edge((0,0), (3,0), "*-*"),
+      edge((0,1.25), (3,1.25), "*-*"),
+
+      // Widerstand
+      node((1,0), rect(
+        width: 15mm,
+        height: 6mm,
+        fill: white,
+        stroke: black,
+      )),
+      node((1,-0.17), text(size: 16pt)[$R$]),
+
+      // Spule L (linker paralleler Zweig)
+      edge((1.8,0), (1.8,0.35), "-"),
+      edge((1.8,0.9), (1.8,1.25), "-"),
+
+      node((1.8,0.625), text(size: 23pt)[$coil$]),
+      node((1.48,0.625), text(size: 16pt)[$L$]),
+
+      // Kondensator C (rechter paralleler Zweig)
+      edge((2.5,0), (2.5,0.575), "-"),
+      edge((2.5,0.675), (2.5,1.25), "-"),
+
+      // Kondensatorplatten
+      edge((2.2,0.575), (2.8,0.575), "-"),
+      edge((2.2,0.675), (2.8,0.675), "-"),
+      node((2.85,0.625), text(size: 16pt)[$C$]),
+
+      // Spannungsbeschriftungen
+      node((0,0.625), text(size: 16pt)[$U_("in")$]),
+      node((3,0.625), text(size: 16pt)[$U_("out")$])
+    )
+  ],
+  caption: [RLC circuit],
+)<rlc-circuit>
 ==
 for the phase shift between U_in and U_out we used math function
 
