@@ -113,7 +113,7 @@ $
   U_("out")/(U_("in")) = 1/sqrt(omega^2 C^2 R^2 + 1)\
 $<formel>
 $
-  => abs(omega) = 1/abs(R C) = 10^4 "Hz"
+  => abs(omega_("cutoff")) = 1/abs(R C) = 10^4 "Hz"
 $
 This is exactly what we measured.
 == Limit cases
@@ -122,13 +122,13 @@ If $omega << omega_("cutoff")$ the ratio goes to 1 and for $omega>> omega_("cuto
 The slope in @fig:uiuo equivalent to the "sharpness" of the filter is called the roll off. The roll off is given either in (dB / dec) or decibels per octave. Reading from the @fig:uiuo we get approximately 
 
 $
-  &10 -> 100 "Hz" => "roll-off" approx 0.00 "dB" slash "dec" \
-  &100 -> 500 "Hz" => "roll-off" approx -0.71 "dB" slash "dec" \
-  &500 -> 10^3 "Hz" => "roll-off" approx -3.61 "dB" slash "dec" \
-  &10^3 -> 5 dot 10^3 "Hz" => "roll-off" approx -12.47 "dB" slash "dec" \
-  &5 dot 10^3 -> 10^4 "Hz" => "roll-off" approx -16.54 "dB" slash "dec" \
-  &10^4 -> 5 dot 10^4 "Hz" => "roll-off" approx -14.06 "dB" slash "dec" \
-  &5 dot 10^4 -> 10^5 "Hz" => "roll-off" approx -8.30 "dB" slash "dec"
+  10 -> 100 "Hz" quadd &=> quadd "roll-off" approx 0.00 "dB" slash "dec" \
+  100 -> 500 "Hz" quadd &=>quadd "roll-off" approx -0.71 "dB" slash "dec" \
+  500 -> 10^3 "Hz" quadd &=>quadd "roll-off" approx -3.61 "dB" slash "dec" \
+  10^3 -> 5 dot 10^3 "Hz"quadd &=>quadd "roll-off" approx -12.47 "dB" slash "dec" \
+  5 dot 10^3 -> 10^4 "Hz"quadd &=> quadd "roll-off" approx -16.54 "dB" slash "dec" \
+  10^4 -> 5 dot 10^4 "Hz"quadd &=> quadd "roll-off" approx -14.06 "dB" slash "dec" \
+  5 dot 10^4 -> 10^5 "Hz" quadd&=>  quadd "roll-off" approx -8.30 "dB" slash "dec"
 $
 == Phase shift between $U_("in")$ and $U_("out")$
 
