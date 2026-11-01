@@ -214,7 +214,7 @@ $
 #image("images/plot2.3.png", width: 90%)
 
 $
-  Q_"theory" = R sqrt(C / L) "(manual)" 
+  Q_"theory" = R sqrt(C / L) quadd #cite(<manuel_skript>)
 $
 since @resonance we used the following fit:
 $
