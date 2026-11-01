@@ -1,6 +1,6 @@
 
 #import "../style.typ": *
-
+#import "@preview/subpar:0.2.2"
 #show: setup
 
 #set document(title: "Report Spectroscopy I")
@@ -213,30 +213,54 @@ This is the final fit function but with a fixed $k = k#sub[fix]$ and $a, b$ from
 
 
 
-#figure(
-  grid(
-    columns: (1fr, 1.2fr),
-    gutter: 10pt,
 
-    subfigure(
-      image("Bilder/03_bright.png", width: 90%),
-      caption: [
-        Screenshot of the spectral range at k = 1066.
-        Three spectral lines are visible.
-      ],
-    ) <fig:pixel>,
 
-    subfigure(
-      image("Bilder/plot02.png", width: 100%),
-      caption: [
-        Pixel positions of the visible spectral lines.
-        The blue dots represent the spectral lines.
-        The red dot represents the fitted center pixel.
-      ],
-    ) <fig:plot>,
-  ),
-  caption: [Spectral line detection and pixel position fitting.],
-) <fig:spectral>
+
+
+
+
+#subpar.grid(
+  figure(
+    image(
+      "Bilder/03_bright.png",
+      width: 100%,
+      height: 6cm,
+      fit: "contain",
+    ),
+    caption: [
+      Screenshot of the spectral range at k = 1066.
+      Three spectral lines are visible.
+    ],
+  ), <fig:pixel>,
+
+  figure(
+    image(
+      "Bilder/plot02.png",
+      width: 100%,
+      height: 6cm,
+      fit: "contain",
+    ),
+    caption: [
+      Pixel positions of the visible spectral lines.
+      The blue dots represent the spectral lines.
+      The red dot represents the fitted center pixel.
+    ],
+  ), <fig:plot>,
+
+  columns: (1fr, 1fr),
+  gutter: 15pt,
+  align: top,
+  caption: [
+    Spectral line detection and pixel position fitting.
+  ],
+  label: <fig:spectral>,
+)
+
+
+
+
+
+
 ==
 From the fit we calculate the lattice constant $g$ as $g = 1 / d = (-16.6 plus.minus 0.9) dot 10^(-5) "nm"^(-1)$. Where
 $
