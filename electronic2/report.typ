@@ -134,14 +134,14 @@ $
 
 With the numbers in @tab:uiup we can plot the phase shift between $U_("in")$ and $U_("out")$.
 #figure(
-  align()[
+  
   image("images/rc_phase.png",width: 70%),
   caption: [Added the normed phase shift between $U_("in")$ and $U_("out")$ in @fig:uiuo]
-  ]
+  
 )
 From there we can read off the $phi(omega_("cutoff"))$:
 $
-  phi(omega_("cutoff")) approx -45° = - pi/2 
+  phi(omega_("cutoff")) approx -45° = - pi/4 
 $
 Some other phase shifts are in @tab:uiup.
 
