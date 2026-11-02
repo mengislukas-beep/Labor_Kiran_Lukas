@@ -235,7 +235,7 @@ Without the $e$ term this would be the final fit function but with a fixed $k = 
 
   figure(
     image(
-      "Bilder/plot02_new.png",
+      "Bilder/plot02_new_new.png",
       width: 100%,
       height: 6cm,
       fit: "contain",
@@ -243,7 +243,7 @@ Without the $e$ term this would be the final fit function but with a fixed $k = 
     caption: [
       Pixel positions of the visible spectral lines.
       The blue dots represent the spectral lines.
-      The red dot represents the fitted value of the center pixel plus $e$ to compensate for the offset.
+      The red dot represents the fitted value of the center pixel plus $e$ to compensate for the offset. The orange dot represents the fixed value for the center pixel without correction ($e$).
     ],
   ), <fig:plot>,
 
