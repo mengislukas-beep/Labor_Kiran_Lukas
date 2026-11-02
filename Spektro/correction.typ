@@ -207,9 +207,9 @@ With the first data set we obtained values for $a$ and $b$. we used scipy.curve_
 ==
 For the second data set the fit function is 
 $
-  lambda (p, k_("fix")) = b k_("fix") + a + (p - p_("cent")) / d.
+  lambda (p, k_("fix")) = b k_("fix") + a + (p - p_("cent")) / d + e
 $<4.2>
-This is the final fit function but with a fixed $k = k#sub[fix]$ and $a, b$ from @above. This gives $d = (42.6 plus.minus 0.1) "px" "nm"^(-1)$. Again we used the help of AI-tools to help debug our Python-Program in @python.
+Without the $e$ term this would be the final fit function but with a fixed $k = k#sub[fix]$ and $a, b$ from @above. We added $e$ to compensate for an offset in the center pixel position. This is beacause the fit gives a fixed value for the center pixel. This fitted value is above all the points tho, which would lead to a worse fit here. This gives $d = (35.2 plus.minus 0.1) "px" "nm"^(-1)$ and $e = (-14.17 plus.minus 0.02) "nm"$. Again we used the help of AI-tools to help debug our Python-Program in @python.
 
 
 
@@ -235,7 +235,7 @@ This is the final fit function but with a fixed $k = k#sub[fix]$ and $a, b$ from
 
   figure(
     image(
-      "Bilder/plot02.png",
+      "Bilder/plot02_new.png",
       width: 100%,
       height: 6cm,
       fit: "contain",
@@ -243,7 +243,7 @@ This is the final fit function but with a fixed $k = k#sub[fix]$ and $a, b$ from
     caption: [
       Pixel positions of the visible spectral lines.
       The blue dots represent the spectral lines.
-      The red dot represents the fitted center pixel.
+      The red dot represents the fitted value of the center pixel plus $e$ to compensate for the offset.
     ],
   ), <fig:plot>,
 
