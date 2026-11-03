@@ -240,7 +240,8 @@ Without the $e$ term this would be the final fit function but with a fixed $k = 
       height: 6cm,
       fit: "contain",
     ),
-    caption: [
+    caption: 
+    [
       Pixel positions of the visible spectral lines.
       The blue dots represent the spectral lines.
       The red dot represents the fitted value of the center pixel plus $e$ to compensate for the offset. The orange dot represents the fixed value for the center pixel without correction ($e$).
