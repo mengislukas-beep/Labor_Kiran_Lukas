@@ -407,7 +407,6 @@ The experimental values of $R_H$, $lambda_min$ and $E_("ion")$, lie within 10% o
 = Appendix
 == python skript <python>
 ```python
-
 # %%
 import numpy as np
 import matplotlib.pyplot as plt
@@ -460,6 +459,7 @@ plt.ylabel('wavelength [nm]')
 plt.title('fit for the center pixel')
 plt.errorbar(k_cent, lamda_cent, std_lamda_from_k, linestyle = '', color='r')
 
+
 # %%
 k_fix = 1066                              # +-1 measured value
 p_pos = np.array([475, 802, 920])         # pixel position from image +-1
@@ -467,8 +467,8 @@ lamda_k = np.array([492.1, 501.5, 504.7]) # values from manual (wavelength)
 
 # %%
 # fit model including pixel position
-def lamda_fit (p, dd):
-    return b * k_fix + a + (p - p_cent) / dd
+def lamda_fit (p, dd, ee):
+    return b * k_fix + a + (p - p_cent) / dd + ee
 
 # %%
 std_p = 1
@@ -483,27 +483,35 @@ std_lamda_from_p = np.abs(std_p / d_prov)
 # actual fit
 popt, pcov = curve_fit(lamda_fit, p_pos, lamda_k, sigma=std_lamda_from_p, absolute_sigma=True)
 d = popt[0]
+e = popt[1]
+
 print(d)
+print(e)
 std_d = np.sqrt(pcov[0, 0])
 print(std_d)
+std_e = np.sqrt(pcov[1, 1])
+print(std_e)
 
 # %%
 plt.plot(p_pos, lamda_k, linestyle='', marker='o')
 offset = 0
-plt.plot(p_pos, lamda_fit(p_pos, d) - offset)
-plt.plot(p_pos, lamda_fit(p_pos, d + std_d) - offset, linestyle='--')
-plt.plot(p_pos, lamda_fit(p_pos, d - std_d) - offset, linestyle='--')
+plt.plot(p_pos, lamda_fit(p_pos, d, e) - offset)
+plt.plot(p_pos, lamda_fit(p_pos, d + std_d, e) - offset, linestyle='--')
+plt.plot(p_pos, lamda_fit(p_pos, d - std_d, e) - offset, linestyle='--')
 
 plt.xlabel('p (pixel position)')
 plt.ylabel('wavelength [nm]')
 plt.title('fit for pixel dependancy fixed k = 1066')
 
-plt.plot(p_cent, lamda_fit(p_cent, d) - offset, marker='o', color='r')
+plt.plot(p_cent, lamda_fit(p_cent, d, e) - offset, marker='o', color='r')
+plt.plot(p_cent, lamda_fit(p_cent, d, 0) - offset, marker='o', color='orange')
 
 # %%
 # final fit function
 def lamda (p, k):
     return b * k + a + (p - p_cent) / d
+
+
 
 # %%
 # calculation of the lattice constant
@@ -542,6 +550,7 @@ print(std_g)
 print("====")
 print(std_k0_fit)
 print(std_alpha * 180 / np.pi)
+
 
 # %%
 measurements = np.array([860, 1080, 1112, 1120])    # +-1 k values
