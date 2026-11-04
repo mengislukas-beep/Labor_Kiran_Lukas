@@ -233,7 +233,9 @@ the measurements were:
 )
 
 ==
-#image("images/plot2.2.png", width: 70%)
+#figure(
+  image("images/plot2.2.png", width: 70%)
+)
 $
   => omega_0 approx 34000 "rad" / s
 $
@@ -255,14 +257,14 @@ $
   f (omega, a, b, c) = (c + (omega b - 1 / (omega a))^2)^(-1/2)
   => omega_0 = 1 / sqrt(a b)
 $
-and got the fit parameters: $a approx 0.081, b approx 0.43, c approx 0.59$ where the inputvariable $omega$ we used for kHz.
+and got the fit parameters: $a approx 0.081, b approx 0.43, c approx 0.59$ where the inputvariable $omega$ was used for kHz.
 
 
 the equation:
 $
-   f(omega_0, a, b, c) / sqrt(2) = U_"max" / sqrt(2) == f(omega, a, b ,c)
+   f(omega_0, a, b, c) / sqrt(2) = U_"max" / sqrt(2)  =^! f(omega, a, b ,c)
 $
-gives the quadratic:
+gives the quadratic formular:
 $
   omega^2 b - omega sqrt(2 / U_"max"^2 - c) - 1 / a = 0
 $
@@ -277,7 +279,7 @@ $
 #pagebreak()
 
 ==
-To measure the phase of the current $I$ and $U_"out"$ we measured the voltage over R $U_R$, since it is in phase with th current. To measure $U_R$ we did $U_"in" - U_"out"$, so ch-1 - ch-2. We did this with the math function on the oscilloscope. To get a reading for the phase we did phase beween math and ch-2, which is $U_"out"$.
+To measure the phase of the current $I$ and $U_"out"$ we measured the voltage over $R$ ($U_R$), since it is in phase with the current. To measure $U_R$ we did $U_"in" - U_"out"$ (ch-1 - ch-2). We did this with the math function on the oscilloscope. To get a reading for the phase we did phase beween math and ch-2, which is $U_"out"$.
 
 #figure(
   table(
@@ -315,7 +317,7 @@ To measure the phase of the current $I$ and $U_"out"$ we measured the voltage ov
 
 ==
 
-For the resonance frequencys at for different inductivitys $L$ and different capazities $C$, we measured:
+For the resonance frequencies at for different inductivities $L$ and different capacities $C$, we measured:
 #figure(
   table(
     columns: 4,
@@ -363,7 +365,7 @@ from @resonance we get $omega_0 = 1 / sqrt(L C)$
 
 ==
 
-At resonance we see sinus-shaped waves for both input signals. At 10x resonance resonance frequency we see sinus-shaped waves aswell but with smaller Amplitude. The Fourier-Transform has peaks at odd multiples of resonance $omega_0$ so at $omega_0$, $3 omega_0$, $5 omega_0$, ... and the amplitude decreases each time. Beacause of the band-pass filter we can only see one of them => sinus-shape.
+At the resonance frequency ($omega_0$) we see sinus-shaped waves for both input signals. At 10 times the resonance frequency we see sinus-shaped waves, but with smaller Amplitude. The Fourier-Transform has peaks at odd multiples of resonance $omega_0$ ($=>omega_0$, $3 omega_0$, $5 omega_0$, ...) in addition the amplitude decreases each time. Because of the band-pass filter we can only see one of the peaks. The result is a sinus shape.
 
 #figure(
   image("images/square_5kHz.jpg", width: 70%),
