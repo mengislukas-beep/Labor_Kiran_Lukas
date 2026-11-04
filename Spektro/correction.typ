@@ -631,6 +631,7 @@ print(sig_E_photon)
 
 ```
 == Uncertanties
+All the uncertanties were calculatet via a python script. For more detail see @python.
 === Uncertanties of measured values <measurements>
 The uncertany of an measured quantity is the smalest value we can the measureing tool can distinguish. \
 Ex. if we use a ruler which has a smallest quantity 'mm' we get 'something' $plus.minus$ 1mm
