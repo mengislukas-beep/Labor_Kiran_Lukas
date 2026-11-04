@@ -110,7 +110,8 @@ The first measurement is to fit the wavelength of the center pixel position ($p_
   ),
 
   caption: [
-    Measured k-values for the helium spectral lines.
+    Measured k-values for the helium spectral lines.\
+    For uncertanties see @measurements.
   ],
 ) <tab:helium>
 
@@ -145,7 +146,8 @@ the results are the following:
 
   caption: [
     Measured pixel positions of the helium spectral lines
-    and their corresponding wavelengths.
+    and their corresponding wavelengths.\
+    For uncertanties see @measurements.
   ],
 ) <tab:pixel-position>
 
@@ -178,7 +180,8 @@ The third data-set is from the hydrogen lamp to measure the wavelengths of the B
   ),
 
   caption: [
-    Measured k-values for the hydrogen spectral lines.
+    Measured k-values for the hydrogen spectral lines.\
+    For uncertanties see @measurements.
   ],
 ) <tab:hydrogen-k>
 
@@ -194,7 +197,7 @@ $
   lambda (p, k) = b k + a + (p - p_("cent")) / d
 $ <4.1>
 We used this function beacause our $k_0$-value was wrong. Therefore we now use three fit parameter ($b, a, d$) instead of two like in the manual @manuel_skript[eq. 5].
-With the first data set we obtained values for $a$ and $b$. we used scipy.curve_fit for the regression. For the first data set we used the fit function $lambda_c (k) = b k + a$ since $p = p_("cent")$. This gives the values $a = (1220 plus.minus 2) "nm"$ and $b = (-0.663 plus.minus 0.002) "nm"$<above>. Here we used the covariance matrix produced by curve_fit to determine the standart deviation for $a$ and $b$. We used AI tools to assits debugging the Python program. All calculations are made in the Python program at @python.
+With the first data set we obtained values for $a$ and $b$. we used scipy.curve_fit for the regression. For the first data set we used the fit function $lambda_c (k) = b k + a$ since $p = p_("cent")$. This gives the values $a = (1220 plus.minus 2) "nm"$#footnote[@curve_fit] and $b = (-0.663 plus.minus 0.002) "nm"$<above>#footnote[@curve_fit]. Here we used the covariance matrix produced by curve_fit to determine the standart deviation for $a$ and $b$. We used AI tools to assits debugging the Python program. All calculations are made in the Python program (see @python).
 
 #figure(
     image("Bilder/plot01.png", width: 70%),
@@ -209,7 +212,7 @@ For the second data set the fit function is
 $
   lambda (p, k_("fix")) = b k_("fix") + a + (p - p_("cent")) / d + e
 $<4.2>
-Without the $e$ term this would be the final fit function but with a fixed $k = k#sub[fix]$ and $a, b$ from @above. We added $e$ to compensate for an offset in the center pixel position. This is beacause the fit gives a fixed value for the center pixel. This fitted value is above all the points tho, which would lead to a worse fit here. This gives $d = (35.2 plus.minus 0.1) "px" "nm"^(-1)$ and $e = (-14.17 plus.minus 0.02) "nm"$. Again we used the help of AI-tools to help debug our Python-Program in @python.
+Without the $e$ term this would be the final fit function but with a fixed $k = k#sub[fix]$ and $a, b$ from @above. We added $e$ to compensate for an offset in the center pixel position. This is beacause the fit gives a fixed value for the center pixel. This fitted value is above all the points tho, which would lead to a worse fit here. This gives $d = (35.2 plus.minus 0.1) "px" "nm"^(-1)$ #footnote[@curve_fit] and $e = (-14.17 plus.minus 0.02)"nm"$ #footnote[@curve_fit]. We obtained the uncertanities from the curve fit covariance matrix. Again we used the help of AI-tools to help debug our Python-Program in @python.
 
 
 
@@ -263,15 +266,15 @@ Without the $e$ term this would be the final fit function but with a fixed $k = 
 
 
 ==
-From the fit we calculate the lattice constant $g$ as $g = 1 / d = (-16.6 plus.minus 0.9) dot 10^(-5) "nm"^(-1)$. Where
+From the fit we calculate the lattice constant $g$ as $g = 1 / d = (-16.6 plus.minus 0.9) dot 10^(-5) "nm"^(-1)$ #footnote[@gauss]. Where
 $
-  d = (lambda_c)/ (2 cos(beta) sin(alpha))quadd #text[@manuel_skript]
+  d = (lambda_c)/ (2 cos(beta) sin(alpha)),  quadd #text[@manuel_skript]
 $
 \
 
 with $lambda_c = 667.8 "nm"$ and
 $
- beta = 15°, quadd alpha = (k - k_0)5.8 times  10^(-5) = (-3.29 plus.minus 0.02)° quadd #text[@manuel_skript]
+ beta = 15°, quadd alpha = (k - k_0)5.8 times  10^(-5) = (-3.29 plus.minus 0.02)° quadd #text[@manuel_skript, @gauss] 
 $ 
 
 $k_0$ is the $k$-value such that when $p = p_"cent" = 720 "px"$ we have $lambda(p_"cent", k_0) = 0$.\
@@ -281,7 +284,7 @@ $
 $ 
 thus 
 $
-  k_0 = - a / b = 1840 plus.minus 5
+  k_0 = - a / b = 1840 plus.minus 5 quadd #text[@gauss]
 $
 
 With the complete fit function @4.1 we obtained the following wavelengths of the Balmer-Series through the fit function: 
@@ -289,7 +292,7 @@ $
   lambda_3 = 650 plus.minus 2 "nm", quad
   lambda_4 = 504 plus.minus 2 "nm", quad
   lambda_5 = 483 plus.minus 2 "nm", quad
-  lambda_6 = 477 plus.minus 2 "nm"
+  lambda_6 = 477 plus.minus 2 "nm" quadd #text[@curve_fit]
 $
 
 With @1.1  and the average of the wavelenths we can calculate the Rydberg-Frequenc. With using the relation:
@@ -298,15 +301,15 @@ $
 $
 we get
 $
-  R_H  = (3.07 plus.minus 0.01) e 15 "Hz"
+  R_H  = (3.07 plus.minus 0.01) e 15 "Hz" ,quadd #text[@gauss]
 $ 
 Therefore with @1.1 when  $n->oo$
 $
-  lambda#sub[min] = (391 plus.minus 2) "nm"
+  lambda#sub[min] = (391 plus.minus 2) "nm", quadd #text[@gauss])
 $
 From the Rydberg-Frequency we continue to calculate the ionisation energy as 
 $
-  E#sub[ion] = (h R#sub[H]) / e = (12.7 plus.minus 0.1) "eV"
+  E#sub[ion] = (h R#sub[H]) / e = (12.7 plus.minus 0.1) "eV", quadd #text[@gauss]
 $
 where $h$ is Plancks constant  ($h approx 6.63 times 10^(-34) J dot s$) and $e$ is the proton charge($e approx 1.602 times 10^(-19) C$).
 
@@ -343,7 +346,8 @@ The measurements of the hydrogene spectral lines have given:
 
   caption: [
     Comparison of the experimental and literature
-    wavelengths of the hydrogen spectral lines.
+    wavelengths of the hydrogen spectral lines.\
+    For uncertanties see @gauss
   ],
 ) <tab:hydrogen>
 
@@ -378,13 +382,14 @@ Also the experimental values from the Rydberg-Frequency, ionisation energy and t
   caption: [
     Comparison of the experimentally determined
     Rydberg frequency, ionisation energy and
-    series limit with the literature values.
+    series limit with the literature values.\
+    For uncertanties see @gauss
   ],
 ) <tab:rydberg>
 
 
 
-The expected error traces back to the originally set values of $Delta k = plus.minus 1$ and $Delta p = plus.minus 1$ where $Delta k$ is the error of the k-value and $Delta p$ the error in pixel position. However they do not account for the actual error. We therefore assume that there is some systematic error. As a main source we see errors in the measurements. This could have happened at different stages. Firstly in the calibration step with the helium lamp. A possible mistake is a misidentification of a helium line with another helium line and therefore a wrong data-point of the fit function. Another possible mistake is a wrong k-value. It is possible that some readings deviate by 100 beacause we found that the disply of the k-value was difficult to read for k-values near to a full hundreth. Also it is possible that there was a copying mistake whilst writing the values down. This all would lead to errors that propagate into the fit function. Since our data is visibly not linear we belive that one such mistake happend.
+The expected error traces back to the originally set values of $Delta k = plus.minus 1$ and $Delta p = plus.minus 1$ where $Delta k$ (@measurements ) is the error of the k-value and $Delta p$ the error in pixel position. However they do not account for the actual error. We therefore assume that there is some systematic error. As a main source we see errors in the measurements. This could have happened at different stages. Firstly in the calibration step with the helium lamp. A possible mistake is a misidentification of a helium line with another helium line and therefore a wrong data-point of the fit function. Another possible mistake is a wrong k-value. It is possible that some readings deviate by 100 beacause we found that the disply of the k-value was difficult to read for k-values near to a full hundreth. Also it is possible that there was a copying mistake whilst writing the values down. This all would lead to errors that propagate into the fit function. Since our data is visibly not linear we belive that one such mistake happend.
 
 The error in the fit function is also visible in @fig:plot. The first fit when $p=p_"cent" $ in @4.1 gives a fixed point for $p = p_"cent" = 720 "px"$ and the free parameter varies the slope. However all data points are below the fixed point, likely beacause the first fit is already wrong by some offset at this position. This could lead to a wrong fit value, since the second fit (@4.1 with $k = k_"fix" = 1066$) tries to compensate for the offset produced by the first fit.
 
@@ -403,7 +408,12 @@ The experimental values of $R_H$, $lambda_min$ and $E_("ion")$, lie within 10% o
 
 
 #pagebreak()
+#set heading(numbering: "A")
 
+#set heading(numbering: "A")
+
+#counter(heading).update(0)
+#set heading(numbering: "A.1.i")
 = Appendix
 == python skript <python>
 ```python
@@ -481,6 +491,8 @@ d_prov = popt[0]
 std_lamda_from_p = np.abs(std_p / d_prov)
 
 # actual fit
+
+<zweites>
 popt, pcov = curve_fit(lamda_fit, p_pos, lamda_k, sigma=std_lamda_from_p, absolute_sigma=True)
 d = popt[0]
 e = popt[1]
@@ -618,11 +630,40 @@ sig_E_photon = np.sqrt((del_E_photon * np.mean(std_ryd))**2)
 print(sig_E_photon)
 
 ```
+== Uncertanties
+=== Uncertanties of measured values <measurements>
+The uncertany of an measured quantity is the smalest value we can the measureing tool can distinguish. \
+Ex. if we use a ruler which has a smallest quantity 'mm' we get 'something' $plus.minus$ 1mm
+=== Gaussian Error Propagation <gauss>
+For a function $f(x_1,x_2,dots)$ thwith independent uncertanties yields the following total uncertanty
+$
+  sigma_f = sqrt(sum_(i=1)^n ( part/(part x_i) f dot sigma_x_i)^2)
+$
+where $sigma_x_i$ is the uncertantie of corresponding parameter and $part_x_i f$ is the dericitive of the function $f$ respect to $x_i$.
+\
+As an example. If we have the function
+$
+  f(alpha, beta) = sin(alpha) dot sin(beta)
+$
+Where $sigma_alpha != 0$ and $sigma_beta =0$ wich means that $alpha$ could have been a measurement and $beta$ a given known angle without uncertanty the total uncertanty would be:
+$
+  sigma_f = sqrt((cos(alpha) sin(beta) sigma_alpha)^2) = abs(cos(alpha) sin(beta) sigma_alpha)
+$
+*Conclusion:* Gaussian error propagation is used to estimate the uncertainty of a calculated quantity based on the uncertainties of the variables used to calculate it.#pagebreak()
+=== Uncertainties from `curve_fit` <curve_fit>
+
+The function `curve_fit` from `scipy.optimize` fits a function to measured data and returns the optimal parameters (`popt`) and their covariance matrix (`pcov`).
+
+The uncertainties of the fitted parameters are calculated from the diagonal elements of the covariance matrix:
+
+$
+  sigma_(p_i) = sqrt("pcov"_(i i))
+$
+The parameter `absolute_sigma` determines how the provided measurement uncertainties are interpreted. If `True`, they are treated as absolute uncertainties. 
+If 'False', the covariance matrix is scaled based on the residuals of the fit, while still accounting for the relative measurement uncertainties.
+In both cases, `curve_fit` automatically estimates the uncertainties of the fitted parameters.
 
 #pagebreak()
-
-
-
 
 
 #bibliography("sources.bib")
