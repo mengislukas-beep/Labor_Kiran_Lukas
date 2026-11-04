@@ -305,7 +305,7 @@ $
 $ 
 Therefore with @1.1 when  $n->oo$
 $
-  lambda#sub[min] = (391 plus.minus 2) "nm", quadd #text[@gauss])
+  lambda#sub[min] = (391 plus.minus 2) "nm", quadd #text[@gauss]
 $
 From the Rydberg-Frequency we continue to calculate the ionisation energy as 
 $
