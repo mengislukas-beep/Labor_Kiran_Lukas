@@ -111,7 +111,7 @@ The first measurement is to fit the wavelength of the center pixel position ($p_
 
   caption: [
     Measured k-values for the helium spectral lines.\
-    For uncertanties see @measurements.
+    For uncertainties see @measurements.
   ],
 ) <tab:helium>
 
@@ -147,7 +147,7 @@ the results are the following:
   caption: [
     Measured pixel positions of the helium spectral lines
     and their corresponding wavelengths.\
-    For uncertanties see @measurements.
+    For uncertainties see @measurements.
   ],
 ) <tab:pixel-position>
 
@@ -181,7 +181,7 @@ The third data-set is from the hydrogen lamp to measure the wavelengths of the B
 
   caption: [
     Measured k-values for the hydrogen spectral lines.\
-    For uncertanties see @measurements.
+    For uncertainties see @measurements.
   ],
 ) <tab:hydrogen-k>
 
@@ -247,7 +247,7 @@ Without the $e$ term this would be the final fit function but with a fixed $k = 
     [
       Pixel positions of the visible spectral lines.
       The blue dots represent the spectral lines.
-      The red dot represents the fitted value of the center pixel plus $e$ to compensate for the offset. The orange dot represents the fixed value for the center pixel without correction ($e$).
+      The red dot represents the fitted value of the center pixel plus $e$ to compensate for the offset. The orange dot represents the fixed value for the center pixel without correction.
     ],
   ), <fig:plot>,
 
@@ -274,7 +274,7 @@ $
 
 with $lambda_c = 667.8 "nm"$ and
 $
- beta = 15°, quadd alpha = (k - k_0)5.8 times  10^(-5) = (-3.29 plus.minus 0.02)° quadd #text[@manuel_skript, @gauss] 
+ beta = 15°, quadd abs(alpha) = (k - k_0)5.8 times  10^(-5) = (3.29 plus.minus 0.02)° quadd #text[@manuel_skript, @gauss] 
 $ 
 
 $k_0$ is the $k$-value such that when $p = p_"cent" = 720 "px"$ we have $lambda(p_"cent", k_0) = 0$.\
@@ -347,7 +347,7 @@ The measurements of the hydrogene spectral lines have given:
   caption: [
     Comparison of the experimental and literature
     wavelengths of the hydrogen spectral lines.\
-    For uncertanties see @gauss
+    For uncertainties see @gauss
   ],
 ) <tab:hydrogen>
 
@@ -383,7 +383,7 @@ Also the experimental values from the Rydberg-Frequency, ionisation energy and t
     Comparison of the experimentally determined
     Rydberg frequency, ionisation energy and
     series limit with the literature values.\
-    For uncertanties see @gauss
+    For uncertainties see @gauss
   ],
 ) <tab:rydberg>
 
@@ -630,13 +630,13 @@ sig_E_photon = np.sqrt((del_E_photon * np.mean(std_ryd))**2)
 print(sig_E_photon)
 
 ```
-== Uncertanties
-All the uncertanties were calculatet via a python script. For more detail see @python.
-=== Uncertanties of measured values <measurements>
+== Uncertainties
+All the uncertainties were calculatet via a python script. For more detail see @python.
+=== Uncertainties of measured values <measurements>
 The uncertany of an measured quantity is the smalest value we can the measureing tool can distinguish. \
 Ex. if we use a ruler which has a smallest quantity 'mm' we get 'something' $plus.minus$ 1mm
 === Gaussian Error Propagation <gauss>
-For a function $f(x_1,x_2,dots)$ thwith independent uncertanties yields the following total uncertanty
+For a function $f(x_1,x_2,dots)$ with independent uncertainties  yields the following total uncertainty
 $
   sigma_f = sqrt(sum_(i=1)^n ( part/(part x_i) f dot sigma_x_i)^2)
 $
@@ -646,7 +646,7 @@ As an example. If we have the function
 $
   f(alpha, beta) = sin(alpha) dot sin(beta)
 $
-Where $sigma_alpha != 0$ and $sigma_beta =0$ wich means that $alpha$ could have been a measurement and $beta$ a given known angle without uncertanty the total uncertanty would be:
+Where $sigma_alpha != 0$ and $sigma_beta =0$ wich means that $alpha$ could have been a measurement and $beta$ a given known angle without uncertainty the total uncertainty would be:
 $
   sigma_f = sqrt((cos(alpha) sin(beta) sigma_alpha)^2) = abs(cos(alpha) sin(beta) sigma_alpha)
 $
@@ -668,3 +668,12 @@ In both cases, `curve_fit` automatically estimates the uncertainties of the fitt
 
 
 #bibliography("sources.bib")
+
+#pagebreak()
+*Corrections*
+
+- We made some general corrections, such as fixing spelling mistakes and clarifying unclear phrases.
+- We improved the fit in Figure 3(b) without forcing it through the incorrect centre value of 513.3 nm.
+- We combined the previous Figures 3 and 4 into Figure 3(a) and Figure 3(b).
+- For the uncertainties, we described the general cases in Appendix A.2 and specified in the main text which method was used in each case. The detailed calculations can be found in the Python script. Is this an appropriate way to present the uncertainty analysis?
+- Error bars are already included in Figures 2 and 4, but they are barely visible because the uncertainties are only ±1 k. We are also not entirely sure whether we used the correct uncertainties.
