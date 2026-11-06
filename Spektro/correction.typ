@@ -1,7 +1,15 @@
-
 #import "../style.typ": *
 #import "@preview/subpar:0.2.2"
 #show: setup
+
+*Corrections*
+
+- We made some general corrections, such as fixing spelling mistakes and clarifying unclear phrases.
+- We improved the fit in Figure 3(b) without forcing it through the incorrect centre value of 513.3 nm.
+- We combined the previous Figures 3 and 4 into Figure 3(a) and Figure 3(b).
+- For the uncertainties, we described the general cases in Appendix A.2 and specified in the main text which method was used in each case. The detailed calculations can be found in the Python script. Is this an appropriate way to present the uncertainty analysis?
+- Error bars are already included in Figures 2 and 4, but they are barely visible because the uncertainties are only ±1 k. We are also not entirely sure whether we used the correct uncertainties.
+#pagebreak()
 
 #set document(title: "Report Spectroscopy I")
 
@@ -668,12 +676,3 @@ In both cases, `curve_fit` automatically estimates the uncertainties of the fitt
 
 
 #bibliography("sources.bib")
-
-#pagebreak()
-*Corrections*
-
-- We made some general corrections, such as fixing spelling mistakes and clarifying unclear phrases.
-- We improved the fit in Figure 3(b) without forcing it through the incorrect centre value of 513.3 nm.
-- We combined the previous Figures 3 and 4 into Figure 3(a) and Figure 3(b).
-- For the uncertainties, we described the general cases in Appendix A.2 and specified in the main text which method was used in each case. The detailed calculations can be found in the Python script. Is this an appropriate way to present the uncertainty analysis?
-- Error bars are already included in Figures 2 and 4, but they are barely visible because the uncertainties are only ±1 k. We are also not entirely sure whether we used the correct uncertainties.
