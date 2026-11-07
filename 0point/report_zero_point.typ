@@ -101,7 +101,7 @@ $
 $ <example_error_prop>
 Where $J_f_C (z_C)^2 = ((part_p_l f_C (z_C))^2, (part_p_2 f_C (z_C))^2, (part_U_l f_C (z_C))^2, (part_U_2 f_C (z_C))^2)$ and $sigma^2_z_C = (sigma^2_p_l, sigma^2_p_2, sigma^2_U_l, sigma^2_U_2)$. We used the same prcedure for all propagated errors. The exact calculations can be found in the python program at @python. We used AI-tools to help debug the python program. We always made the function depend only on the measured values and the values assumed and not on previously caluclated values. We did this to minimize the effect of correlation. Since previously calculated values can depend on the same starting parameters they correlate. To account for correlation the error propagation gets more complicated and one has to estimate the correlation between the values. This is why we always directly calculated from the original values, so we can assume that they are uncorrelated.
 
-So for $sigma_p_0$ we have $sigma_p_0 = sqrt((J_f_p_0 (z_p_0)^2)_(1 times 4) (sigma^2_z_p_0)^T_(4 times 1))$ with $z_p_0 = z_p_C => sigma_z_p_0 = sigma_z_C$ and $f_p_0 = p_l - (p_l - p_2) / (1 - U_2 / U_l)$
+So for $sigma_p_0$ we have $sigma_p_0 = sqrt((J_f_p_0 (z_p_0)^2)_(1 times 4) (sigma^2_z_p_0)^T_(4 times 1))$ with $z_p_0 = z_p_C => sigma_z_p_0 = sigma_z_C$ and $f_p_0 (z_p_0) = p_l - (p_l - p_2) / (1 - U_2 / U_l)$
 
 The calibration gives the following calibration-curve:
 #figure(
