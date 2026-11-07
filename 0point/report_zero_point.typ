@@ -51,6 +51,7 @@ $
   \
   U_2 = (-5.3 plus.minus 0.2) "mV"
 $
+Far all temperatures we estimated $sigma_t = 1°C$. Since the smallest scale on the Barometer is $plus.minus 1 "mmHg"$, we got $sigma_p = 1 "mmHg"$. For all output voltages we used $sigma_U = 0.2 "mV"$. The $sigma_U$ comes from the manual where there is the the $0.05% "full scale" = 0.075 "mV"$ percicion error and another error due to temperature difference of $0.08 "mV" / "°C"$. Since we estimated $sigma_t = 1°C$ we got $sigma_U = 0.075 "mV" + 0.08 "mV" approx 0.2 "mV"$.
 
 == Absolute Zero
 The measurements to determine the absolute zero temperature are the output signals of the pressure sensor. We use $U_k$ for boiling water and $U_e$ for freezing water. The results are:
@@ -71,9 +72,9 @@ $
 == Calibration
 From the barometer reading $tilde(p_l)$ and laboratory temperature $t_l$ we calculate the pressure in the laboratory $p_l$
 $
-  p_l = (tilde(p_l) - "correction"(t_l)) * 133.322 / 100 = ((716 plus.minus 1) - 3) * 133.322/100 = (951 plus.minus 1) "mbar"
+  p_l = (tilde(p_l) - "correction"(t_l))  * 133.322 / 100 = ((716 plus.minus 1) - 3) * 133.322/100 "mbar" = (951 plus.minus 1) "mbar"
 $
-We used the value of $U_k$ for $U_l$. so $U_l = (127.6 plus.minus 0.2) "mV"$ (discussion). The value for the low pressure is per assumption:
+We used the value of $U_k$ for $U_l$. so $U_l = (127.6 plus.minus 0.2) "mV"$ (discussion). The value for the low pressure is per assumption (manual):
 $
   p_2 = (0.1 plus.minus 0.1) "mbar"
 $
@@ -87,7 +88,7 @@ $
   \
   p_0 = p_l - (p_l - p_2) / (1 - U_2 / U_l) = (0.038 plus.minus 0.001) "bar"
 $
-for the error propagation we always used a function of the starting parameters to calculate the values. We used the scipy Jacobian function to calculate all the derivatives. So for $C$ it is:
+For the error propagation we always used a function of the starting parameters to calculate the values. We used the scipy Jacobian function to calculate all the derivatives. So for $C$ it is:
 $
   z = (p_l, p_2, U_l, U_2)
   \
@@ -95,9 +96,9 @@ $
   \
   f_c (z) := (p_l - p_2) / (U_l - U_2)
   \
-  sigma_c = sqrt((J_f (z)^2)_"1x4" (sigma_z^2)_"4x1") = 0.02 "bar" / V
+  sigma_c = sqrt((J_f_C (z)^2)_"1x4" (sigma_z^2)_"4x1"^T) = 0.02 "bar" / V
 $
-where $sigma_z^2 = (sigma_(z,1)^2, sigma_(z,2)^2, sigma_(z,3)^2, sigma_(z,4)^2$). And the same for the Jacobian $J_f (z)$. We used the same prcedure for all propagated errors. We always made the function depend only on the measured values and the values assumed and not on previously caluclated values. We did this to minimize the effect of correlation. Since previously calculated values depend on same starting parameters they correlate. To account for correlation the error propagation gets more complicated and one has to estimate the correlation between the values. This is why we always directly calculated from the original values.
+where $sigma_z^2 = (sigma_(z,1)^2, sigma_(z,2)^2, sigma_(z,3)^2, sigma_(z,4)^2$). And $J_f_C (z)^2 = ((part_p_l f_C)^2, (part_p_2 f_C)^2, (part_U_l f_C)^2, (part_U_2 f_C)^2)$. We used the same prcedure for all propagated errors in @python. We always made the function depend only on the measured values and the values assumed and not on previously caluclated values. We did this to minimize the effect of correlation. Since previously calculated values depend on same starting parameters they correlate. To account for correlation the error propagation gets more complicated and one has to estimate the correlation between the values. This is why we always directly calculated from the original values.
 
 The calibration gives the following calibration-curve:
 #figure(
