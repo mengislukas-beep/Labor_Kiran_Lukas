@@ -32,13 +32,19 @@
 = Introduction
 The absolute zero point is a fundamental fixed point. It has the lowest possible temperature $t_0$. There is no lower temperature.
 
-The Temperature is also contained in the ideal-gas-law. Here $n$ is the number of particles, $k_B$ is the Boltzmann constant, $T$ is Temperature, $p$ is pressure, and $V$ Volume.
+The Temperature is also contained in the ideal-gas-law. Here $n$ is the number of particles, $k_B$ is the Boltzmann constant, $T$ is Temperature, $p$ is pressure, and $V$ is the Volume.
 $
   n k_B T = p V
 $ <ideal_gas_law>
 
 = Experiment
-experiment
+#figure(
+  image("images/experiment_configuration.png", width: 80%),
+
+  caption: [
+    Shows the experimental setup. @manual
+  ],
+) <exp_setup>
 
 = Results
 == Calibration
@@ -52,7 +58,7 @@ $
   \
   U_2 = (-5.3 plus.minus 0.2) "mV"
 $
-Far all temperatures we estimated $sigma_t = 1°C$. Since the smallest scale on the Barometer is $plus.minus 1 "mmHg"$, we got $sigma_p = 1 "mmHg"$. For all output voltages we used $sigma_U = 0.2 "mV"$. The $sigma_U$ comes from the manual @manual where there is the the $0.05% "full scale" = 0.075 "mV"$ percicion error and another error due to temperature difference of $0.08 "mV" / "°C"$. Since we estimated $sigma_t = 1°C$ we got $sigma_U = 0.075 "mV" + 0.08 "mV" approx 0.2 "mV"$.
+Far all temperatures we estimated $sigma_t = 1°C$. Since the smallest scale on the Barometer is $plus.minus 1 "mmHg"$, we got $sigma_p = 1 "mmHg"$. For all output voltages we used $sigma_U = 0.2 "mV"$. The $sigma_U$ comes from the manual @manual where there is the $0.05% "full scale" = 0.075 "mV"$ percicion error and another error due to temperature difference of $0.08 "mV" / "°C"$. Since we estimated $sigma_t = 1°C$ we got $sigma_U = 0.075 "mV" + 0.08 "mV" approx 0.2 "mV"$.
 
 == Absolute Zero
 The measurements to determine the absolute zero temperature are the output signals of the pressure sensor. We use $U_k$ for boiling water and $U_e$ for freezing water. The results are:
@@ -181,8 +187,7 @@ $
 $
 
 = Discussion
-
-discussion
+Whilst measuring the value for $U_l$ we did not disconnect the pressurized hose from the system. We instead opened the valves to expose the sensor to the remaining pressure in the hose system. This pressure is not the same as the ambiant laboratory pressure. After, whilst heating up the helium in the steam bath, the hose was fully disconnected and the valve at position 6 (see in @exp_setup) was open. This means that the sensor was exposed to laboratory pressure. We also noticed that the reading of the sensor was stable whilst in this configuration. We therefore concluded that the measurment of $U_k$ better represents the laboratory pressure $U_l$. We therefore replaced the measured value of $U_l = (128.0 plus.minus 0.2) "mV"$ with $U_k = (127.6 plus.minus 0.2) "mV"$. So in all calculations: $U_l = U_k = (127.6 plus.minus 0.2) "mV"$.
 
 = Conclusion
 
