@@ -81,7 +81,7 @@ From the barometer reading $tilde(p_l)$ and laboratory temperature $t_l$ we calc
 $
   p_l = (tilde(p_l) - "correction"(t_l))  * 133.322 / 100 = ((716 plus.minus 1) - 3) * 133.322/100 "mbar" = (951 plus.minus 1) "mbar"
 $
-We used the value of $U_k$ for $U_l$. so $U_l = (127.6 plus.minus 0.2) "mV"$ (discussion). The value for the low pressure is per assumption @manual:
+We used the value of $U_k$ for $U_l$. So $U_l = (127.6 plus.minus 0.2) "mV"$ for all calculations (see @disc). The value for the low pressure is per assumption @manual:
 $
   p_2 = (0.1 plus.minus 0.1) "mbar"
 $
@@ -136,14 +136,15 @@ We obtained $t_k$ through a table in the laboratory where the boiling temperatur
   image("images/temperature_curve.png", width: 80%),
 
   caption: [
+    The pruple point is the measured point of $(t_k, p_k)$. The blue point is the measured point of $(t_e, p_e)$. The orange line is a linear fit. From extrapolating the orange curve, one gets $t'_0$.
     \
     Note: The red lines are not the error bars. They are the caps of the error bars. The error bars are smaller than the points and thus barely visible.
   ],
 )
 
-From the obtained values we can caluclated the temperature of absolute zero. $t'_0$ is a simpler approximative calculation. $t_0$ is more accurate since it takes some parazitic volume into account.
+From the obtained values we can caluclated the temperature of absolute zero. $t'_0$ is a simpler approximative calculation. $t_0$ is more accurate since it takes the parasitic volume $V_S$ into account (see @exp_setup).
 $
-  t'_0 = - p_e / (p_k - p_e) t_k = (-274 plus.minus 3) °C quaddd #cite(<manual>)
+  quaddd t'_0 = - p_e / (p_k - p_e) t_k = (-274 plus.minus 3) °C quaddd #cite(<manual>)
 $
 we define:
 $
@@ -155,13 +156,11 @@ $
   \
   b = epsilon (p_k - p_e) t_k + (1 + gamma t_k) p_k t_l - p_e (t_l + t_k)
   \
-  c = p_e t_l t_k
-  \
-  #cite(<manual>)
+  quaddd c = p_e t_l t_k quaddd #cite(<manual>)
 $
 this gives:
 $
-  t_0 = (-b + sqrt(b^2 - 4 a c)) / (2 a) = (-273 plus.minus 5) °C quaddd #cite(<manual>)
+  quaddd t_0 = (-b + sqrt(b^2 - 4 a c)) / (2 a) = (-273 plus.minus 5) °C quaddd #cite(<manual>)
 $
 
 == Liquid Nitrogen
@@ -171,7 +170,7 @@ $
 $
 Again there is a simpler approximation for the temperature of liquid Nitrogen ($t'_"ln2"$). Aswell as a more complicated and more accurate value $t_"ln2"$. We have:
 $
-  t'_"ln2" = (1 - p_"ln2" / p_e) t_0 = (-189 plus.minus 4) °C
+  quaddd t'_"ln2" = (1 - p_"ln2" / p_e) t_0 = (-189 plus.minus 4) °C quaddd #cite(<manual>)
 $
 we define:
 $
@@ -179,15 +178,19 @@ $
   \
   gamma = 10^(-5) "/°C"
   \
-  A = p_e / (t_e - t_0) + epsilon (p_e - p_"ln2") / (t_l - t_0)
+  quaddd A = p_e / (t_e - t_0) + epsilon (p_e - p_"ln2") / (t_l - t_0) quaddd #cite(<manual>)
 $
 this gives:
 $
-  t_"ln2" = (A t_0 + p_"ln2") / (A - gamma p_"ln2") = (-189 plus.minus 4) °C
+  quaddd t_"ln2" = (A t_0 + p_"ln2") / (A - gamma p_"ln2") = (-189 plus.minus 4) °C quaddd #cite(<manual>)
 $
 
-= Discussion
-Whilst measuring the value for $U_l$ we did not disconnect the pressurized hose from the system. We instead opened the valves to expose the sensor to the remaining pressure in the hose system. This pressure is not the same as the ambiant laboratory pressure. After, whilst heating up the helium in the steam bath, the hose was fully disconnected and the valve at position 6 (see in @exp_setup) was open. This means that the sensor was exposed to laboratory pressure. We also noticed that the reading of the sensor was stable whilst in this configuration. We therefore concluded that the measurment of $U_k$ better represents the laboratory pressure $U_l$. We therefore replaced the measured value of $U_l = (128.0 plus.minus 0.2) "mV"$ with $U_k = (127.6 plus.minus 0.2) "mV"$. So in all calculations: $U_l = U_k = (127.6 plus.minus 0.2) "mV"$.
+= Discussion <disc>
+Whilst measuring the value for $U_l$ we did not disconnect the pressurized hose from the system. We instead opened the valves to expose the sensor to the remaining pressure in the hose system. This pressure is not the same as the ambiant laboratory pressure. Whilst heating up the helium in the steam bath, the hose was fully disconnected and the valve at position 6 (see in @exp_setup) was open. This means that the sensor was exposed to laboratory pressure. We also noticed that the reading of the sensor was stable in this configuration. We therefore concluded that the measurment of $U_k$ better represents the laboratory pressure $U_l$. We therefore replaced the measured value of $U_l = (128.0 plus.minus 0.2) "mV"$ with $U_k = (127.6 plus.minus 0.2) "mV"$. So in all calculations: $U_l = U_k = (127.6 plus.minus 0.2) "mV"$.
+
+The literature value of the absolute zero temperature ($-273.15 °C$) lies within the experimental result range of $t_0 = (-273 plus.minus 5) °C$.
+
+The literature value of the temperature of liquid Nitrogen is: $-195.8°C$. This value lies outside the experimentally determined range of $t_"ln2" = (-189 plus.minus 4) °C$. So there is likely a systematic error. One possible source of error is leakage of gas. There could be small amounts of gas entering the lower pressure system, which would increase the  measured pressure. This would lead to a higher experimentally determined boiling temperature, like in our case. The measurment of the liquid Nitrogen was taken last, so in this case it would not be contradictury to an accurate measurment of absolute zero temperature $t_0$. Another source could be that the temperature of the helium never fully reached the temperature of liquid Nitrogen. In this case it would be warmer, since we never cooled it more down, than with liquid Nitrogen. This again would lead to a too high experimental value of $t_"ln2"$. Also we noticed a drop in output voltage of the pressure sensor, after submerging the glas bulb (@exp_setup) in liquid Nitrogen (this is the expected behaviour). After the voltage dropped, it immediatly began to rise again. So the output voltage never stabilized, which made an accurate measurment difficult. We thus think, that an inaccurate measurment is the most likely cause of error.
 
 = Conclusion
 
