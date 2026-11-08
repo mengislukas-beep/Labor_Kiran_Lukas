@@ -136,7 +136,7 @@ We obtained $t_k$ through a table in the laboratory where the boiling temperatur
   image("images/temperature_curve.png", width: 80%),
 
   caption: [
-    The pruple point is the measured point of $(t_k, p_k)$. The blue point is the measured point of $(t_e, p_e)$. The orange line is a linear fit. From extrapolating the orange curve, one gets $t'_0$.
+    The pruple point is the measured point of $(t_k, p_k)$. The blue point is the measured point of $(t_e, p_e)$. The orange line is a linear fit. From extrapolating the orange curve, one gets $t'_0$. The green dashed line at $t = -273.15°C$ represents the literature value of absolute zero temperature. It does not represent the experimental value of $t'_0$.
     \
     Note: The red lines are not the error bars. They are the caps of the error bars. The error bars are smaller than the points and thus barely visible.
   ],
