@@ -210,6 +210,7 @@
 #let GL = "GL"
 #let ie = "id est"
 #let iff = $<=>$
+#let pm = $plus.minus$
 
 
 
