@@ -26,7 +26,7 @@
 #v(0.5em)
 
 #align(center)[
-  #text(weight: "bold")[
+  #text[
     The goal of this experiment was to estimate the absolute zero temperature.
     Since pressure and volume cannot be negative, the ideal gas law
     $p V = N k_B T$ implies the existence of an absolute zero temperature.
@@ -54,9 +54,7 @@ $ <ideal_gas_law>
 Helium (He) behaves relatively close to the ideal gas law, therefore this @ideal_gas_law can be used as a good approximation. So our calculations are mainly based on this relation.
 
 = Experiment
-The experimental (see @exp_setup) allows us to measure different voltages which are linearly related to the pressure in the glas bulb. In @cali we see more precisely how to calculate the pressure given the voltage. This setup is connected to a pump which allows us by opening valve 2 to create a pressure close to a vacuum. Through valve 3 and 7 we were able to fill the glas bulb up with Helium. \
-
-
+The experiment (see @exp_setup) allows us to measure different voltages, which are linearly related to the pressure in the glas bulb. In @cali we see more precisely how to calculate the pressure given the voltage. This setup is connected to a pump which allows us by opening valve 2 to create a pressure close to a vacuum. Through valve 3 and 7 we were able to fill the glas bulb up with Helium. \
 
 #figure(
   image("images/experiment_configuration.png", width: 80%),
@@ -65,9 +63,9 @@ The experimental (see @exp_setup) allows us to measure different voltages which 
     A shematic representation of the experimental set-up used in the experiment. @manual
   ],
 ) <exp_setup>
-Firstly we wanted to calibrate the voltmeter. For this we measured two situations in which we know the pressure and temperature. We looked at the voltage with room temperature and room pressure and as a second measurement the voltage at room temperature and pressure near vacuum. With these value we made a linear fit which allows us afterward to calculate the pressure at different temperatures. \
+Firstly we wanted to calibrate the pressure sensor at position 6 in @exp_setup, which has as an output voltage. For this we measured the output voltage in two situations in which we know the pressure. We looked at the output voltage at room pressure and as a second measurement the output voltage at pressure near vacuum. With these values we made a linear fit which allows us afterward to calculate the pressure at different temperatures of the helium bulb. \
 \
-After calibrating the voltmeter we completely filled up the glas bulb with helium. We wanted to measure the pressure at different temperature therefore using water steam we heated the glas bulb up. Since the water evaporates at approximately $100^°$ Celsius, the temperature of the helium was then close to $100^°$ Celsius. This was our first measurement. 
+After calibrating the pressure sensor we completely filled up the glas bulb with helium. We wanted to measure the pressure at different temperature. Therefore we were using water steam to heat the glas bulb up. Since the water evaporates at approximately $100^°$ Celsius, the temperature of the helium was then close to $100^°$ Celsius. This was our first measurement. 
 As a second step we coled down the helium to $0^°$ Celsius using ice-water. At this state we made our second measurement.  With these two we can now approximate the 'absolute zero temperature'. More in @results and @analysis.\
 
 With this setup, we can also perform the reverse experiment. Instead of measuring the pressure at a known temperature to determine absolute zero, we can measure the pressure at an unknown temperature and use the previously calculated value of absolute zero to determine the temperature of the liquid.
@@ -76,7 +74,7 @@ In the second part of the experiment, we did exactly this. We submerged the heli
 
 
 = Results<results>
-== Calibration<cali>
+== Calibration
 For the calibration we measured the laboratory temperature $t_l$. We also measured the reading from the barometer $tilde(p_l)$. Aswell as the output-signal of the pressure sensor when exposed to laboratory pressure $U_l$. Then we measured the output-signal at low pressure $U_2$. This gave:
 $
   t_l = (22 plus.minus 1) °C
@@ -105,7 +103,7 @@ $
 
 
 = Data Analysis<analysis>
-== Calibration
+== Calibration<cali>
 From the barometer reading $tilde(p_l)$ and laboratory temperature $t_l$ we calculate the pressure in the laboratory $p_l$
 $
   p_l = (tilde(p_l) - "correction"(t_l))  * 133.322 / 100 = ((716 plus.minus 1) - 3) * 133.322/100 "mbar" = (951 plus.minus 1) "mbar"
