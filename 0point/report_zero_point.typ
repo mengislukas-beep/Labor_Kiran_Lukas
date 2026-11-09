@@ -26,28 +26,57 @@
 #v(0.5em)
 
 #align(center)[
-  abstract
+  #text(weight: "bold")[
+    The goal of this experiment was to estimate the absolute zero temperature.
+    Since pressure and volume cannot be negative, the ideal gas law
+    $p V = N k_B T$ implies the existence of an absolute zero temperature.
+
+    To estimate this temperature, we measured the pressure of helium at
+    different known temperatures. By extrapolating the measured
+    pressure-temperature relationship, we obtained an absolute zero
+    temperature of $(-273 plus.minus 5) degree C$.
+    This agrees with the literature value of $-273.15 degree C$
+    @absoluter_nullpunkt.
+
+    Using the previously determined pressure-temperature relationship,
+    we were then able to estimate the temperature of liquid nitrogen
+    ($N_2$).
+  ]
 ]
 
 = Introduction
-The absolute zero point is a fundamental fixed point. It has the lowest possible temperature $t_0$. There is no lower temperature.
+The absolute zero point is a fundemental fixed point which has the lowest possible temperature $t_0$. This temperature $t_0$ is achived when all the particles of the system have 0 velocity. The Kelvin temperature scale is named after the physicist Lord Kelvin (William Thomson), who proposed an absolute temperature scale in 1848. The scale starts at absolute zero (0 K), the lowest possible thermodynamic temperature. Temperatures on the Kelvin scale are therefore non-negative
 
-The Temperature is also contained in the ideal-gas-law. Here $n$ is the number of particles, $k_B$ is the Boltzmann constant, $T$ is Temperature, $p$ is pressure, and $V$ is the Volume.
+The Temperature is also contained in the ideal-gas-law. Here $N$ is the number of particles, $k_B$ is the Boltzmann constant, $T$ is Temperature, $p$ is pressure, and $V$ is the Volume.
 $
-  n k_B T = p V
+  p V = N k_B T
 $ <ideal_gas_law>
+Helium (He) behaves relatively close to the ideal gas law, therefore this @ideal_gas_law can be used as a good approximation. So our calculations are mainly based on this relation.
 
 = Experiment
+The experimental (see @exp_setup) allows us to measure different voltages which are linearly related to the pressure in the glas bulb. In @cali we see more precisely how to calculate the pressure given the voltage. This setup is connected to a pump which allows us by opening valve 2 to create a pressure close to a vacuum. Through valve 3 and 7 we were able to fill the glas bulb up with Helium. \
+
+
+
 #figure(
   image("images/experiment_configuration.png", width: 80%),
 
   caption: [
-    Shows the experimental setup. @manual
+    A shematic representation of the experimental set-up used in the experiment. @manual
   ],
 ) <exp_setup>
+Firstly we wanted to calibrate the voltmeter. For this we measured two situations in which we know the pressure and temperature. We looked at the voltage with room temperature and room pressure and as a second measurement the voltage at room temperature and pressure near vacuum. With these value we made a linear fit which allows us afterward to calculate the pressure at different temperatures. \
+\
+After calibrating the voltmeter we completely filled up the glas bulb with helium. We wanted to measure the pressure at different temperature therefore using water steam we heated the glas bulb up. Since the water evaporates at approximately $100^°$ Celsius, the temperature of the helium was then close to $100^°$ Celsius. This was our first measurement. 
+As a second step we coled down the helium to $0^°$ Celsius using ice-water. At this state we made our second measurement.  With these two we can now approximate the 'absolute zero temperature'. More in @results and @analysis.\
 
-= Results
-== Calibration
+With this setup, we can also perform the reverse experiment. Instead of measuring the pressure at a known temperature to determine absolute zero, we can measure the pressure at an unknown temperature and use the previously calculated value of absolute zero to determine the temperature of the liquid.
+
+In the second part of the experiment, we did exactly this. We submerged the helium bulb in liquid nitrogen ($N_2$) and measured the corresponding voltage. Using this measurement and our previously determined value of absolute zero, we were able to estimate the temperature of the liquid nitrogen.
+
+
+= Results<results>
+== Calibration<cali>
 For the calibration we measured the laboratory temperature $t_l$. We also measured the reading from the barometer $tilde(p_l)$. Aswell as the output-signal of the pressure sensor when exposed to laboratory pressure $U_l$. Then we measured the output-signal at low pressure $U_2$. This gave:
 $
   t_l = (22 plus.minus 1) °C
@@ -75,7 +104,7 @@ $
 $
 
 
-= Data Analysis
+= Data Analysis<analysis>
 == Calibration
 From the barometer reading $tilde(p_l)$ and laboratory temperature $t_l$ we calculate the pressure in the laboratory $p_l$
 $
