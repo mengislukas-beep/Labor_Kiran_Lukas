@@ -134,9 +134,15 @@ $
   \
   sigma_C = sqrt((J_f_C (z_C)^2)_(1 times 4) (sigma^2_z_C)_(4 times 1)^T) = 0.02 "bar" / V
 $ <example_error_prop>
-Where $J_f_C (z_C)^2 = ((part_p_l f_C (z_C))^2, (part_p_2 f_C (z_C))^2, (part_U_l f_C (z_C))^2, (part_U_2 f_C (z_C))^2)$ and $sigma^2_z_C = (sigma^2_p_l, sigma^2_p_2, sigma^2_U_l, sigma^2_U_2)$. We used the same prcedure for all propagated errors. The exact calculations can be found in the python program at @python. We used AI-tools to help debug the python program. We always made the function depend only on the measured values and the values assumed and not on previously caluclated values. We did this to minimize the effect of correlation. Since previously calculated values can depend on the same starting parameters they correlate. To account for correlation the error propagation gets more complicated and one has to estimate the correlation between the values. This is why we always directly calculated from the original values, so we can assume that they are uncorrelated.
+Where 
+$
+  J_f_C (z_C)^2 = ((part_p_l f_C (z_C))^2, (part_p_2 f_C (z_C))^2, (part_U_l f_C (z_C))^2, (part_U_2 f_C (z_C))^2)
+  \
+  sigma^2_z_C = (sigma^2_p_l, sigma^2_p_2, sigma^2_U_l, sigma^2_U_2)
+$ 
+We used the same prcedure for all propagated errors. The exact calculations can be found in the python program at @python. We used AI-tools to help debug the python program. We always made the function depend only on the measured values and the values assumed and not on previously caluclated values. We did this to minimize the effect of correlation. Since previously calculated values can depend on the same starting parameters they correlate. To account for correlation the error propagation gets more complicated and one has to estimate the correlation between the values. This is why we always directly calculated from the original values, so we can assume that they are uncorrelated.
 
-So for $sigma_p_0$ we have $sigma_p_0 = sqrt((J_f_p_0 (z_p_0)^2)_(1 times 4) (sigma^2_z_p_0)^T_(4 times 1))$ with $z_p_0 = z_p_C => sigma_z_p_0 = sigma_z_C$ and $f_p_0 (z_p_0) = p_l - (p_l - p_2) / (1 - U_2 / U_l)$
+So for $p_0$ it is the same procedere (shown in @error_p_0).
 
 The calibration gives the following calibration-curve:
 #figure(
@@ -160,7 +166,7 @@ $
   \
   t_e = (0 plus.minus 1) °C
 $
-We obtained $t_k$ through a table in the laboratory where the boiling temperature of water is denoted in dependance of $p_l$. For the freezing temperature $t_e$ we have $t_e = 0$ per assumption. We can now also plot the pressure/temperature dependance:
+We obtained $t_k$ through a table in the laboratory where the boiling temperature of water is denoted in dependance of $p_l$. For the freezing temperature $t_e$ we have $t_e = 0$ per assumption @manual. The error calculation can be found in @all_of_the_errors_AAAAAAAAAA We can now also plot the pressure/temperature dependance:
 #figure(
   image("images/temperature_curve.png", width: 80%),
 
@@ -175,7 +181,7 @@ From the obtained values we can caluclated the temperature of absolute zero. $t'
 $
   quaddd t'_0 = - p_e / (p_k - p_e) t_k = (-274 plus.minus 3) °C quaddd #cite(<manual>)
 $
-we define:
+The error calculation can be found in @all_of_the_errors_AAAAAAAAAA. We now define:
 $
   epsilon = 10^(-3)
   \
@@ -191,17 +197,18 @@ this gives:
 $
   quaddd t_0 = (-b + sqrt(b^2 - 4 a c)) / (2 a) = (-273 plus.minus 5) °C quaddd #cite(<manual>)
 $
+The error calulcation can be found in @all_of_the_errors_AAAAAAAAAA.
 
 == Liquid Nitrogen
 From the calibration curve and the measurment $U_"ln2"$ we obtain the value for the pressure $p_"ln2"$ at temperature of liquid nitrogen ($t_"ln2"$)
 $
   p_"ln2" = (214 plus.minus 1) "mBar"
 $
-Again there is a simpler approximation for the temperature of liquid Nitrogen ($t'_"ln2"$). Aswell as a more complicated and more accurate value $t_"ln2"$. We have:
+The error calculation is in @all_of_the_errors_AAAAAAAAAA. Again there is a simpler approximation for the temperature of liquid Nitrogen ($t'_"ln2"$). Aswell as a more complicated and more accurate value $t_"ln2"$. We have:
 $
   quaddd t'_"ln2" = (1 - p_"ln2" / p_e) t_0 = (-189 plus.minus 4) °C quaddd #cite(<manual>)
 $
-we define:
+The error calculation is in @all_of_the_errors_AAAAAAAAAA. We now define:
 $
   epsilon = 10^(-3)
   \
@@ -213,6 +220,7 @@ this gives:
 $
   quaddd t_"ln2" = (A t_0 + p_"ln2") / (A - gamma p_"ln2") = (-189 plus.minus 4) °C quaddd #cite(<manual>)
 $
+The error calculation is in @all_of_the_errors_AAAAAAAAAA.
 
 = Discussion <disc>
 Whilst measuring the value for $U_l$ we did not disconnect the pressurized hose from the system. We instead opened the valves to expose the sensor to the remaining pressure in the hose system. This pressure is not the same as the ambiant laboratory pressure. Whilst heating up the helium in the steam bath, the hose was fully disconnected and the valve at position 6 (see in @exp_setup) was open. This means that the sensor was exposed to laboratory pressure. We also noticed that the reading of the sensor was stable in this configuration. We therefore concluded that the measurment of $U_k$ better represents the laboratory pressure $U_l$. We therefore replaced the measured value of $U_l = (128.0 plus.minus 0.2) "mV"$ with $U_k = (127.6 plus.minus 0.2) "mV"$. So in all calculations: $U_l = U_k = (127.6 plus.minus 0.2) "mV"$.
@@ -230,17 +238,447 @@ conclusion
 
 
 #pagebreak()
-#set heading(numbering: "A")
 
 #set heading(numbering: "A")
-
 #counter(heading).update(0)
 #set heading(numbering: "A.1.i")
+
 = Appendix
 == python skript <python>
 ```python
+# %%
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.differentiate import jacobian
 
+# %%
+##### calibration
+std_fs = 0.15 * 0.05 / 100 # full scale error from manual
+std_u_temp = 0.08 / 1000 # another error from manual
+std_U = std_fs + std_u_temp # error of U general
+
+# lab pressure calibration point
+mmPerHg = 713 #+-1 (mm Hg) with correction for pressure
+U_lab = 0.12755 # 0.12795 measured value in lab (but probalby a bit off) # measurement
+p_lab = mmPerHg * 133.322 / 100000 # measurement  2.72 mm / Hg  716 reading at 21.5°
+std_p_lab = 1 * 133.322 / 100000 # estimation
+
+# low-pressure (# evacuate pump (7-10min))
+U_2 = (-1) * 0.00526 # measurement
+p_2 = 0.0001 # +- 0.0001 bar (manual)
+std_p_2 = 0.0001
+
+print(std_U * 1000)
+print('p_lab =', p_lab, '+-', std_p_lab)
+
+# %%
+def f_c (data):
+    pl = data[0]
+    p2 = data[1]
+    ul = data[2]
+    u2 = data[3]
+    return (pl - p2) / (ul - u2)
+
+def f_p0 (data):
+    pl = data[0]
+    p2 = data[1]
+    ul = data[2]
+    u2 = data[3]
+    return pl - (pl - p2) / (1 - u2 / ul)
+
+def f_pr (data):
+    pl = data[0]
+    p2 = data[1]
+    ul = data[2]
+    u2 = data[3]
+
+    u = data[4]
+
+    c = f_c(data[:-1])
+    p0 = f_p0(data[:-1])
+    return p0 + u * c
+
+# %%
+point_c = np.array([p_lab, p_2, U_lab, U_2])
+sigma_c = np.array([std_p_lab, std_p_2, std_U, std_U])
+point_p0 = point_c
+sigma_p0 = sigma_c
+C = f_c(point_c)
+p_0 = f_p0(point_p0)
+
+#error prop
+jac_c = jacobian(f_c, point_c).df
+std_c = np.sqrt(jac_c**2 @ sigma_c.transpose()**2)
+jac_p0 = jacobian(f_p0, point_p0).df
+std_p0 = np.sqrt(jac_p0**2 @ sigma_p0.transpose()**2)
+
+#print
+print('C =', C, '+-', std_c)
+print('p_0 =', p_0, '+-', std_p0)
+
+#plot
+linspace = np.linspace(U_2 - 0.02, U_lab + 0.02, 20)
+points = np.zeros((len(linspace), 5))
+points[:,: 4] = point_c
+points[:, 4] = linspace
+plt.title('calibration curve of pressure sensor')
+plt.errorbar(U_lab * 1000, p_lab, std_p_lab, 1000 * std_U, capsize=10, color='r')
+plt.errorbar(U_2 * 1000, p_2, std_p_2, 1000 * std_U, capsize=10, color='r')
+plt.plot(linspace * 1000, f_pr(points.transpose()), color='orange', label='linear fit: p(U) = p0 + CU')
+plt.plot(U_lab * 1000, p_lab, marker='o', linestyle='', color='purple', label='ambiant pressure = 0.95 bar')
+plt.plot(U_2 * 1000, p_2, marker='o', linestyle='', color='b', label='low pressure = 0.1 mbar')
+plt.xlabel('sensor signal [mV]')
+plt.ylabel('pressure [bar]')
+plt.legend()
+
+# %%
+##### absolute zero
+# evacuate pump (7-10min (maybe already done))
+# fill with helium for at least two minutes
+# repeat procedure once
+
+# %%
+# boiling water (close opening after heating)
+U_k = 0.12755 # measurment
+t_k = 98.242 # table relation with pressure #+-1
+std_t_k = 1 # estimation
+point_k = np.array([p_lab, p_2, U_lab, U_2, U_k])
+sigma_k = np.array([std_p_lab, std_p_2, std_U, std_U, std_U])
+
+# calculation
+p_k = f_pr(point_k)
+
+# error prop
+jac_pk = jacobian(f_pr, point_k).df
+std_p_k = np.sqrt(jac_pk**2 @ sigma_k.transpose()**2)
+
+print('p_k =', p_k, '+-', std_p_k)
+
+# %%
+# ice water
+# make cold ice water wait ca 2min
+U_e = 0.0925 # measurment
+t_e = 0 # temperature ice-water
+std_t_e = 1 # estimation
+point_e = np.array([p_lab, p_2, U_lab, U_2, U_e])
+sigma_e = np.array([std_p_lab, std_p_2, std_U, std_U, std_U])
+
+# calculation
+p_e = f_pr(point_e)
+
+# error prop
+jac_pe = jacobian(f_pr, point_e).df
+std_p_e = np.sqrt(jac_pe**2 @ sigma_e.transpose()**2)
+
+print('p_e =', p_e, '+-', std_p_e)
+
+temp_samples = np.linspace(-300, 130, 100)
+plt.title('pressure / temperature curve for constant volume and number of particles')
+plt.errorbar(t_k, p_k, std_p_k, std_t_k, capsize=10, color='r')
+plt.errorbar(t_e, p_e, std_p_e, std_t_e, capsize=10, color='r')
+plt.plot(temp_samples, temp_samples * (p_k - p_e) / (t_k - t_e) + p_e - (p_k - p_e) / (t_k - t_e) * t_e, color='orange', label='linear fit')
+plt.plot(t_k, p_k, marker='o', color='purple', label='boil t = 98°C')
+plt.plot(t_e, p_e, marker='o', color='b', label='ice = 0°C')
+plt.axhline(0, linestyle='dotted', color="#95B416", label='p = 0 bar')
+plt.axvline(-273.15, linestyle='--', color='#95B416', label='t = -273.15°C')
+plt.ylabel('pressure [bar]')
+plt.xlabel('temperature [°C]')
+plt.legend()
+
+# %%
+def f_t0approx (data):
+    pl = data[0]
+    p2 = data[1]
+    ul = data[2]
+    u2 = data[3]
+
+    uk = data[4]
+    ue = data[5]
+    pk = f_pr(data[:5])
+    pe = f_pr(data[[0, 1, 2, 3, 5]])
+
+    tk = data[6]
+
+    return (-1) * pe * tk / (pk - pe)
+
+# %%
+##### calculations:
+point_t0approx = np.array([p_lab, p_2, U_lab, U_2, U_k, U_e, t_k])
+sigma_t0approx = np.array([std_p_lab, std_p_2, std_U, std_U, std_U, std_U, std_t_k])
+
+# calculation
+t_0_approx = f_t0approx(point_t0approx)
+
+# error prop
+jac_t0approx = jacobian(f_t0approx, point_t0approx).df
+std_t_0_approx = np.sqrt(jac_t0approx**2 @ sigma_t0approx.transpose()**2)
+
+
+
+print('t_0_approx =', t_0_approx, '+-', std_t_0_approx)
+
+# %%
+epsilon = 10**(-3)
+gamma = 10**(-5)
+
+def f_t0(data):
+    pl = data[0]
+    p2 = data[1]
+    ul = data[2]
+    u2 = data[3]
+
+    uk = data[4]
+    ue = data[5]
+    pk = f_pr(data[:5])
+    pe = f_pr(data[[0, 1, 2, 3, 5]])
+
+    tk = data[6]
+    te = data[7]
+    tl = data[8]
+
+    aa = (1 + epsilon) * pe - (1 + epsilon + gamma * tk) * pk
+    bb = epsilon * (pk - pe) * (te + tk) + (1 + gamma * tk) * pk * (te + tl) - pe * (tl + tk)
+    cc = pe * tl * tk + epsilon * (pe - pk) * te * tk - (1 + gamma * tk) * pk * te * tl
+
+    return ((-1) * bb + np.sqrt(bb**2 - 4 * aa * cc)) / (2 * aa)
+
+
+# %%
+t_lab = 21.5 # measurment +-1
+std_t_lab = 1 # estimation
+point_t0 = np.array([p_lab, p_2, U_lab, U_2, U_k, U_e, t_k, t_e, t_lab])
+simga_t0 = np.array([std_p_lab, std_p_2, std_U, std_U, std_U, std_U, std_t_k, std_t_e, std_t_lab])
+
+# calculation
+t_0 = f_t0(point_t0)
+
+# error prop
+jac_t0 = jacobian(f_t0, point_t0).df
+std_t_0 = np.sqrt(jac_t0**2 @ simga_t0.transpose()**2)
+
+print('t_0 =', t_0, '+-', std_t_0)
+
+# %%
+##### liquid nitrogen
+U_LN2 = 0.02465 # measurement
+point_ln2 = np.array([p_lab, p_2, U_lab, U_2, U_LN2])
+sigma_ln2 = np.array([std_p_lab, std_p_2, std_U, std_U, std_U])
+
+# calculation
+p_LN2 = f_pr(point_ln2)
+
+# error prop
+jac_pln2 = jacobian(f_pr, point_ln2).df
+std_p_LN2 = np.sqrt(jac_pln2**2 @ sigma_ln2.transpose()**2)
+
+print('p_LN2 =', p_LN2, '+-', std_p_LN2)
+
+# %%
+def f_tln2approx (data):
+    pl = data[0]
+    p2 = data[1]
+    ul = data[2]
+    u2 = data[3]
+
+    uk = data[4]
+    ue = data[5]
+    pe = f_pr(data[[0, 1, 2, 3, 5]])
+
+    tk = data[6]
+    te = data[7]
+    tl = data[8]
+
+    t0 = f_t0(data[0:9])
+
+    uln2 = data[9]
+    pln2 = f_pr(data[[0, 1, 2, 3, 9]])
+
+    return (1 - pln2 / pe) * t0
+
+
+# %%
+point_tln2approx = np.array([p_lab, p_2, U_lab, U_2, U_k, U_e, t_k, t_e, t_lab, U_LN2])
+sigma_tln2approx = np.array([std_p_lab, std_p_2, std_U, std_U, std_U, std_U, std_t_k, std_t_e, std_t_lab, std_U])
+
+# calculation
+t_LN2_approx = f_tln2approx(point_tln2approx)
+
+# error prop
+jac_tln2approx = jacobian(f_tln2approx, point_tln2approx).df
+std_t_LN2_approx = np.sqrt(jac_tln2approx**2 @ sigma_tln2approx.transpose()**2)
+
+print('t_LN2_approx =', t_LN2_approx, '+-', std_t_LN2_approx)
+
+# %%
+def f_tln2 (data):
+    pl = data[0]
+    p2 = data[1]
+    ul = data[2]
+    u2 = data[3]
+
+    uk = data[4]
+    ue = data[5]
+    pe = f_pr(data[[0, 1, 2, 3, 5]])
+
+    tk = data[6]
+    te = data[7]
+    tl = data[8]
+
+    t0 = f_t0(data[0:9])
+
+    uln2 = data[9]
+    pln2 = f_pr(data[[0, 1, 2, 3, 9]])
+    
+    aaaaa = pe / (te - t0) + epsilon * (pe - pln2) / (tl - t0)
+
+    return (aaaaa * t0 + pln2) / (aaaaa - gamma * pln2)
+
+
+# %%
+point_tln2 = np.array([p_lab, p_2, U_lab, U_2, U_k, U_e, t_k, t_e, t_lab, U_LN2])
+sigma_tln2 = np.array([std_p_lab, std_p_2, std_U, std_U, std_U, std_U, std_t_k, std_t_e, std_t_lab, std_U])
+
+# calculation
+t_LN2 = f_tln2(point_tln2)
+
+# error prop
+jac_tln2 = jacobian(f_tln2, point_tln2).df
+std_t_LN2 = np.sqrt(jac_tln2**2 @ sigma_tln2.transpose()**2)
+
+print('t_LN2 =', t_LN2, '+-', std_t_LN2)
 ```
+
+#pagebreak()
+== Error Propagation <all_of_the_errors_AAAAAAAAAA>
+An overline $overline(a)$ means in this section: $overline(a) = f_a (z_a)$. So $overline(a)$ is the value $a$ but as a function dependant on $z_a$. The vector $z_a$ only contains values measured or values assumed. $z_a$ does not contain already calculated values. This is to minimize the effect of correlation in the error propagation. $sigma_z_a$ are the correspoinding errors of the starting or assumed values. Then $f_a (z_a) = overline(a) = a$. Is the function that returns $a$ when plugged in with $z_a$. We introduced this function to take its jacobian for the final formula of $sigma_a$. When we write $J_f_a (z_a)^2$, we mean component wise squars. so $J_f_a (z_a)^2 = ((part_z_(a, 1)f_a)^2, ..., ...., (part_z_(a, n) f_a)^2)$. The same goes for $sigma^2_z_a = (sigma^2_z_(a, 1), ..., ..., sigma^2_z_(a, n))$.
+=== Error of *$C$*
+$
+  z_C = (p_l, p_2, U_l, U_2)
+  \
+  sigma_z_C = (sigma_p_l, sigma_p_2, sigma_U_l, sigma_U_2)
+  \
+  f_C (z_C) = (p_l - p_2) / (U_l - U_2)
+  \
+  sigma_C = sqrt((J_f_C (z_C)^2)_(1 times 4) (sigma^2_z_C)_(4 times 1)^T) = 0.02 "bar" / V
+$
+
+=== Error of *$p_0$* <error_p_0>
+$
+  z_p_0 = (p_l, p_2, U_l, U_2)
+  \
+  sigma_z_p_0 = (sigma_p_l, sigma_p_2, sigma_U_l, sigma_U_2)
+  \
+  f_p_0 (z_p_0) = p_l - (p_l - p_2) / (1 - U_2 / U_l)
+  \
+
+  sigma_p_0 = sqrt((J_f_p_0 (z_p_0)^2)_(1 times 4) (sigma^2_z_p_0)^T_(4 times 1))
+$
+=== Error of *$p_k$*
+$
+  z_p_k = (p_l, p_2, U_l, U_2, U_k)
+  \
+  sigma_z_p_k = (sigma_p_l, sigma_p_2, sigma_U_l, sigma_U_2, sigma_U_k)
+  \
+  f_p_k (z_p_k) = p_l - (p_l - p_2) / (1 - U_2 / U_l) + U_k (p_l - p_2) / (U_l - U_2) = overline(p_0) + U_k overline(C)
+  \
+  sigma_p_k = sqrt((J_f_p_k (z_p_k)^2)_(1 times 5) (sigma^2_z_p_k)^T_(5 times 1))
+$
+
+=== Error of *$p_e$*
+$
+  z_p_e = (p_l, p_2, U_l, U_2, U_e)
+  \
+  sigma_z_p_e = (sigma_p_l, sigma_p_2, sigma_U_l, sigma_U_2, sigma_U_e)
+  \
+  f_p_e (z_p_e) = p_l - (p_l - p_2) / (1 - U_2 / U_l) + U_e (p_l - p_2) / (U_l - U_2) = overline(p_0) + U_e overline(C)
+  \
+  sigma_p_e = sqrt((J_f_p_e (z_p_e)^2)_(1 times 5) (sigma^2_z_p_e)^T_(5 times 1))
+$
+
+=== Error of *$t'_0$*
+$
+  z_t'_0 = (p_l, p_2, U_l, U_2, U_k, U_e, t_k)
+  \
+  sigma_z_t'_0 = (sigma_p_l, sigma_p_2, sigma_U_l, sigma_U_2, sigma_U_k, sigma_U_e, sigma_t_k)
+  \
+  f_t'_0 (z_t'_0) = - t_k (f_p_e (z_p_e)) / (f_p_k (z_p_k) - f_p_e (z_p_e)) = - t_k overline(p_e) / (overline(p_k) - overline(p_e)) quadd ("we get " z_p_e "and " z_p_k "from " z_t'_0)
+  \
+  sigma_t'_0 = sqrt((J_f_t'_0 (z_t'_0)^2)_(1 times 7) (sigma^2_z_t'_0)^T_(7 times 1))
+$
+
+=== Error of *$t_0$*
+$
+  z_t_0 = (p_l, p_2, U_l, U_2, U_k, U_e, t_k, t_e, t_l)
+  \
+  sigma_z_t_0 = (sigma_p_l, sigma_p_2, sigma_U_l, sigma_U_2, sigma_U_k, sigma_U_e, sigma_t_k, sigma_t_e, sigma_t_l)
+  \
+  f_t_0 (z_t_0) = (-b + sqrt(b^2 - 4 a c)) / (2 a)
+  \
+  \
+  epsilon = 10^(-3)
+  \
+  gamma = 10^(-5) "/°C"
+  \
+  a = (1 + epsilon) overline(p_e) - (1 + epsilon + gamma t_k) overline(p_k)
+  \
+  b = epsilon (overline(p_k) - overline(p_e)) t_k + (1 + gamma t_k) overline(p_k) t_l - overline(p_e) (t_l + t_k)
+  \
+  c = overline(p_e) t_l t_k
+  \
+  \
+    ("where " overline(p_e) "means " f_p_e (z_p_e) "and " z_p_e "is obtained from " z_t_0 " " ("the same goes for all overlines"))
+  \
+  \
+  sigma_t_0 = sqrt((J_f_t_0 (z_t_0)^2)_(1 times 9) (sigma^2_z_t_0)^T_(9 times 1))
+$
+
+=== Error of *$p_"ln2"$*
+$
+  z_p_"ln2" = (p_l, p_2, U_l, U_2, U_"ln2")
+  \
+  sigma_z_p_"ln2" = (sigma_p_l, sigma_p_2, sigma_U_l, sigma_U_2, sigma_U_"ln2")
+  \
+  f_p_"ln2" (z_p_"ln2") = p_l - (p_l - p_2) / (1 - U_2 / U_l) + U_"ln2" (p_l - p_2) / (U_l - U_2) = overline(p_0) + U_"ln2" overline(C)
+  \
+  sigma_p_"ln2" = sqrt((J_f_p_"ln2" (z_p_"ln2")^2)_(1 times 5) (sigma^2_z_p_"ln2")^T_(5 times 1))
+$
+
+=== Error of *$t'_"ln2"$*
+$
+  z_t'_"ln2" = (p_l, p_2, U_l, U_2, U_k, U_e, t_k, t_e, t_l, U_"ln2")
+  \
+  sigma_z_t'_"ln2" = (sigma_p_l, sigma_p_2, sigma_U_l, sigma_U_2, sigma_U_k, sigma_U_e, sigma_t_k, sigma_t_e, sigma_t_l, sigma_U_"ln2")
+  \
+  f_t'_"ln2" (z_t'_"ln2") = (1 - overline(p_"ln2") / overline(p_e)) overline(t_0)
+  \
+  \
+  ("where " overline(t_0) "means " f_t_0 (z_t_0) "and " z_t_0 "is obtained from " z_t'_"ln2" " " ("the same goes for all overlines"))
+  \
+  \
+  sigma_t'_"ln2" = sqrt((J_f_t'_"ln2" (z_t'_"ln2")^2)_(1 times 10) (sigma^2_z_t'_"ln2")^T_(10 times 1))
+$
+
+=== Error of *$t_"ln2"$*
+$
+  z_t_"ln2" = (p_l, p_2, U_l, U_2, U_k, U_e, t_k, t_e, t_l, U_"ln2")
+  \
+  sigma_z_t_"ln2" = (sigma_p_l, sigma_p_2, sigma_U_l, sigma_U_2, sigma_U_k, sigma_U_e, sigma_t_k, sigma_t_e, sigma_t_l, sigma_U_"ln2")
+  \
+  f_t_"ln2" (z_t_"ln2") = (A overline(t_0) + overline(p_"ln2")) / (A - gamma overline(p_"ln2"))
+  \
+  \
+  epsilon = 10^(-3)
+  \
+  gamma = 10^(-5) "/°C"
+  \
+  A = overline(p_e) / (t_e - overline(t_0)) + (epsilon (overline(p_e) - overline(p_"ln2"))) / (t_l - overline(t_0))
+  \
+  \
+  ("where " overline(t_0) "means " f_t_0 (z_t_0) "and " z_t_0 "is obtained from " z_t_"ln2" " " ("the same goes for all overlines"))
+  \
+  \
+  sigma_t_"ln2" = sqrt((J_f_t_"ln2" (z_t_"ln2")^2)_(1 times 10) (sigma^2_z_t_"ln2")^T_(10 times 1))
+$
 
 #pagebreak()
 
