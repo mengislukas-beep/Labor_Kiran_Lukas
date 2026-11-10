@@ -1,5 +1,4 @@
 #import "../style.typ": *
-#import "@preview/subpar:0.2.2"
 #show: setup
 
 #set document(title: "report absolute zero")
@@ -75,7 +74,7 @@ In the second part of the experiment, we did exactly this. We submerged the heli
 
 = Results<results>
 == Calibration
-For the calibration we measured the laboratory temperature $t_l$. We also measured the reading from the barometer $tilde(p_l)$. Aswell as the output-signal of the pressure sensor when exposed to laboratory pressure $U_l$. Then we measured the output-signal at low pressure $U_2$. This gave:
+For the calibration we measured the laboratory temperature $t_l$. We also measured the reading from the barometer $tilde(p_l)$, which is in "mmHg". Aswell as the output-signal of the pressure sensor when exposed to laboratory pressure $U_l$. Then we measured the output-signal at low pressure $U_2$. As a result:
 $
   t_l = (22 plus.minus 1) °C
   \
@@ -85,10 +84,10 @@ $
   \
   U_2 = (-5.3 plus.minus 0.2) "mV"
 $
-Far all temperatures we estimated $sigma_t = 1°C$. Since the smallest scale on the Barometer is $plus.minus 1 "mmHg"$, we got $sigma_p = 1 "mmHg"$. For all output voltages we used $sigma_U = 0.2 "mV"$. The $sigma_U$ comes from the manual @manual where there is the $0.05% "full scale" = 0.075 "mV"$ percicion error and another error due to temperature difference of $0.08 "mV" / "°C"$. Since we estimated $sigma_t = 1°C$ we got $sigma_U = 0.075 "mV" + 0.08 "mV" approx 0.2 "mV"$.
+For all temperatures we estimated $sigma_t = 1°C$. Since the smallest scale on the Barometer is $plus.minus 1 "mmHg"$, we got $sigma_p = 1 "mmHg"$. For all output voltages we used $sigma_U = 0.2 "mV"$. The $sigma_U$ comes from the manual @manual where there is the $0.05% "full scale" = 0.075 "mV"$ percicion error and another error due to temperature difference of $0.08 "mV" / "°C"$. Since we estimated $sigma_t = 1°C$ we got $sigma_U = 0.075 "mV" + 0.08 "mV" approx 0.2 "mV"$.
 
 == Absolute Zero
-The measurements to determine the absolute zero temperature are the output signals of the pressure sensor. We use $U_k$ for boiling water and $U_e$ for freezing water. The results are:
+The measurements to determine the absolute zero temperature are the output signals of the pressure sensor. $U_k$ is the voltage fat boiling water and $U_e$ for freezing water. The results are:
 $
   U_k = (127.6 plus.minus 0.2) "mV"
   \
@@ -96,9 +95,9 @@ $
 $
 
 == Liquid Nitrogen
-The measurment for liquid Nitrogen (ln2) is $U_"ln2"$. This is the output signal from the pressure sensor when submerged in boiling liquid Nitrogen.
+The measurment for liquid nitrogen (ln2) is $ U_(l N_2)$. This is the output signal from the pressure sensor when submerged in boiling liquid nitrogen.
 $
-  U_"ln2" = (24.7 plus.minus 0.2) "mV"
+   U_(l N_2) = (24.7 plus.minus 0.2) "mV"
 $
 
 
@@ -106,7 +105,7 @@ $
 == Calibration<cali>
 From the barometer reading $tilde(p_l)$ and laboratory temperature $t_l$ we calculate the pressure in the laboratory $p_l$
 $
-  p_l = (tilde(p_l) - "correction"(t_l))  * 133.322 / 100 = ((716 plus.minus 1) - 3) * 133.322/100 "mbar" = (951 plus.minus 1) "mbar"
+  p_l = (tilde(p_l) - "correction"(t_l))  dot 133.322 / 100 = ((716 plus.minus 1) - 3) dot 133.322/100 "mbar" = (951 plus.minus 1) "mbar"
 $
 We used the value of $U_k$ for $U_l$. So $U_l = (127.6 plus.minus 0.2) "mV"$ for all calculations (see @disc). The value for the low pressure is per assumption @manual:
 $
@@ -122,7 +121,8 @@ $
   \
   p_0 = p_l - (p_l - p_2) / (1 - U_2 / U_l) = (0.038 plus.minus 0.001) "bar"
 $
-For the error propagations we always used a function of the starting parameters to calculate the values. We used the scipy Jacobian @SciPy_jacobian function to calculate all the derivatives. So for $C$ it is:
+For the error propagations we always used a function of the starting parameters to calculate the values. We used the scipy Jacobian @SciPy_jacobian function to calculate all the derivatives. \
+As an example this means for $C$:
 $
   z_C = (p_l, p_2, U_l, U_2)
   \
@@ -138,7 +138,7 @@ $
   \
   sigma^2_z_C = (sigma^2_p_l, sigma^2_p_2, sigma^2_U_l, sigma^2_U_2)
 $ 
-We used the same prcedure for all propagated errors. The exact calculations can be found in the python program at @python. We used AI-tools to help debug the python program. We always made the function depend only on the measured values and the values assumed and not on previously caluclated values. We did this to minimize the effect of correlation. Since previously calculated values can depend on the same starting parameters they correlate. To account for correlation the error propagation gets more complicated and one has to estimate the correlation between the values. This is why we always directly calculated from the original values, so we can assume that they are uncorrelated.
+We used the same procedure for all propagated errors. The exact calculations can be found in the python program at @python. We used AI-tools to help debug the python program. We always made the function depend only on the measured values and the values assumed and not on previously caluclated values. We did this to minimize the effect of correlation. Since previously calculated values can depend on the same starting parameters they correlate. To account for correlation the error propagation gets more complicated and one has to estimate the correlation between the values. This is why we always directly calculated from the original values, so we can assume that they are uncorrelated.
 
 So for $p_0$ it is the same procedere (shown in @error_p_0).
 
@@ -154,7 +154,8 @@ The calibration gives the following calibration-curve:
 )
 
 == Absolute Zero
-From the calibration curve and $U_k$ and $U_e$ we obtain the pressure $p_k$ and $p_e$ at boiling temperature (water) $t_k$ and at freezing temperature $t_e$.
+Using water we heatet the helium bulb using water evaporation up to $t_k$. And the submerged it into freezing water to cool it down to $t_e$. 
+From the calibration curve and $U_k$ and $U_e$ we obtain the pressure $p_k$ and $p_e$ at boiling temperature $t_k$ and at freezing temperature $t_e$.
 $
   p_k = p(U_k) = (951 plus.minus 2) "mbar"
   \
@@ -169,6 +170,7 @@ We obtained $t_k$ through a table in the laboratory where the boiling temperatur
   image("images/temperature_curve.png", width: 80%),
 
   caption: [
+    The graph is a lineat fit calculatet from the two measured points. On the x axis is the temperature and on the y axis the pressure. 
     The pruple point is the measured point of $(t_k, p_k)$. The blue point is the measured point of $(t_e, p_e)$. The orange line is a linear fit. From extrapolating the orange curve, one gets $t'_0$. The green dashed line at $t = -273.15°C$ represents the literature value of absolute zero temperature. It does not represent the experimental value of $t'_0$.
     \
     Note: The red lines are not the error bars. They are the caps of the error bars. The error bars are smaller than the points and thus barely visible.
@@ -198,13 +200,13 @@ $
 The error calulcation can be found in @all_of_the_errors_AAAAAAAAAA.
 
 == Liquid Nitrogen
-From the calibration curve and the measurment $U_"ln2"$ we obtain the value for the pressure $p_"ln2"$ at temperature of liquid nitrogen ($t_"ln2"$)
+From the calibration curve and the measurment $ U_(l N_2)$ we obtain the value for the pressure $p_(l N_2)$ at temperature of liquid nitrogen ($t_(l N_2)$)
 $
-  p_"ln2" = (214 plus.minus 1) "mBar"
+  p_(l N_2) = (214 plus.minus 1) "mBar"
 $
-The error calculation is in @all_of_the_errors_AAAAAAAAAA. Again there is a simpler approximation for the temperature of liquid Nitrogen ($t'_"ln2"$). Aswell as a more complicated and more accurate value $t_"ln2"$. We have:
+The error calculation is in @all_of_the_errors_AAAAAAAAAA. Again there is a simpler approximation for the temperature of liquid nitrogen ($t'_(l N_2)$). Aswell as a more complicated and more accurate value $t_(l N_2)$. We have:
 $
-  quaddd t'_"ln2" = (1 - p_"ln2" / p_e) t_0 = (-189 plus.minus 4) °C quaddd #cite(<manual>)
+  quaddd t'_(l N_2) = (1 - p_(l N_2) / p_e) t_0 = (-189 plus.minus 4) °C quaddd #cite(<manual>)
 $
 The error calculation is in @all_of_the_errors_AAAAAAAAAA. We now define:
 $
@@ -212,11 +214,11 @@ $
   \
   gamma = 10^(-5) "/°C"
   \
-  quaddd A = p_e / (t_e - t_0) + epsilon (p_e - p_"ln2") / (t_l - t_0) quaddd #cite(<manual>)
+  quaddd A = p_e / (t_e - t_0) + epsilon (p_e - p_(l N_2)) / (t_l - t_0) quaddd #cite(<manual>)
 $
 this gives:
 $
-  quaddd t_"ln2" = (A t_0 + p_"ln2") / (A - gamma p_"ln2") = (-189 plus.minus 4) °C quaddd #cite(<manual>)
+  quaddd t_(l N_2) = (A t_0 + p_(l N_2)) / (A - gamma p_(l N_2)) = (-189 plus.minus 4) °C quaddd #cite(<manual>)
 $
 The error calculation is in @all_of_the_errors_AAAAAAAAAA.
 
@@ -225,11 +227,17 @@ Whilst measuring the value for $U_l$ we did not disconnect the pressurized hose 
 
 The literature value of the absolute zero temperature ($-273.15 °C$) lies within the experimental result range of $t_0 = (-273 plus.minus 5) °C$.
 
-The literature value of the temperature of liquid Nitrogen is: $-195.8°C$. This value lies outside the experimentally determined range of $t_"ln2" = (-189 plus.minus 4) °C$. So there is likely a systematic error. One possible source of error is leakage of gas. There could be small amounts of gas entering the lower pressure system, which would increase the  measured pressure. This would lead to a higher experimentally determined boiling temperature, like in our case. The measurment of the liquid Nitrogen was taken last, so in this case it would not be contradictury to an accurate measurment of absolute zero temperature $t_0$. Another source could be that the temperature of the helium never fully reached the temperature of liquid Nitrogen. In this case it would be warmer, since we never cooled it more down, than with liquid Nitrogen. This again would lead to a too high experimental value of $t_"ln2"$. Also we noticed a drop in output voltage of the pressure sensor, after submerging the glas bulb (@exp_setup) in liquid Nitrogen (this is the expected behaviour). After the voltage dropped, it immediatly began to rise again. So the output voltage never stabilized, which made an accurate measurment difficult. We thus think, that an inaccurate measurment is the most likely cause of error.
+The literature value of the temperature of liquid nitrogen is: $-195.8°C$. This value lies outside the experimentally determined range of $t_(l N_2) = (-189 plus.minus 4) °C$. So there is likely a systematic error. One possible source of error is leakage of gas. There could be small amounts of gas entering the lower pressure system, which would increase the  measured pressure. This would lead to a higher experimentally determined boiling temperature, like in our case. The measurment of the liquid nitrogen was taken last, so in this case it would not be contradictury to an accurate measurment of absolute zero temperature $t_0$. Another reason could be that the temperature of the helium never fully reached the temperature of liquid nitrogen. Since the helium bulb was not interely submerged into liquid nitrogen. This could lead to that the temperature of the helium bulb was warmer than than liquid nitrogen. This again would lead to a too an higher experimental value of $t_(l N_2)$. We also noticed a drop in the output voltage of the pressure sensor, after submerging the glas bulb (@exp_setup) in liquid nitrogen (this is the expected behaviour). After the voltage dropped, it immediatly began to rise again. So the output voltage never stabilized, which made an accurate measurment difficult. We thus think, that an inaccurate measurment is the most likely cause of error.
 
 = Conclusion
 
-conclusion
+In this experiment, we first calibrated the pressure sensor and then performed measurements at different temperatures. Using these measurements, we were able to estimate the temperature of absolute zero. The value we obtained agrees with the literature value within the margin of error. However, the uncertainty is relatively high due to several effects, such as changes in the volume of the helium.
+
+In the second part of the experiment, we used our estimate of absolute zero to determine the temperature of liquid nitrogen. Although we obtained an estimate, the deviation from the expected value was not covered by the standard deviation of our measurements. This could have several causes, as discussed in @disc.
+
+We concluded that, in experiments involving multiple steps with accumulating uncertainties, a single measurement is not sufficient to obtain a representative result. To obtain a reliable result, the experiment should be repeated several times to improve the accuracy of the measurements.
+
+Nevertheless, we consider this experiment a good introduction to experimental work involving heat and temperature.
 
 
 
@@ -546,8 +554,7 @@ std_t_LN2 = np.sqrt(jac_tln2**2 @ sigma_tln2.transpose()**2)
 print('t_LN2 =', t_LN2, '+-', std_t_LN2)
 ```
 
-#pagebreak()
-== Error Propagation <all_of_the_errors_AAAAAAAAAA>
+= Error Propagation <all_of_the_errors_AAAAAAAAAA>
 An overline $overline(a)$ means in this section: $overline(a) = f_a (z_a)$. So $overline(a)$ is the value $a$ but as a function dependant on $z_a$. The vector $z_a$ only contains values measured or values assumed. $z_a$ does not contain already calculated values. This is to minimize the effect of correlation in the error propagation. $sigma_z_a$ are the correspoinding errors of the starting or assumed values. Then $f_a (z_a) = overline(a) = a$. Is the function that returns $a$ when plugged in with $z_a$. We introduced this function to take its jacobian for the final formula of $sigma_a$. When we write $J_f_a (z_a)^2$, we mean component wise squars. so $J_f_a (z_a)^2 = ((part_z_(a, 1)f_a)^2, ..., ...., (part_z_(a, n) f_a)^2)$. The same goes for $sigma^2_z_a = (sigma^2_z_(a, 1), ..., ..., sigma^2_z_(a, n))$.
 === Error of *$C$*
 $
@@ -630,52 +637,52 @@ $
   sigma_t_0 = sqrt((J_f_t_0 (z_t_0)^2)_(1 times 9) (sigma^2_z_t_0)^T_(9 times 1))
 $
 
-=== Error of *$p_"ln2"$*
+=== Error of *$p_(l N_2)$*
 $
-  z_p_"ln2" = (p_l, p_2, U_l, U_2, U_"ln2")
+  z_p_(l N_2) = (p_l, p_2, U_l, U_2,  U_(l N_2))
   \
-  sigma_z_p_"ln2" = (sigma_p_l, sigma_p_2, sigma_U_l, sigma_U_2, sigma_U_"ln2")
+  sigma_z_p_(l N_2) = (sigma_p_l, sigma_p_2, sigma_U_l, sigma_U_2, sigma_ U_(l N_2))
   \
-  f_p_"ln2" (z_p_"ln2") = p_l - (p_l - p_2) / (1 - U_2 / U_l) + U_"ln2" (p_l - p_2) / (U_l - U_2) = overline(p_0) + U_"ln2" overline(C)
+  f_p_(l N_2) (z_p_(l N_2)) = p_l - (p_l - p_2) / (1 - U_2 / U_l) +  U_(l N_2) (p_l - p_2) / (U_l - U_2) = overline(p_0) +  U_(l N_2) overline(C)
   \
-  sigma_p_"ln2" = sqrt((J_f_p_"ln2" (z_p_"ln2")^2)_(1 times 5) (sigma^2_z_p_"ln2")^T_(5 times 1))
-$
-
-=== Error of *$t'_"ln2"$*
-$
-  z_t'_"ln2" = (p_l, p_2, U_l, U_2, U_k, U_e, t_k, t_e, t_l, U_"ln2")
-  \
-  sigma_z_t'_"ln2" = (sigma_p_l, sigma_p_2, sigma_U_l, sigma_U_2, sigma_U_k, sigma_U_e, sigma_t_k, sigma_t_e, sigma_t_l, sigma_U_"ln2")
-  \
-  f_t'_"ln2" (z_t'_"ln2") = (1 - overline(p_"ln2") / overline(p_e)) overline(t_0)
-  \
-  \
-  ("where " overline(t_0) "means " f_t_0 (z_t_0) "and " z_t_0 "is obtained from " z_t'_"ln2" " " ("the same goes for all overlines"))
-  \
-  \
-  sigma_t'_"ln2" = sqrt((J_f_t'_"ln2" (z_t'_"ln2")^2)_(1 times 10) (sigma^2_z_t'_"ln2")^T_(10 times 1))
+  sigma_p_(l N_2) = sqrt((J_f_p_(l N_2) (z_p_(l N_2))^2)_(1 times 5) (sigma^2_z_p_(l N_2))^T_(5 times 1))
 $
 
-=== Error of *$t_"ln2"$*
+=== Error of *$t'_(l N_2)$*
 $
-  z_t_"ln2" = (p_l, p_2, U_l, U_2, U_k, U_e, t_k, t_e, t_l, U_"ln2")
+  z_t'_(l N_2) = (p_l, p_2, U_l, U_2, U_k, U_e, t_k, t_e, t_l,  U_(l N_2))
   \
-  sigma_z_t_"ln2" = (sigma_p_l, sigma_p_2, sigma_U_l, sigma_U_2, sigma_U_k, sigma_U_e, sigma_t_k, sigma_t_e, sigma_t_l, sigma_U_"ln2")
+  sigma_z_t'_(l N_2) = (sigma_p_l, sigma_p_2, sigma_U_l, sigma_U_2, sigma_U_k, sigma_U_e, sigma_t_k, sigma_t_e, sigma_t_l, sigma_ U_(l N_2))
   \
-  f_t_"ln2" (z_t_"ln2") = (A overline(t_0) + overline(p_"ln2")) / (A - gamma overline(p_"ln2"))
+  f_t'_(l N_2) (z_t'_(l N_2)) = (1 - overline(p_(l N_2)) / overline(p_e)) overline(t_0)
+  \
+  \
+  ("where " overline(t_0) "means " f_t_0 (z_t_0) "and " z_t_0 "is obtained from " z_t'_(l N_2) " " ("the same goes for all overlines"))
+  \
+  \
+  sigma_t'_(l N_2) = sqrt((J_f_t'_(l N_2) (z_t'_(l N_2))^2)_(1 times 10) (sigma^2_z_t'_(l N_2))^T_(10 times 1))
+$
+
+=== Error of *$t_(l N_2)$*
+$
+  z_t_(l N_2) = (p_l, p_2, U_l, U_2, U_k, U_e, t_k, t_e, t_l,  U_(l N_2))
+  \
+  sigma_z_t_(l N_2) = (sigma_p_l, sigma_p_2, sigma_U_l, sigma_U_2, sigma_U_k, sigma_U_e, sigma_t_k, sigma_t_e, sigma_t_l, sigma_ U_(l N_2))
+  \
+  f_t_(l N_2) (z_t_(l N_2)) = (A overline(t_0) + overline(p_(l N_2))) / (A - gamma overline(p_(l N_2)))
   \
   \
   epsilon = 10^(-3)
   \
   gamma = 10^(-5) "/°C"
   \
-  A = overline(p_e) / (t_e - overline(t_0)) + (epsilon (overline(p_e) - overline(p_"ln2"))) / (t_l - overline(t_0))
+  A = overline(p_e) / (t_e - overline(t_0)) + (epsilon (overline(p_e) - overline(p_(l N_2)))) / (t_l - overline(t_0))
   \
   \
-  ("where " overline(t_0) "means " f_t_0 (z_t_0) "and " z_t_0 "is obtained from " z_t_"ln2" " " ("the same goes for all overlines"))
+  ("where " overline(t_0) "means " f_t_0 (z_t_0) "and " z_t_0 "is obtained from " z_t_(l N_2) " " ("the same goes for all overlines"))
   \
   \
-  sigma_t_"ln2" = sqrt((J_f_t_"ln2" (z_t_"ln2")^2)_(1 times 10) (sigma^2_z_t_"ln2")^T_(10 times 1))
+  sigma_t_(l N_2) = sqrt((J_f_t_(l N_2) (z_t_(l N_2))^2)_(1 times 10) (sigma^2_z_t_(l N_2))^T_(10 times 1))
 $
 
 #pagebreak()
