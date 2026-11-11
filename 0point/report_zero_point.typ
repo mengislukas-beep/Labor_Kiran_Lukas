@@ -62,14 +62,14 @@ The experiment (see @exp_setup) allows us to measure different voltages, which a
     A shematic representation of the experimental set-up used in the experiment. @manual
   ],
 ) <exp_setup>
-Firstly we wanted to calibrate the pressure sensor at position 6 in @exp_setup, which has as an output voltage. For this we measured the output voltage in two situations in which we know the pressure. We looked at the output voltage at room pressure and as a second measurement the output voltage at pressure near vacuum. With these values we made a linear fit which allows us afterward to calculate the pressure at different temperatures of the helium bulb. \
+Firstly we wanted to calibrate the pressure sensor at position 6 in @exp_setup, which produces an output voltage. For this we measured the output voltage in two situations in which we know the pressure. We looked at the output voltage at room pressure and as a second measurement the output voltage at pressure near vacuum. With these values we made a linear fit which allows us to calculate the pressure inside of the glas bulb from the output voltage. \
 \
-After calibrating the pressure sensor we completely filled up the glas bulb with helium. We wanted to measure the pressure at different temperature. Therefore we were using water steam to heat the glas bulb up. Since the water evaporates at approximately $100^°$ Celsius, the temperature of the helium was then close to $100^°$ Celsius. This was our first measurement. 
-As a second step we coled down the helium to $0^°$ Celsius using ice-water. At this state we made our second measurement.  With these two we can now approximate the 'absolute zero temperature'. More in @results and @analysis.\
+After calibrating the pressure sensor we completely filled up the glas bulb with helium. We wanted to measure the pressure at different temperature. Therefore we were using water steam to heat the glas bulb up. Since the water evaporates at approximately $100^°$ Celsius, the temperature of the helium was then close to $100^°$ Celsius. This was our first pressure measurement. Also before measuring we closed the system at Position 6 (see @exp_setup), such that the number of particles is constant for the following measurments. Also the Volume is constant.
+As a second step we cooled the helium down to $0^°$ Celsius using ice-water. At this state we made our second pressure measurement.  With these two we can now approximate the 'absolute zero temperature'. More in @results and @analysis.\
 
 With this setup, we can also perform the reverse experiment. Instead of measuring the pressure at a known temperature to determine absolute zero, we can measure the pressure at an unknown temperature and use the previously calculated value of absolute zero to determine the temperature of the liquid.
 
-In the second part of the experiment, we did exactly this. We submerged the helium bulb in liquid nitrogen ($N_2$) and measured the corresponding voltage. Using this measurement and our previously determined value of absolute zero, we were able to estimate the temperature of the liquid nitrogen.
+In the second part of the experiment, we did this. We submerged the helium bulb in liquid nitrogen ($N_2$) and measured the corresponding voltage. Using this measurement and our previously determined value of absolute zero, we were able to estimate the temperature of the liquid nitrogen.
 
 
 = Results<results>
