@@ -154,7 +154,7 @@ The calibration gives the following calibration-curve:
 )
 
 == Absolute Zero
-Using water we heatet the helium bulb using water evaporation up to $t_k$. And the submerged it into freezing water to cool it down to $t_e$. 
+Using water we heatet the helium bulb using water evaporation up to $t_k$ and measure the output voltage $U_k$. And the submerged it into freezing water to cool it down to $t_e$ and measure the output voltage $U_e$. 
 From the calibration curve and $U_k$ and $U_e$ we obtain the pressure $p_k$ and $p_e$ at boiling temperature $t_k$ and at freezing temperature $t_e$.
 $
   p_k = p(U_k) = (951 plus.minus 2) "mbar"
@@ -170,7 +170,7 @@ We obtained $t_k$ through a table in the laboratory where the boiling temperatur
   image("images/temperature_curve.png", width: 80%),
 
   caption: [
-    The graph is a lineat fit calculatet from the two measured points. On the x axis is the temperature and on the y axis the pressure. 
+    The graph is a lineat fit calculated from the two measured points.
     The pruple point is the measured point of $(t_k, p_k)$. The blue point is the measured point of $(t_e, p_e)$. The orange line is a linear fit. From extrapolating the orange curve, one gets $t'_0$. The green dashed line at $t = -273.15°C$ represents the literature value of absolute zero temperature. It does not represent the experimental value of $t'_0$.
     \
     Note: The red lines are not the error bars. They are the caps of the error bars. The error bars are smaller than the points and thus barely visible.
@@ -200,9 +200,9 @@ $
 The error calulcation can be found in @all_of_the_errors_AAAAAAAAAA.
 
 == Liquid Nitrogen
-From the calibration curve and the measurment $ U_(l N_2)$ we obtain the value for the pressure $p_(l N_2)$ at temperature of liquid nitrogen ($t_(l N_2)$)
+From the calibration curve and the measurment $ U_(l N_2)$ we obtain the value for the pressure $p_(l N_2)$. $U_(l N_2)$ is the output voltage, when the bulb is submerged in boiling liquid nitrogen. So $p_(l N_2)$ is the corresponding pressure at temperature of boiling liquid nitrogen ($t_(l N_2)$).
 $
-  p_(l N_2) = (214 plus.minus 1) "mBar"
+  p_(l N_2) = p (U_(l N_2)) = (214 plus.minus 1) "mBar"
 $
 The error calculation is in @all_of_the_errors_AAAAAAAAAA. Again there is a simpler approximation for the temperature of liquid nitrogen ($t'_(l N_2)$). Aswell as a more complicated and more accurate value $t_(l N_2)$. We have:
 $
@@ -225,9 +225,9 @@ The error calculation is in @all_of_the_errors_AAAAAAAAAA.
 = Discussion <disc>
 Whilst measuring the value for $U_l$ we did not disconnect the pressurized hose from the system. We instead opened the valves to expose the sensor to the remaining pressure in the hose system. This pressure is not the same as the ambiant laboratory pressure. Whilst heating up the helium in the steam bath, the hose was fully disconnected and the valve at position 6 (see in @exp_setup) was open. This means that the sensor was exposed to laboratory pressure. We also noticed that the reading of the sensor was stable in this configuration. We therefore concluded that the measurment of $U_k$ better represents the laboratory pressure $U_l$. We therefore replaced the measured value of $U_l = (128.0 plus.minus 0.2) "mV"$ with $U_k = (127.6 plus.minus 0.2) "mV"$. So in all calculations: $U_l = U_k = (127.6 plus.minus 0.2) "mV"$.
 
-The literature value of the absolute zero temperature ($-273.15 °C$) lies within the experimental result range of $t_0 = (-273 plus.minus 5) °C$.
+The literature value of the absolute zero temperature ($-273.15 °C$) lies within the experimental result range of $t_0 = (-273 plus.minus 5) °C$. The standart deviation of $sigma_t_0 = 5 °C$ could be reduced by having more percice starting parameters. So i.e. smaller $sigma_t_l = sigma_t_k = sigma_t_e = 1 °C$ would result in a more accurate result. Also the other parameters could be more accurate, however this is harder to achieve.
 
-The literature value of the temperature of liquid nitrogen is: $-195.8°C$. This value lies outside the experimentally determined range of $t_(l N_2) = (-189 plus.minus 4) °C$. So there is likely a systematic error. One possible source of error is leakage of gas. There could be small amounts of gas entering the lower pressure system, which would increase the  measured pressure. This would lead to a higher experimentally determined boiling temperature, like in our case. The measurment of the liquid nitrogen was taken last, so in this case it would not be contradictury to an accurate measurment of absolute zero temperature $t_0$. Another reason could be that the temperature of the helium never fully reached the temperature of liquid nitrogen. Since the helium bulb was not interely submerged into liquid nitrogen. This could lead to that the temperature of the helium bulb was warmer than than liquid nitrogen. This again would lead to a too an higher experimental value of $t_(l N_2)$. We also noticed a drop in the output voltage of the pressure sensor, after submerging the glas bulb (@exp_setup) in liquid nitrogen (this is the expected behaviour). After the voltage dropped, it immediatly began to rise again. So the output voltage never stabilized, which made an accurate measurment difficult. We thus think, that an inaccurate measurment is the most likely cause of error.
+The literature value of the temperature of boiling liquid nitrogen is: $-195.8°C$. This value lies outside the experimentally determined range of $t_(l N_2) = (-189 plus.minus 4) °C$. So there is likely a systematic error. One possible source of error is leakage of gas. There could be small amounts of gas entering the lower pressure system, which would increase the  measured pressure. This would lead to a higher experimentally determined boiling temperature, like in our case. The measurment of the liquid nitrogen was taken last, so in this case it would not be contradictury to an accurate measurment of absolute zero temperature $t_0$. Another reason could be that the temperature of the helium never fully reached the temperature of liquid nitrogen. Since the helium bulb was not entirely submerged into liquid nitrogen. This could lead to a warmer temperature of the helium bulb than than liquid nitrogen. This again would lead to a too a higher experimental value of $t_(l N_2)$. We also noticed a drop in the output voltage of the pressure sensor, after submerging the glas bulb (@exp_setup) in the liquid nitrogen (this is the expected behaviour). After the voltage dropped, it immediatly began to rise again. So the output voltage never stabilized, which made an accurate measurment difficult. We thus think, that an inaccurate measurment is the most likely cause of error.
 
 = Conclusion
 
