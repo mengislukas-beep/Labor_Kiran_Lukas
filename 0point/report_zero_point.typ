@@ -12,7 +12,7 @@
 
   #text(size: 11pt)[
     Lukas Mengis, Kiran Suda \
-    06 November 2026
+    11 November 2026
   ]
 ]
 
