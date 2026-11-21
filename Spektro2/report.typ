@@ -188,7 +188,7 @@ We again used curve_fit @SciPy_curve_fit. The two calibration curves look the fo
     caption: [
       wavelength at center pixel $lambda_c$ in dependance of k-value
     ],
-  ), <fig:pixel>,
+  ),
 
   figure(
     image(
