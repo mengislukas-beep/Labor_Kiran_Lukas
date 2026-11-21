@@ -222,14 +222,6 @@ $
 $<4.2>
 Without the $e$ term this would be the final fit function but with a fixed $k = k#sub[fix]$ and $a, b$ from @above. We added $e$ to compensate for an offset in the center pixel position. This is beacause the fit gives a fixed value for the center pixel. This fitted value is above all the points tho, which would lead to a worse fit here. This gives $d = (35.2 plus.minus 0.1) "px" "nm"^(-1)$ #footnote[@curve_fit] and $e = (-14.17 plus.minus 0.02)"nm"$ #footnote[@curve_fit]. We obtained the uncertanities from the curve fit covariance matrix. Again we used the help of AI-tools to help debug our Python-Program in @python.
 
-
-
-
-
-
-
-
-
 #subpar.grid(
   figure(
     image(
