@@ -39,7 +39,7 @@ The k-value of the 0th-order ($k_0$) has:
 $
   k_0 = (1126 pm 2) "a.u."
 $
-Here a.u. is arbitrary unit. For the known helium-lines we measured the following k-values. For this we measured the k-value when the spectral line was on the center pixel position $p_c$.
+Here a.u. is arbitrary unit. For the known helium-lines we measured the following k-values. For this we measured the k-value when the spectral line was on the center pixel position $p_c = 720$.
 #figure(
   table(
     columns: 10,
@@ -77,7 +77,7 @@ Here a.u. is arbitrary unit. For the known helium-lines we measured the followin
   ),
 
   caption: [
-    calibration points for the first fit. This calibrates wavelength of the center pixel position $p_c$, in dependance of k-value.
+    first calibration points for the first fit. This calibrates wavelength of the center pixel position $lambda_c$, in dependance of k-value.
   ],
 )
 
@@ -115,7 +115,7 @@ The measured calibration points for the second fit are in the following table. T
   ),
 
   caption: [
-    calibration points for the second fit. This determines the pixel dependance.
+    second calibration points for the second fit. This determines the pixel dependance.
   ],
 )
 
@@ -148,13 +148,13 @@ To determine the unknown source, we measured its spectral lines. The measurment 
 )
 
 == Solar Spectrum
-The raw measurment of the solar spectrum has given the following data:
+The data measured from the solar spectrum is in the .tif files. From them, we added all three color channels up, to get the intensity. We took the mean for a fixed x and y from 480 px to 520 px. This gives to following plot:
 #figure(
     image("images/raw_data.png", width: 90%),
     caption: [
         colorful lines are edges of the images (same color from one image). Blue dots is the measured data.
     ]
-)
+) <raw_data>
 
 
 = Data Analysis
@@ -339,18 +339,17 @@ We caluclated the wavelength using @fit_func. We determined the errors using @er
     caption: [
         every second image has $+100$ intensity. This is to better see the overlap areas of the images. The spectrum here only goes from $420 "nm"$ to $680 "nm"$.
     ]
-)
+) <seperated_data>
 
 
 = Discussion
-==
-==
+== Unknown Source
 == Solar Spectrum
 The absorbtion line at $488 "nm"$ corresponds to the $F$ Fraunhofer absorbtion line @fraunhofer_lines. The $518 "nm", 518 "nm", 519 "nm"$ lines all correspond to the $b_1$ Fraunhofer line. The $528 "nm"$ line corresponds to the $E_2$ line. The measured lines at $590 "nm"$ and $591 "nm"$ correspond to the $D_2$ and $D_1$ Fraunhofer lines. The $654 "nm"$ line corresponds to $H"-"alpha$.
 
 We have found no match for the $533 "nm", 631 "nm", 628 "nm", 652 "nm"$ lines.
 
-We especially missed many of the absorbtion lines outside the $(480 "nm", 660 "nm")$ interval. We only see a rise in the spectrum since at $400 "nm"$ the spectral range of the spectrometer starts @manuel_skript. The spectral range ends at $650 "nm"$ @manuel_skript. This can also be seen in the plot and can explain the increase and drop off in intenity around these positions. Also the data is noisy. This increases the difficulty of distinguishing noise from a drop in the intensity.
+We especially missed many of the absorbtion lines outside the $(480 "nm", 660 "nm")$ interval. We only see a rise in the spectrum at $400 "nm"$, since at $400 "nm"$ the spectral range of the spectrometer starts @manuel_skript. The spectral range ends at $650 "nm"$ @manuel_skript. This can also be seen in the plot and can explain the increase and drop off in intenity around these positions. Another error source is the noise. This increases the difficulty of distinguishing noise from a absorbtion line. Also from $580 "nm"$ to $640 "nm"$ the intensity is doubled. This is red light. This could be beacause the experiment took place 1-2h before sunset (2026-11-18, 14:45 - 15:45, Zürich). This might have increased the amount of light in this spectral range. Another source of error is, that we used a flashlight to read the dial position (k-value) from the spectrometer. This might have caused a different background noise and could explain the jumps in intensity at the image borders (can bee seen in @raw_data). In addition the fit can cause inaccuracy. Evidence for this are the $533 "nm", 631 "nm", 628 "nm"$ lines. They are in an overlaping are of the images. So they should appear in both images. However they only appear in one of the images (see @seperated_data). This could be beacause the fit is inaccurate and therefore causes to conversion from $k$ and $p$ to $lambda$ to have a mismatch.
 
 = Conclusion
 
