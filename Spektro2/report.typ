@@ -212,9 +212,62 @@ We again used curve_fit @SciPy_curve_fit. The two calibration curves look the fo
 )
 
 == Unknown Source
+From the measured k-values of the spectral lines we got using @fit_func:
+#figure(
+  table(
+    columns: 9,
+    align: center + horizon,
+    inset: (x: 9pt, y: 8pt),
+    stroke: 0.4pt + gray.lighten(40%),
+
+    // k-values
+    table.cell(fill: rgb("#E8EDF3"))[
+      *k-value [a.u.]*
+    ],
+    [$570 pm 2$],
+    [$502 pm 2$],
+    [$430 pm 2$],
+    [$392 pm 2$],
+    [$389 pm 2$],
+    [$92 pm 2$],
+    [$81 pm 2$],
+    [$12 pm 2$],
+
+    // k-values
+    table.cell(fill: rgb("#E8EDF3"))[
+      *wavelength [nm]*
+    ],
+    [$437 pm 2$],
+    [$490 pm 2$],
+    [$546 pm 2$],
+    [$576 pm 2$],
+    [$579 pm 2$],
+    [$812 pm 2$],
+    [$820 pm 2$],
+    [$875 pm 2$],
+  ),
+
+  caption: [
+    calculated values of the wavelength of the spectral lines of the unknown source.
+  ],
+)
+ We calculated the error with the scipy jacobian function @SciPy_jacobian. Here we defined the following:
+$
+  z = (k_0, b, d, p, k)
+  \
+  sigma_z = (sigma_k_0, sigma_b, sigma_d, sigma_p, sigma_k) = (2, 0.0007 "nm", 0.03 "px", 1 "px", 2)
+  \
+  sigma_z^2 := (sigma^2_k_0, sigma_b^2, sigma_d^2, sigma_p^2, sigma_k^2)
+  \
+  f(z) = b ((k - k_0) - (p - p_c) / d)
+  \
+  sigma_lambda = sqrt((J_f (z) ^2)_(1 times 5) (sigma_z^2)_(5 times 1)^T)
+  \
+  "where " J "is the jacobian and" J_f ^2 = ((part_z_1 f)^2, (part_z_2 f)^2, (part_z_3 f)^2, (part_z_4 f)^2, (part_z_5 f)^2)
+$ <error_prop>
 
 == Solar Spectrum
-From the images we can determine the absorbtion lines of the solar spectrum. We found minimas at:
+From the images we can determine the absorbtion lines of the solar spectrum. We did not look at the rise in spectrum after 750 nm, since this is the second order. We found minimas at:
 #figure(
   table(
     columns: 13,
@@ -279,24 +332,25 @@ From the images we can determine the absorbtion lines of the solar spectrum. We 
   ],
 )
 
-We caluclated the wavelength using @fit_func. We calculated the error with the scipy jacobian function @SciPy_jacobian. Here we defined
-$
-  z = (k_0, b, d, p, k)
-  \
-  sigma_z = (sigma_k_0, sigma_b, sigma_d, sigma_p, sigma_k) = (2, 0.0007 "nm", 0.03 "px", 1 "px", 2)
-  \
-  sigma_z^2 := (sigma^2_k_0, sigma_b^2, sigma_d^2, sigma_p^2, sigma_k^2)
-  \
-  f(z) = b ((k - k_0) - (p - p_c) / d)
-  \
-  sigma_lambda = sqrt((J_f (z) ^2)_(1 times 5) (sigma_z^2)_(5 times 1)^T)
-  \
-  "where " J "is the jacobian and" J_f ^2 = ((part_z_1 f)^2, (part_z_2 f)^2, (part_z_3 f)^2, (part_z_4 f)^2, (part_z_5 f)^2)
-$
+We caluclated the wavelength using @fit_func. We determined the errors using @error_prop.
 
+#figure(
+    image("images/ana_data.png", width: 90%),
+    caption: [
+        every second image has $+100$ intensity. This is to better see the overlap areas of the images. The spectrum here only goes from $420 "nm"$ to $680 "nm"$.
+    ]
+)
 
 
 = Discussion
+==
+==
+== Solar Spectrum
+The absorbtion line at $488 "nm"$ corresponds to the $F$ Fraunhofer absorbtion line @fraunhofer_lines. The $518 "nm", 518 "nm", 519 "nm"$ lines all correspond to the $b_1$ Fraunhofer line. The $528 "nm"$ line corresponds to the $E_2$ line. The measured lines at $590 "nm"$ and $591 "nm"$ correspond to the $D_2$ and $D_1$ Fraunhofer lines. The $654 "nm"$ line corresponds to $H"-"alpha$.
+
+We have found no match for the $533 "nm", 631 "nm", 628 "nm", 652 "nm"$ lines.
+
+We especially missed many of the absorbtion lines outside the $(480 "nm", 660 "nm")$ interval. We only see a rise in the spectrum since at $400 "nm"$ the spectral range of the spectrometer starts @manuel_skript. The spectral range ends at $650 "nm"$ @manuel_skript. This can also be seen in the plot and can explain the increase and drop off in intenity around these positions. Also the data is noisy. This increases the difficulty of distinguishing noise from a drop in the intensity.
 
 = Conclusion
 
