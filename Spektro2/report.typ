@@ -214,6 +214,87 @@ We again used curve_fit @SciPy_curve_fit. The two calibration curves look the fo
 == Unknown Source
 
 == Solar Spectrum
+From the images we can determine the absorbtion lines of the solar spectrum. We found minimas at:
+#figure(
+  table(
+    columns: 13,
+    align: center + horizon,
+    inset: (x: 9pt, y: 8pt),
+    stroke: 0.4pt + gray.lighten(40%),
+
+    // pixel position
+    table.cell(fill: rgb("#E8EDF3"))[
+      *pixel position [px]*
+    ],
+    [$599 pm 1$],
+    [$548 pm 1$],
+    [$567 pm 1$],
+    [$607 pm 1$],
+    [$900 pm 1$],
+    [$13 pm 1$],
+    [$861 pm 1$],
+    [$880 pm 1$],
+    [$1182 pm 1$],
+    [$55 pm 1$],
+    [$825 pm 1$],
+    [$890 pm 1$],
+
+    // k-values
+    table.cell(fill: rgb("#E8EDF3"))[
+      *k-value [a.u.]*
+    ],
+    [$500 pm 2$],
+    [$460 pm 2$],
+    [$460 pm 2$],
+    [$460 pm 2$],
+    [$460 pm 2$],
+    [$420 pm 2$],
+    [$380 pm 2$],
+    [$380 pm 2$],
+    [$340 pm 2$],
+    [$300 pm 2$],
+    [$300 pm 2$],
+    [$300 pm 2$],
+
+    // wavelength
+    table.cell(fill: rgb("#E8EDF3"))[
+      *wavelength [nm]*
+    ],
+    [$488 pm 2$],
+    [$518 pm 2$],
+    [$518 pm 2$],
+    [$519 pm 2$],
+    [$528 pm 2$],
+    [$533 pm 2$],
+    [$590 pm 2$],
+    [$591 pm 2$],
+    [$631 pm 2$],
+    [$628 pm 2$],
+    [$652 pm 2$],
+    [$654 pm 2$],
+  ),
+
+  caption: [
+    measurment of k-value and pixel position for absorbtion lines. Calculation of corresponding wavelength.
+  ],
+)
+
+We caluclated the wavelength using @fit_func. We calculated the error with the scipy jacobian function @SciPy_jacobian. Here we defined
+$
+  z = (k_0, b, d, p, k)
+  \
+  sigma_z = (sigma_k_0, sigma_b, sigma_d, sigma_p, sigma_k) = (2, 0.0007 "nm", 0.03 "px", 1 "px", 2)
+  \
+  sigma_z^2 := (sigma^2_k_0, sigma_b^2, sigma_d^2, sigma_p^2, sigma_k^2)
+  \
+  f(z) = b ((k - k_0) - (p - p_c) / d)
+  \
+  sigma_lambda = sqrt((J_f (z) ^2)_(1 times 5) (sigma_z^2)_(5 times 1)^T)
+  \
+  "where " J "is the jacobian and" J_f ^2 = ((part_z_1 f)^2, (part_z_2 f)^2, (part_z_3 f)^2, (part_z_4 f)^2, (part_z_5 f)^2)
+$
+
+
 
 = Discussion
 
