@@ -266,6 +266,22 @@ $
   "where " J "is the jacobian and" J_f ^2 = ((part_z_1 f)^2, (part_z_2 f)^2, (part_z_3 f)^2, (part_z_4 f)^2, (part_z_5 f)^2)
 $ <error_prop>
 
+The intensity from the images give the following plot:
+#figure(
+    image("images/unkwn_no_overlap.png", width: 90%),
+    caption: [
+        measured data of unknown light source
+    ]
+)
+This matches the spectrum of mercury the best:
+#figure(
+    image("images/lit_hg.png", width: 90%),
+    caption: [
+        literature values for spectrum of mercury lamp @lit_hg
+    ]
+)
+
+
 == Solar Spectrum
 From the images we can determine the absorbtion lines of the solar spectrum. We did not look at the rise in spectrum after 750 nm, since this is the second order. We found minimas at:
 #figure(
@@ -349,7 +365,7 @@ The absorbtion line at $488 "nm"$ corresponds to the $F$ Fraunhofer absorbtion l
 
 We have found no match for the $533 "nm", 631 "nm", 628 "nm", 652 "nm"$ lines.
 
-We especially missed many of the absorbtion lines outside the $(480 "nm", 660 "nm")$ interval. We only see a rise in the spectrum at $400 "nm"$, since at $400 "nm"$ the spectral range of the spectrometer starts @manuel_skript. The spectral range ends at $650 "nm"$ @manuel_skript. This can also be seen in the plot and can explain the increase and drop off in intenity around these positions. Another error source is the noise. This increases the difficulty of distinguishing noise from a absorbtion line. Also from $580 "nm"$ to $640 "nm"$ the intensity is doubled. This is red light. This could be beacause the experiment took place 1-2h before sunset (2026-11-18, 14:45 - 15:45, Zürich). This might have increased the amount of light in this spectral range. Another source of error is, that we used a flashlight to read the dial position (k-value) from the spectrometer. This might have caused a different background noise and could explain the jumps in intensity at the image borders (can bee seen in @raw_data). In addition the fit can cause inaccuracy. Evidence for this are the $533 "nm", 631 "nm", 628 "nm"$ lines. They are in an overlaping are of the images. So they should appear in both images. However they only appear in one of the images (see @seperated_data). This could be beacause the fit is inaccurate and therefore causes to conversion from $k$ and $p$ to $lambda$ to have a mismatch.
+We especially missed many of the absorbtion lines outside the $(480 "nm", 660 "nm")$ interval. We only see a rise in the spectrum at $400 "nm"$, since at $400 "nm"$ the spectral range of the spectrometer starts @manuel_skript. The spectral range ends at $650 "nm"$ @manuel_skript. This can also be seen in the plot and can explain the increase and drop off in intenity around these positions. Another error source is the noise. This increases the difficulty of distinguishing noise from a absorbtion line. Also from $580 "nm"$ to $640 "nm"$ the intensity is doubled. This is red light. This could be beacause the experiment took place 1-2h before sunset (2026-11-18, 14:45 - 15:45, Zürich). This might have increased the amount of light in this spectral range. Another source of error is, that we used a flashlight to read the dial position (k-value) from the spectrometer. This might have caused a different background noise and could explain the jumps in intensity at the image borders (can bee seen in @raw_data). In addition the fit can cause inaccuracy. Evidence for this are the $533 "nm", 631 "nm", 628 "nm"$ lines. They are in an overlaping are of the images. So they should appear in both images. However they only appear in one of the images (see @seperated_data). This could be beacause the fit is inaccurate and therefore causes the conversion from $k$ and $p$ to $lambda$ to have a mismatch.
 
 = Conclusion
 
@@ -367,9 +383,18 @@ We especially missed many of the absorbtion lines outside the $(480 "nm", 660 "n
 ```
 == Uncertainties
 
-=== Gaussian Error Propagation <gauss>
-
 === Uncertainties from `curve_fit` <curve_fit>
+
+The function `curve_fit` from `scipy.optimize` fits a function to measured data and returns the optimal parameters (`popt`) and their covariance matrix (`pcov`).
+
+The uncertainties of the fitted parameters are calculated from the diagonal elements of the covariance matrix:
+
+$
+  sigma_(p_i) = sqrt("pcov"_(i i))
+$
+The parameter `absolute_sigma` determines how the provided measurement uncertainties are interpreted. If `True`, they are treated as absolute uncertainties. 
+If 'False', the covariance matrix is scaled based on the residuals of the fit, while still accounting for the relative measurement uncertainties.
+In both cases, `curve_fit` automatically estimates the uncertainties of the fitted parameters.
 
 #pagebreak()
 
