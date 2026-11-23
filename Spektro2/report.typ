@@ -81,7 +81,7 @@ Here a.u. is arbitrary unit. For the known helium-lines we measured the followin
   ],
 )
 
-The measured calibration points for the second fit are in the following table. These are all for the Helium-Line at $587.5 "nm"$
+We set the error of the k-value $sigma_k$ to $sigma_k = 2$, since $2$ was the smalles difference in unit on the dial indicator. The measured calibration points for the second fit are in the following table. These are all for the Helium-Line at $587.5 "nm"$.
 #figure(
   table(
     columns: 8,
@@ -118,6 +118,7 @@ The measured calibration points for the second fit are in the following table. T
     second calibration points for the second fit. This determines the pixel dependance.
   ],
 )
+Every pixel can be evaluated seperatly, thus we set the error in pixel position $sigma_p$ to $sigma_p = 1$.
 
 == Unknown Source
 To determine the unknown source, we measured its spectral lines. The measurment has given:
@@ -163,11 +164,11 @@ Goal of calibration is to find paramaters $b$ and $d$ in:
 $
   lambda (p, k) = b ((k - k_0) - (p - p_cent) / d)
 $ <fit_func>
-To get a function to determine the wavelength in dependance of pixel position $p$ and k-value $k$. For the first fit we used a fit function of the form
+To get a function to determine the wavelength in dependance of pixel position $p$ and k-value $k$. For the first fit we used a fit function of the form:
 $
   lambda_c (k) = b (k - k_0)
 $
-To do this we used the scipy curve_fit function @SciPy_curve_fit. We also used the scipy curve_fit covariance matrix to determine its standart deviation @SciPy_curve_fit. We got:
+This is beacause for the first fit all spectral lines were measured at $p = p_c$. To do this we used the scipy curve_fit function @SciPy_curve_fit. We also used the scipy curve_fit covariance matrix to determine its standart deviation @SciPy_curve_fit. We got:
 $
   b = (-0.7851 pm 0.0007) "nm"
 $
@@ -348,18 +349,19 @@ From the images we can determine the absorbtion lines of the solar spectrum. We 
   ],
 )
 
-We caluclated the wavelength using @fit_func. We determined the errors using @error_prop.
+We caluclated the wavelength using @fit_func. We determined the errors using @error_prop. In the following plot we applied a moving average over 9 data points to reduce the noise.
 
 #figure(
     image("images/ana_data.png", width: 90%),
     caption: [
-        every second image has $+100$ intensity. This is to better see the overlap areas of the images. The spectrum here only goes from $420 "nm"$ to $680 "nm"$.
+        every second image has $+100$ intensity. This is to better see the overlap areas of the images. The spectrum here only goes from $400 "nm"$ to $680 "nm"$. Data has moving average over 9 data points. This is also the reason four datapoints rise or fall fast at the edges of images
     ]
 ) <seperated_data>
 
 
 = Discussion
 == Calibration
+In the second fit the datapoints have an offset to the linear fit. This is most likly inaccuracy in reading the spectrometer and could lead to errors in the determination of wavelength. Also the initial determined standart deviation of the pixels $sigma_p = 1$ could be too small. This is beacause one spectral line is wider than one pixel. This is most likly beacause we set the slit too far open, which leads to wider spectral lines.
 == Unknown Source
 The spectral lines measured at $812 "nm", 820 "nm", 875 "nm"$ are outside the spectral range of the spectrometer ($400 "nm"$ to $650 "nm"$ @manuel_skript). Thus they are probably the second order. The calibration is for the first order, thus we disregard the spectral lines beyond $650 "nm"$. The other spectral lines match @literature_plot_hg. We also could match the $437 pm 2 "nm"$ line to literature $438.5 "nm"$ line @mercury_vapor_lamp, the $546 pm 2 "nm"$ line to the literature $546.1 "nm"$ line @mercury_vapor_lamp and the $576 pm 2 "nm"$ aswell as the $579 pm 2 "nm"$ line to the $578 "nm"$ literature line @mercury_vapor_lamp. The smaller peak at $490 pm 2 "nm"$ we could not find in @mercury_vapor_lamp. This is the least intense peak in the spectrum we found. In @literature_plot_hg there is a peak at $490 "nm"$, which could match the spectral line we found at $490 pm 2 "nm"$. The literature line at $404.7 "nm"$ we could not find. This might be beacause this approaches the limit of the spectral range of the spectrometer ($400 "nm"$ @manuel_skript). Also it could be that we started the scan to far into the spectrum and did not pass by $404 "nm"$.
 
@@ -368,7 +370,9 @@ The absorbtion line at $488 "nm"$ corresponds to the $F$ Fraunhofer absorbtion l
 
 We have found no match for the $533 "nm", 631 "nm", 628 "nm", 652 "nm"$ lines.
 
-We especially missed many of the absorbtion lines outside the $(480 "nm", 660 "nm")$ interval. We only see a rise in the spectrum at $400 "nm"$, since at $400 "nm"$ the spectral range of the spectrometer starts @manuel_skript. The spectral range ends at $650 "nm"$ @manuel_skript. This can also be seen in the plot and can explain the increase and drop off in intenity around these positions. Another error source is the noise. This increases the difficulty of distinguishing noise from a absorbtion line. Also from $580 "nm"$ to $640 "nm"$ the intensity is doubled. This is red light. This could be beacause the experiment took place 1-2h before sunset (2026-11-18, 14:45 - 15:45, Zürich). This might have increased the amount of light in this spectral range. Another source of error is, that we used a flashlight to read the dial position (k-value) from the spectrometer. This might have caused a different background noise and could explain the jumps in intensity at the image borders (can bee seen in @raw_data). In addition the fit can cause inaccuracy. Evidence for this are the $533 "nm", 631 "nm", 628 "nm"$ lines. They are in an overlaping are of the images. So they should appear in both images. However they only appear in one of the images (see @seperated_data). This could be beacause the fit is inaccurate and therefore causes the conversion from $k$ and $p$ to $lambda$ to have a mismatch.
+We especially missed many of the absorbtion lines outside the $(480 "nm", 660 "nm")$ interval. We only see a rise in the spectrum at $400 "nm"$, since at $400 "nm"$ the spectral range of the spectrometer starts @manuel_skript. The spectral range ends at $650 "nm"$ @manuel_skript. This can also be seen in the plot and can explain the increase and drop off in intenity around these positions. Another error source is the noise. This increases the difficulty of distinguishing noise from a absorbtion line. Also from $580 "nm"$ to $640 "nm"$ the intensity is doubled. This is red light. This could be beacause the experiment took place 1-2h before sunset (2026-11-18, 14:45 - 15:45, Zürich). This might have increased the amount of light in this spectral range. Another source of error is, that we used a flashlight to read the dial position (k-value) from the spectrometer. This might have caused a different background noise and could explain the jumps in intensity at the image borders (can bee seen in @raw_data). In addition the fit can cause inaccuracy. Evidence for this are the $533 "nm", 631 "nm", 628 "nm"$ lines. They are in an overlaping are of the images. So they should appear in both images. However they only appear in one of the images (see @seperated_data). This could be beacause the fit is inaccurate and therefore causes the conversion from $k$ and $p$ to $lambda$ to have a mismatch. We could think that the $528 "nm"$ and the $533 "nm"$ are the same, and the $631 "nm"$ and the $628 "nm"$ are the same, but have different values due to the fit. This only works for one pair tho, since the offset is in the contrairy direction. For one pair the image to the right has the spectral line to the right and for the other pair to the left.
+
+Another source of error could be mistakes in reading the dial position or a typing mistake, whilst copying the reading.
 
 = Conclusion
 
