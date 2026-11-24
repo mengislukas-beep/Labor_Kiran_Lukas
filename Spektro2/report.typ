@@ -26,19 +26,21 @@
 
 #v(0.5em)
 
-#align(center)[
-  This experiment is the follow-up of the a previous experiment "Introduction in Spectroscopy and measurement of the Balmer series". We want to analyze the solar spectrum. $dots$ second step identify a unknown element
-]
-
-= Introduction
+#include "chapters/abstract.typ"
 
 
 
-= Experiment
+#include "chapters/intro.typ"
+
+
+
+#include "chapters/experiment.typ"
+
+
 
 = Results
 == Calibration
-The k-value of the 0th-order ($k_0$) has:
+The k-value of the 0th-order ($k_0$) is equal to:
 $
   k_0 = (1126 pm 2) "a.u."
 $
@@ -151,7 +153,7 @@ To determine the unknown source, we measured its spectral lines. The measurment 
   ],
 )
 
-== Solar Spectrum
+== Solar Spectrum<solar_spectre>
 The data measured from the solar spectrum is in the .tif files. From them, we added all three color channels up, to get the intensity. We took the mean for a fixed x and y from 480 px to 520 px. This gives to following plot:
 #figure(
     image("images/raw_data.png", width: 90%),
@@ -380,7 +382,7 @@ We especially missed many of the absorbtion lines outside the $(480 "nm", 660 "n
 
 Another source of error could be mistakes in reading the dial position or a typing mistake, whilst copying the reading.
 
-= Conclusion
+= conclusion 
 
 #pagebreak()
 #set heading(numbering: "A")
