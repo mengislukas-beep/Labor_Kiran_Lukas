@@ -22,11 +22,11 @@
       #context counter(page).display()
     ],
   )
-
   set text(
     font: "Libertinus Serif",
     size: 9pt,
     fill: rgb("#222222"),
+    lang: "en", region: "GB",
   )
 
   set par(

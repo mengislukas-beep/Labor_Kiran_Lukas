@@ -3,6 +3,8 @@
 #show: setup
 
 #set document(title: "Report Spectroscopy I")
+#set text(lang: "en", region: "GB")
+
 
 #align(center)[
   #text(size: 15pt, weight: "bold")[
@@ -18,7 +20,6 @@
 ]
 
 #v(2em)
-
 #align(center)[
   #text(weight: "bold")[Abstract]
 ]
@@ -26,10 +27,12 @@
 #v(0.5em)
 
 #align(center)[
-  
+  This experiment is the follow-up of the a previous experiment "Introduction in Spectroscopy and measurement of the Balmer series". We want to analyze the solar spectrum. $dots$ second step identify a unknown element
 ]
 
 = Introduction
+
+
 
 = Experiment
 
@@ -256,15 +259,18 @@ From the measured k-values of the spectral lines we got using @fit_func:
 $
   z = (k_0, b, d, p, k)
   \
-  sigma_z = (sigma_k_0, sigma_b, sigma_d, sigma_p, sigma_k) = (2, 0.0007 "nm", 0.03 "px", 1 "px", 2)
+  sigma_z &= (sigma_k_0, sigma_b, sigma_d, sigma_p, sigma_k) = (2, 0.0007 "nm", 0.03 "px", 1 "px", 2)
   \
-  sigma_z^2 := (sigma^2_k_0, sigma_b^2, sigma_d^2, sigma_p^2, sigma_k^2)
+  sigma_z^2 &:= (sigma^2_k_0, sigma_b^2, sigma_d^2, sigma_p^2, sigma_k^2)
   \
-  f(z) = b ((k - k_0) - (p - p_c) / d)
+  f(z) &= b ((k - k_0) - (p - p_c) / d)
   \
-  sigma_lambda = sqrt((J_f (z) ^2)_(1 times 5) (sigma_z^2)_(5 times 1)^T)
+  sigma_lambda &= sqrt((J_f (z) ^2)_(1 times 5) (sigma_z^2)_(5 times 1)^T)
   \
-  "where " J "is the jacobian and" J_f ^2 = ((part_z_1 f)^2, (part_z_2 f)^2, (part_z_3 f)^2, (part_z_4 f)^2, (part_z_5 f)^2)
+$
+where $J$ is the jacobian and
+$
+J_f ^2 &= ((part_z_1 f)^2, (part_z_2 f)^2, (part_z_3 f)^2, (part_z_4 f)^2, (part_z_5 f)^2)
 $ <error_prop>
 
 The intensity from the images give the following plot:
