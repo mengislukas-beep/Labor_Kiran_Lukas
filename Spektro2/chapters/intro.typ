@@ -6,7 +6,7 @@
 
 = Introduction
 
-The spectral lines of a given source is in some sort like a fingerprint. We the information of the spectral liens one can with a high certainty determine with which source we are dealing with. In this little experiment we are doing a similar thing.  We want to analyze the sun spectre which is well known and want to search some "dips" in the spectre. This are the absorption lines which are caused due to the earth atmosphere. This gives us a better understanding on the use cases of the absorption lines. 
+The spectral lines of a given source is in some sort like a fingerprint. We the information of the spectral lines one can with a high certainty determine with which source we are dealing with. In this little experiment we are doing a similar thing.  We want to analyze the sun spectre which is well known and want to search some "dips" in the spectre. This are the absorption lines which are caused due to the earth atmosphere. This gives us a better understanding on the use cases of the absorption lines. 
 \
 "image bild sun spectre"
 \
