@@ -275,7 +275,7 @@ $
 J_f ^2 &= ((part_z_1 f)^2, (part_z_2 f)^2, (part_z_3 f)^2, (part_z_4 f)^2, (part_z_5 f)^2)
 $ <error_prop>
 
-The intensity from the images give the following plot:
+To read the intensity out of the image, we used the jupyter notebook from the moodle course (Load_and_plot_Tiff.ipynb @read_tiff). The intensity from the images give the following plot:
 #figure(
     image("images/unkwn_no_overlap.png", width: 90%),
     caption: [
