@@ -2,14 +2,13 @@
 #import "@preview/subpar:0.2.2"
 #show: setup
 
-#set document(title: "Report Spectroscopy I")
+#set document(title: "Report Spectroscopy II")
 #set text(lang: "en", region: "GB")
 
 
 #align(center)[
   #text(size: 15pt, weight: "bold")[
-    spectro 2
-  ]
+    Report Spectroscopy II  ]
 
   #v(0.8em)
 

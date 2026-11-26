@@ -1,7 +1,7 @@
 
 
 #import "../../style.typ": *
-#show: setup.with(preview: true)
+#show: reff
 
 // cSpell:locale en
 = Conclusion

@@ -9,7 +9,7 @@
 #import "@preview/lilaq:0.6.0" as lq
 #import "@preview/simple-plot:0.3.0": plot
 
-#let setup(body, preview: false) = {
+#let setup(body) = {
   set page(
     paper: "a4",
     margin: (
@@ -36,17 +36,6 @@
     spacing: 0.9em,
   )
 
-  // Referenzen im Vorschaumodus
-  show ref: it => {
-    if preview and it.element == none {
-      text(
-        fill: rgb("#E67E22"),
-        weight: "bold",
-      )[@#str(it.target)]
-    } else {
-      it
-    }
-  }
 
   set heading(numbering: "1.a.i")
 
@@ -60,6 +49,21 @@
     numbering("(1.1)", chapter, n)
   })
 
+  body
+}
+
+#let reff(body) = {
+  // Referenzen im Vorschaumodus
+  show ref: it => {
+    if it.element == none {
+      text(
+        fill: rgb("#E67E22"),
+        weight: "bold",
+      )[@#str(it.target)]
+    } else {
+      it
+    }
+  }
   body
 }
 
