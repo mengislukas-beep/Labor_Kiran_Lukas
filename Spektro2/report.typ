@@ -2,13 +2,13 @@
 #import "@preview/subpar:0.2.2"
 #show: setup
 
-#set document(title: "Report Spectroscopy II")
+#set document(title: "analysis of unknown light source and solar spectrum using spectroscopy")
 #set text(lang: "en", region: "GB")
 
 
 #align(center)[
   #text(size: 15pt, weight: "bold")[
-    Report Spectroscopy II  ]
+    Analysis of Unknown Light Source and Solar Spectrum using Spectroscopy  ]
 
   #v(0.8em)
 
@@ -295,6 +295,7 @@ This matches the spectrum of mercury the best:
 
 == Solar Spectrum
 From the images we can determine the absorption lines of the solar spectrum. We did not look at the rise in spectrum after 750 nm, since this is the second order. We found minima at:
+
 #figure(
   table(
     columns: 13,
