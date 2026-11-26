@@ -476,3 +476,405 @@
 
 
 ```
+
+```python
+# %% [markdown]
+# # Load libraries
+
+# %%
+# modified program from moodle course
+
+import matplotlib
+import numpy as np
+import matplotlib.pyplot as plt
+import os
+from os import listdir
+from os.path import isfile, join
+import tifffile as tiff # you might have to install this with 'pip install tifffile'
+
+# %%
+# function form datenanalyse in der physik lecture
+
+def moving_average(x, delta, edges='repeat'):
+    '''Calculate moving average of data array x. Average goes from i-delta to i+delta for every i.
+    The argument edges determines how the edge of the array is treated. Options are:
+        'repeat': First or last value is repeated beyond array. Output array has same length as input array.
+        'cut': Input array is not extended for averaging. Output array has length N-2*delta, where N is len(x).
+        'wrap': Input array wraps around for averaging. Output array has same length as input array.'''
+    
+    N = len(x)
+    
+    filtered_array = np.zeros(N)
+    
+    if edges == 'repeat':
+        # Original data starts at index delta, stops at delta+N-1
+        padded_array = np.concatenate([
+            np.ones(delta) * x[0],  # repeat first value at start
+            x,
+            np.ones(delta) * x[-1]  # repeat last value at end
+        ])
+    elif edges == 'cut':
+        # We pad with zeros to be able to treat this case the same as the others while averaging.
+        # We need to cut the start and end of the array before returning it.
+        padded_array = np.concatenate([
+            np.zeros(delta),
+            x,
+            np.zeros(delta)
+        ])
+    elif edges == 'wrap':
+        padded_array = np.concatenate([
+            x[-delta:],
+            x,
+            x[:delta]
+        ])
+    else:
+        raise ValueError('Invalid argument edges="{}"'.format(edges))
+
+    # Calculate moving average
+    for i in range(N):
+        filtered_array[i] = np.mean(padded_array[i:i+2*delta])
+
+    # Cut invalid parts in case edges='cut'
+    if edges == 'cut':
+        filtered_array = filtered_array[delta:-delta]
+        
+    return filtered_array
+
+# %% [markdown]
+# # Print files in the current working directory (cwd)
+
+# %%
+folder = os.getcwd()
+files = listdir(folder)
+
+for i, f_i in enumerate(files):
+    print(i, f_i)
+
+# %% [markdown]
+# # Read and plot image file
+
+# %%
+order = np.array([19, 18, 17, 16, 15, 14, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 13])
+kk = np.array([820, 780, 740, 700, 660, 620, 580, 540, 500, 460, 420, 380, 340, 300, 260, 220, 180, 140, 100, 60])
+img= tiff.imread(files[6])
+k = 300
+
+# %%
+# Convert images to arrays
+img_array = np.array(img).astype('float64')
+print(np.shape(img_array))
+
+# %%
+# Plot example image
+plt.imshow(img, vmin=1000,vmax=0) 
+
+# %% [markdown]
+# # Plot linecut
+
+# %%
+y_max, x_max, c_max = np.shape(img_array)
+
+x = np.linspace(0, x_max - 1, x_max)
+
+y = 550
+rangee = 70
+
+y_mean = np.zeros(1440)
+for i in range(1440):
+    y_mean[i] = np.mean(img_array[y - rangee: y + rangee, i, 0]) + np.mean(img_array[y - rangee: y + rangee, i, 1]) + np.mean(img_array[y - rangee: y + rangee, i, 2])
+
+y_mean = y_mean / 3
+y_mean_filtered = moving_average(y_mean, 2, "repeat")
+
+# chose color channel
+c = 1
+
+cts = (img_array[y, :, 0] + img_array[y, :, 1] + img_array[y, :, 2]) / 3
+cts = y_mean
+
+print(img_array[550, 100])
+print(img_array[550, 1300])
+
+# %%
+# Plot Data
+plt.figure(
+    num=1,
+    figsize=(10,6),
+    facecolor='white')
+plt.xlabel(r'Pixel', fontsize=16)
+plt.ylabel(r'Counts per $t_\mathrm{c}$', fontsize=16)
+plt.plot(x, cts)
+plt.xticks(fontsize=16)
+plt.yticks(fontsize=16)
+#plt.axvline(825)
+plt.show()
+
+# %%
+cutoff = 0
+cutofff = 100
+x_short = x[cutoff: cutofff]
+cts_short = cts[cutoff: cutofff]
+print(x_short[cts_short < 60])
+
+# %%
+plt.figure(
+    num=1,
+    figsize=(10,6),
+    facecolor='white')
+plt.xlabel(r'Pixel', fontsize=16)
+plt.ylabel(r'Counts per $t_\mathrm{c}$', fontsize=16)
+plt.plot(x, y_mean_filtered)
+plt.xticks(fontsize=16)
+plt.yticks(fontsize=16)
+plt.show()
+
+# %%
+print(len(cts))
+print(len(x))
+
+# %%
+popt = np.loadtxt("../popt.txt")
+k0 = popt[0]
+b = popt[1]
+d = popt[3]
+p_cent = 720
+print(k0)
+print(b)
+print(d)
+
+# %%
+def lamda(pp, kk):
+    return b * ((kk - k0) - (pp - p_cent) / d)
+
+# %%
+for h in range(len(order)):
+    img= tiff.imread(files[order[h]])
+    img_array = np.array(img).astype('float64')
+    k_val = kk[h]
+    y_meann = np.zeros(1440)
+    
+    for i in range(1440):
+        y_meann[i] = np.mean(img_array[y - rangee: y + rangee, i, 0]) + np.mean(img_array[y - rangee: y + rangee, i, 1]) + np.mean(img_array[y - rangee: y + rangee, i, 2])
+
+    
+    data = np.loadtxt("spectrum.txt", delimiter=',')
+    start = 1440
+    if data.size == 0:
+        start = 0
+    else:
+        last = data[-1, 0]
+        for i in range(len(x)):
+            if lamda(i, kk[h]) > last:
+                start = i
+                break
+    #start = 0
+    print(h)
+    print(start)
+    print(lamda(x[start], kk[h]))
+
+    ed = open("edges.txt", "a")
+    ed.write(str(lamda(x[start], k_val)))
+    ed.write(", ")
+    ed.write(str(lamda(x[-1], k_val)))
+    ed.write("\n")
+    ed.close()
+
+    sp = open("spectrum.txt", "a")
+
+    for i in range(start, len(x)):
+        sp.write(str(lamda(x[i], k_val)))
+        sp.write(", ")
+        sp.write(str(y_meann[i]))
+        sp.write("\n")
+    sp.close()
+
+
+# %%
+sp.close()
+
+# %%
+#must start with smallest wavelength
+#must start with highest dial position
+
+data = np.loadtxt("spectrum.txt", delimiter=',')
+start = 1440
+if data.size == 0:
+    start = 0
+else:
+    last = data[-1, 0]
+    for i in range(len(x)):
+        if lamda(i, k) > last:
+            start = i
+            break
+
+start = 0
+
+ed = open("edges.txt", "a")
+ed.write(str(lamda(x[start], k)))
+ed.write(", ")
+ed.write(str(lamda(x[-1], k)))
+ed.write("\n")
+ed.close()
+
+sp = open("spectrum.txt", "a")
+
+for i in range(start, len(x)):  
+    sp.write(str(lamda(x[i], k)))
+    sp.write(", ")
+    sp.write(str(cts[i]))
+    sp.write("\n")
+sp.close()
+
+print(len(x) - start)
+
+# %%
+
+
+# %%
+
+
+# %%
+
+
+# %%
+
+
+# %%
+
+
+
+```
+
+```python
+# %% [markdown]
+# # Load libraries
+
+# %%
+# modified program from moodle course
+
+import matplotlib
+import numpy as np
+import matplotlib.pyplot as plt
+import os
+from os import listdir
+from os.path import isfile, join
+import tifffile as tiff # you might have to install this with 'pip install tifffile'
+
+# %% [markdown]
+# # Print files in the current working directory (cwd)
+
+# %%
+folder = os.getcwd()
+files = listdir(folder)
+
+for i, f_i in enumerate(files):
+    print(i, f_i)
+
+# %% [markdown]
+# # Read and plot image file
+
+# %%
+# Convert images to arrays
+order = np.array([5, 4, 3, 2, 1, 7, 6, 0])
+kk = np.array([570, 502, 430, 392, 389, 92, 81, 12])
+
+
+img= tiff.imread(files[order[1]])
+img_array = np.array(img).astype('float64')
+print(np.shape(img_array))
+
+# %%
+# Plot example image
+plt.imshow(img, vmin=1000,vmax=0) 
+
+# %% [markdown]
+# # Plot linecut
+
+# %%
+y_max, x_max, c_max = np.shape(img_array)
+
+x = np.linspace(0, x_max - 1, x_max)
+
+y = 550
+rangee = 50
+
+# chose color channel
+c = 1
+
+cts = (img_array[y, :, 0] + img_array[y, :, 1] + img_array[y, :, 2]) / 3
+
+# %%
+# Plot Data
+plt.figure(
+    num=1,
+    figsize=(10,6),
+    facecolor='white')
+plt.xlabel(r'Pixel', fontsize=16)
+plt.ylabel(r'Counts per $t_\mathrm{c}$', fontsize=16)
+plt.plot(x, cts)
+plt.xticks(fontsize=16)
+plt.yticks(fontsize=16)
+plt.show()
+
+# %%
+popt = np.loadtxt("../../popt.txt")
+k0 = popt[0]
+b = popt[1]
+d = popt[3]
+p_cent = 720
+print(k0)
+print(b)
+print(d)
+
+def lamda(pp, kk):
+    return b * ((kk - k0) - (pp - p_cent) / d)
+
+# %%
+for h in range(len(order)):
+    img= tiff.imread(files[order[h]])
+    img_array = np.array(img).astype('float64')
+    k_val = kk[h]
+    y_meann = np.zeros(1440)
+    
+    for i in range(1440):
+        y_meann[i] = np.mean(img_array[y - rangee: y + rangee, i, 0]) + np.mean(img_array[y - rangee: y + rangee, i, 1]) + np.mean(img_array[y - rangee: y + rangee, i, 2])
+
+    
+    data = np.loadtxt("spectrum.txt", delimiter=',')
+    start = 1440
+    if data.size == 0:
+        start = 0
+    else:
+        last = data[-1, 0]
+        for i in range(len(x)):
+            if lamda(i, kk[h]) > last:
+                start = i
+                break
+    start = 0
+    print(h)
+    print(start)
+    print(lamda(x[start], kk[h]))
+
+    ed = open("edges.txt", "a")
+    ed.write(str(lamda(x[start], k_val)))
+    ed.write(", ")
+    ed.write(str(lamda(x[-1], k_val)))
+    ed.write("\n")
+    ed.close()
+
+    sp = open("spectrum.txt", "a")
+
+    for i in range(start, len(x)):
+        sp.write(str(lamda(x[i], k_val)))
+        sp.write(", ")
+        sp.write(str(y_meann[i]))
+        sp.write("\n")
+    sp.close()
+
+
+# %%
+
+
+
+
+```
