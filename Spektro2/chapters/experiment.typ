@@ -1,6 +1,7 @@
 #import "../../style.typ": *
 
 // cSpell:locale en
+#show: setup.with(preview: true)
 
 = Experiment
 The experiment consists of calibrating the spectrometer. Then observing the sun specter by pointing the fibre towards the window. The difference between the "pure" sun specter and the specter we receive at the experiment is then the interesting part which we want to analyze in a second step. This difference will be seen as dips in the specter which we want use to identify the fraunhofer lines, more in @solar_spectre. In a third step we were given a unknown source and had to identify which atoms this could be. Doing this we want to find the spectre lines of the source and the compare to de specter of different atoms which have already been well documented in the internet.

@@ -1,5 +1,8 @@
 #import "../../style.typ": *
 
+#show: setup.with(preview: true)
+
+
 // cSpell:locale en
 
 #align(center)[

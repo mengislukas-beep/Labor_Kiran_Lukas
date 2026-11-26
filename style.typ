@@ -9,7 +9,7 @@
 #import "@preview/lilaq:0.6.0" as lq
 #import "@preview/simple-plot:0.3.0": plot
 
-#let setup(body) = {
+#let setup(body, preview: false) = {
   set page(
     paper: "a4",
     margin: (
@@ -22,25 +22,34 @@
       #context counter(page).display()
     ],
   )
+
   set text(
+    lang: "de",
     font: "Libertinus Serif",
     size: 9pt,
     fill: rgb("#222222"),
-    lang: "en", region: "GB",
   )
 
   set par(
     justify: false,
     leading: 0.65em,
-  )
-
-  show par: it => block(
     spacing: 0.9em,
-    it,
   )
 
-  set heading(numbering: "1.1.1")
-  
+  // Referenzen im Vorschaumodus
+  show ref: it => {
+    if preview and it.element == none {
+      text(
+        fill: rgb("#E67E22"),
+        weight: "bold",
+      )[@#str(it.target)]
+    } else {
+      it
+    }
+  }
+
+  set heading(numbering: "1.a.i")
+
   show heading.where(level: 1): it => {
     counter(math.equation).update(0)
     it

@@ -3,6 +3,7 @@
 #import "../../style.typ": *
 
 // cSpell:locale en
+#show: setup.with(preview: true)
 
 = Introduction
 
